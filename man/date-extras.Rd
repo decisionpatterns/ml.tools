@@ -1,0 +1,19 @@
+\name{days_to_holiday}
+\alias{days_from_holiday}
+\alias{days_to_holiday}
+\title{Date Extras
+Additional functions}
+\usage{
+days_to_holiday(dates, type = "NYSE")
+
+days_from_holiday(dates, type = "NYSE")
+}
+\arguments{
+  \item{dates}{}
+
+  \item{type}{(passed to TimeWarp::holidays)}
+}
+\description{
+Date Extras Additional functions
+}
+

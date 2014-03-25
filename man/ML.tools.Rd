@@ -1,0 +1,17 @@
+\docType{package}
+\name{ML.tools}
+\alias{ML.tools}
+\alias{ML.tools-package}
+\title{ML.tools - Machine Learning Tools}
+\description{
+The \code{ML.tools} packages provides a number of tools
+that are generally applicable for Machine learning
+applications.
+}
+\examples{
+# -tk
+}
+\author{
+Christopher Brown
+}
+

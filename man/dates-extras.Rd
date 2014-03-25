@@ -1,0 +1,21 @@
+\name{featurize_date}
+\alias{featurize_date}
+\title{Create features from a date}
+\usage{
+featurize_date(dates, type = "NYSE", label = NULL)
+}
+\arguments{
+  \item{label}{how to label the resulting features
+
+  Calculates various attributes for a given date.}
+}
+\value{
+a data.table with the following attributes: year, month,
+day, week (week of the year), wday (day of the week),
+holiday (logical- whether the day is a holiday,
+days_to_holiday, days_from_holiday
+}
+\description{
+Create categorical date features
+}
+

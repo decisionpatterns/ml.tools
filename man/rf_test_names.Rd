@@ -1,0 +1,27 @@
+\name{rf_test_names}
+\alias{rf_test_names}
+\title{Test if a data set has the variables to \code{predict} a model}
+\usage{
+rf_test_names(model, data)
+}
+\arguments{
+  \item{rf_model}{randomForest model}
+
+  \item{dat}{data set.}
+}
+\value{
+\code{ invisible}
+}
+\description{
+Makes a comparison betwen \code{names( model$forest$xlevels
+)} and \code{names(dat)}
+}
+\examples{
+require(randomForest)
+  f <- randomForest( Sepal.Length ~ . , iris )
+
+  rf_test_names( f, iris )
+  rf_test_names( f, iris[ , 1:3] )
+  rf_test_names( f, mtcars )
+}
+

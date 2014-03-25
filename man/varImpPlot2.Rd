@@ -1,0 +1,21 @@
+\name{varImpPlot2}
+\alias{varImpPlot2}
+\title{Create a prettier variable importance plot
+Graph a variable performance plot for a random forest model using ggplot2.}
+\usage{
+varImpPlot2(model, nvars = 20, title = "Variable Importance")
+}
+\arguments{
+  \item{model}{randomForest. Model for which to graph the
+  plot}
+
+  \item{nvars}{integer. Number of variables to plot at
+  most.  (Default: 20)}
+
+  \item{title}{character. Title for the plot.}
+}
+\description{
+Create a prettier variable importance plot Graph a variable
+performance plot for a random forest model using ggplot2.
+}
+
