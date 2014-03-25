@@ -22,4 +22,3 @@ Suggests:
 Description: Miscellaneous Machine Learning Toools
 License: Proprietary
 LazyLoad: yes
-Collate:
