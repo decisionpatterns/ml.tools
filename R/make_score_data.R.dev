@@ -1,0 +1,172 @@
+#' Make scoreable data
+#'
+#' Make scoreable data from a prototype used especially from when data was not 
+#' avilable at the of model training.  Which is the case for most predictive
+#' learning applications. 
+#' 
+#' @param data A data.frame or data.table to be transformed
+#' @param proto A data.frame or data.table to be used as a prototype.  This
+#' should most likely 
+#' @param default (character). The default value to be used for categorical 
+#' variables
+#' 
+#' The prototype can be a 0-zero data frame in which all categorical variables
+#' have been 
+#' 
+#' @return A data frame similar to \code{proto} that is suitable for scoring 
+#' by a model \code{predict} function.
+#' 
+#' @seealso \code{ \link[randomForest]{randomForest} }
+#' @author Christopher Brown, Decision Patterns 
+#'
+#  @note TODO: implement imputes for factors
+#' @export  
+
+#' @examples
+#'   iris2 <- droplevels( iris[ 1:100, ] )
+#'   proto <- meta_prototype( iris2 )
+#'   levels( proto$Species )
+#'   make_score_data( data, iris2 )
+
+# make_score_data <- function( data, proto, default="__OTHER__" ) {
+#   stop( "Use apply.prototype instead.")
+#   data <- coerce_each( data, "character", "factor" )
+#   # data <- coerce_each( data, "logical", "factor" )
+# 
+#   cols.cat  <- names(data)[ which.cat(data) ]
+#   
+#   for( col in cols.cat ) {
+#     data[[ col ]][ ! data[[ col ]] %in% levels( proto[[ col ]] ) ]  <- default
+#     data[[ col ]] <- droplevels( data[[col]] )
+#   }   
+#   
+#   
+#     data[[ col ]] <- unlist( list( proto[[col]], data[[col]] ) ) # levels( data[[ col]] ) <- levels( proto[[ col ]] ) 
+#       
+#     if( ! all( levels( proto[[ col ]] ) == levels( data[[col]] ) ) )
+#         stop( "Something is wrong")
+# 
+#   
+#    return(data)
+#   
+# }
+
+
+# make_score_data_2 <- function( data, proto, default="__OTHER__" ) {
+#   
+#   if( nrow(proto) > 0 ) proto <- proto[ 0 , ]
+#   
+#   # Model proto using rbind 
+#   #   This increases the number of levels
+#   data <- rbind( proto, data[ , names(proto), with=FALSE ] )
+#   
+# 
+#   # THIS CAN BE EASILY PARALLELIZED 
+# 
+#   for( nm in names(proto) ) {
+#     
+#     if( ! is.factor(proto[[nm]]) ) {
+#       
+#       data[[ nm ]] <- na.replace( data[[ nm ]], imputes[[ nm ]] )
+#       
+#     } else {   
+#       
+#       # data[[ nm ]] <- add_level( data[[ nm ]], "__OTHER__" )
+#       # THIS WILL INTRO
+#       data[[ nm ]][ ! data[[ nm ]] %in% levels( proto[[ nm ]] ) ]  <- default
+#       data[[ nm ]] <- droplevels( data[[nm]] )
+#       levels( data[[ nm]] ) <- levels(data[[nm]]), levels(proto[[ nm ]]) )
+#       
+#       if( ! all( levels( proto[[ nm ]] ) == levels( data[[nm]] ) ) )
+#         stop( "Something is wrong")
+#     
+#     }
+#     
+#   }
+#   
+#   # Use imputes to replace missing data.
+#   # for( nm in names(dat) )
+#   #  na.replace( data[[ nm ]],
+#       
+#   return( data )
+#   
+# }
+# 
+# # x <- make_score_data( dat, train )
+# 
+# 
+# 
+# rf_is_unmatched <- function(model, data ) {
+#   
+#   # TEST THE DATA
+#   rf_test_names( model, data )
+#   
+#   cls <- attr( terms( model ), 'dataClasses' ) 
+#   cat.nms <- names( cls )[ cls %in%  c('factor', 'character', 'logical' ) ]
+#   vals <- model$forest$xlevels
+#   
+#   sapply( cat.nms, function(nm) any( ! data[[ nm ]] %in%  vals[[ nm ]] )  ) 
+#     
+# }
+# 
+# 
+# # d <- emulate( model, data, default="__OTHER__" )
+# 
+
+
+
+# #' Make a data set look like the one used in a model
+# #' 
+# #' Mak
+# rf_match_data <- function(model, data, default="__OTHER__" ) {
+#   
+#   # TEST THE DATA
+#   rf_test_names( model, data )
+#   
+#   cls <- attr( terms( model ), 'dataClasses' ) 
+#   cat.nms <- names( cls )[ cls %in%  c('factor', 'character' ) ]
+#   vals <- model$forest$xlevels
+#   
+#   for ( nm in cat.nms ) { 
+#   
+#     wh <- ! data[[nm]] %in% vals[[ nm ]]
+#     
+#     if( is.factor( data[[nm]] ) ) 
+#        levels( data[[nm]] ) <- union( levels( data[[nm]]), default )
+#     
+#     data[[ nm ]][ wh ]  <-  default      
+#   
+#   } 
+#   
+#   log.nms <- names( cls )[ cls %in% 'logical'  ]
+#   
+#   
+#   
+#   return(data)
+# }
+# 
+# 
+# 
+# for( nm in names( cls ) )
+#   if( ! cls[[ nm ]] == class( dat[[ nm ]] ) ) 
+#     cat( nm, cls[[nm]], class( dat[[ nm ]] ), "\n", sep="  "  )
+#   
+#   # catn( cls[nm] )
+#   # catn( class( dat[[nm]] ) ) 
+#   # if( cls[nm]  )
+#   catn( cls[[nm]] )
+#   catn( cls[nm], " ", class( data[[ nm ]] ) )
+#   # data[[ nm ]] <- as( data[[nm]], cls[[n]]  )
+#   
+# 
+# rf_match_class 
+# 
+# 
+# #' If 5 levels 3 levels -> 3 levels
+# #'    3 levels 5 levels -> 5 levels 
+# #'    The problem is that 
+# #'    
+# a <- letters[1:5]
+# b <- letters[1:3]
+# 
+# a[ a %in% unique(b) ] <- NA

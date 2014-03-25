@@ -1,0 +1,67 @@
+#' DataPrototype, extends data.table
+#' 
+#' Container for metadata about a data set such as the levels, ranges, values,
+#' etc. Internally, this is a zero-rowed data set and is useful for rowbinding 
+#' or checking values.
+#' 
+#' \Section{Slots}{
+#'   describe{
+#'     \item{\code{levels}:}{Object of class \code{list}.} 
+#'     \item{\code{imputations}:}{Object of class \code{list}.} 
+#'   }
+#' }
+#' 
+#' @examples
+#'   dt <- data.table(iris)
+#'   dp <- DataPrototype(dt)
+#'   dp 
+#'   
+#' @name DataPrototype-class 
+#' @rdname DataPrototype-class
+#' @exportClass DataPrototype
+
+DataPrototype <- setClass( 
+  'DataPrototype' 
+  , contains='data.table'
+  , slots=c( 
+        levels      = "list"        # LEVELS FOR THE FACTOR VARIABLES 
+      , imputes = "list"        # LEVELS FOR IMPUTATAION
+      # , cardinality = "integer"   #
+    )
+)
+
+
+#' @rdname DataPrototype-class
+#' @aliases initialize,DataPrototype-method
+setMethod( 'initialize', c('DataPrototype')
+  , function( .Object, data ) {
+  
+    .Object@.Data <- data[ 0 , ]
+           
+    wh_factor <- sapply( data, is.factor  )
+    .Object@levels <- lapply( data[ , wh_factor, with=FALSE ], levels  ) 
+    
+    .Object@imputes <- list()
+    
+    return( .Object )      
+    
+  }  
+)
+
+
+
+#' @rdname DataPrototype-class
+#' @aliases show,DataPrototype-method
+
+setMethod( 'show', 'DataPrototype', 
+  function(object) { 
+    cat( 
+      paste( 
+        "A DataPrototype object with", ncol(object), "columns", 
+        "and", length(object@imputes), "imputations", collapse=" " )
+    )
+    # cat("\n")
+    tbl <- table(classes(object))
+    print(tbl)
+  }                     
+)

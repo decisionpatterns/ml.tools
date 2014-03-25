@@ -1,0 +1,53 @@
+
+removeClass( 'train')
+removeClass( 'train.formula')
+setOldClass( 'train' )
+setOldClass( 'train.formula')
+#' Deployment, extends train
+#' 
+#' Class for deploying a trained caret model. The class contains all necessary
+#' elements for deploying a machine learning model build from the caret package.
+#' 
+#' \Section{Slots}{
+#'   describe{
+#'     \item{\code{prototype}:}{Object of class \code{DataPrototype}.} 
+#'   }
+#' }
+#' 
+#' @examples 
+#'   fit <- train( Species ~ ., iris, method='rpart') 
+#'   deploy <- Deployment( fit, iris )
+#'   
+#' @name Deployment-class
+#' @rdname Deployment-class
+#' @exportClass Deployment
+
+
+removeClass( 'Deployment')
+Deployment <- setClass( 
+    'Deployment'
+  , contains = c( "train", "train.formula" )
+  , slots = c(  
+      data_prototype = 'DataPrototype'
+    )
+    
+)
+
+#' @rdname Deployment-class
+#' @aliases initialize,Deployment-method
+setMethod( 'initialize', c('Deployment')
+    , function( .Object, model, data ) {
+      
+        # new( "Deployment", "model")
+        .Object <- model
+        class( .Object ) <- "Deployment"
+        # .Object@.Data <- as.list(model)
+        # .Object@data_prototype <- DataPrototype(data)
+        
+        return(.Object)
+    }
+)
+
+deploy <- Deployment( fit, dt )
+deploy@
+    
