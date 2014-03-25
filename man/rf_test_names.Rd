@@ -2,7 +2,7 @@
 \alias{rf_test_names}
 \title{Test if a data set has the variables to \code{predict} a model}
 \usage{
-rf_test_names(model, data)
+  rf_test_names(model, data)
 }
 \arguments{
   \item{rf_model}{randomForest model}
@@ -10,11 +10,11 @@ rf_test_names(model, data)
   \item{dat}{data set.}
 }
 \value{
-\code{ invisible}
+  \code{ invisible}
 }
 \description{
-Makes a comparison betwen \code{names( model$forest$xlevels
-)} and \code{names(dat)}
+  Makes a comparison betwen \code{names(
+  model$forest$xlevels )} and \code{names(dat)}
 }
 \examples{
 require(randomForest)

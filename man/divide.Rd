@@ -2,7 +2,8 @@
 \alias{divide}
 \title{Divide data column-wise into separate data}
 \usage{
-divide(x, cols = NULL, keep = NULL, rm = NULL, drop = FALSE)
+  divide(x, cols = NULL, keep = NULL, rm = NULL,
+    drop = FALSE)
 }
 \arguments{
   \item{x}{a data object}
@@ -21,10 +22,10 @@ divide(x, cols = NULL, keep = NULL, rm = NULL, drop = FALSE)
   \code{divide} creates data.frames comprised of the}
 }
 \value{
-a list of vectors or data objects
+  a list of vectors or data objects
 }
 \description{
-Divides data into multiple objects such retaining indices
+  Divides data into multiple objects such retaining indices
 }
 \examples{
 divide( iris[1:3,], keep="Species", )
@@ -32,6 +33,6 @@ divide( iris[1:3,], keep="Species", )
   divide( longley, keep="Year" )
 }
 \seealso{
-\code{\link[base]{split}}
+  \code{\link[base]{split}}
 }
 

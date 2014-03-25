@@ -10,7 +10,7 @@
   \code{newdata}. Each level does not have to be represented, but there needs
   all levels must be represent in the \code{levels} attribute.}
 \usage{
-prep_train(data, ..., preserve = character())
+  prep_train(data, ..., preserve = character())
 }
 \arguments{
   \item{data}{data.frame.}
@@ -20,18 +20,18 @@ prep_train(data, ..., preserve = character())
   \item{...}{arguments passed to other functions}
 }
 \description{
-randomForest requires * factors and not strings. * factors
-<= 32 levels * no missing y values * also saves 'values' *
-Inf, -Inf not allowed (at least not in caret ) * predict
-additionally requires that there are no new levels in
-\code{newdata}. Each level does not have to be represented,
-but there needs all levels must be represent in the
-\code{levels} attribute.
+  randomForest requires * factors and not strings. *
+  factors <= 32 levels * no missing y values * also saves
+  'values' * Inf, -Inf not allowed (at least not in caret )
+  * predict additionally requires that there are no new
+  levels in \code{newdata}. Each level does not have to be
+  represented, but there needs all levels must be represent
+  in the \code{levels} attribute.
 }
 \examples{
 # -tk
 }
 \seealso{
-\code{\link{prep_data}}
+  \code{\link{prep_data}}
 }
 

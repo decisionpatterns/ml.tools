@@ -4,9 +4,9 @@
 \title{Date Extras
 Additional functions}
 \usage{
-days_to_holiday(dates, type = "NYSE")
+  days_to_holiday(dates, type = "NYSE")
 
-days_from_holiday(dates, type = "NYSE")
+  days_from_holiday(dates, type = "NYSE")
 }
 \arguments{
   \item{dates}{}
@@ -14,6 +14,6 @@ days_from_holiday(dates, type = "NYSE")
   \item{type}{(passed to TimeWarp::holidays)}
 }
 \description{
-Date Extras Additional functions
+  Date Extras Additional functions
 }
 

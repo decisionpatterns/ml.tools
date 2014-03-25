@@ -2,8 +2,8 @@
 \alias{mcrf}
 \title{Train Random Forest Model using Multicore}
 \usage{
-mcrf(..., ntree = 500, combine = TRUE, ncores = parallel::detectCores() -
-  1)
+  mcrf(..., ntree = 500, combine = TRUE,
+    ncores = parallel::detectCores() - 1)
 }
 \arguments{
   \item{...}{All parameters passed to \code{randomForest}}
@@ -16,19 +16,19 @@ mcrf(..., ntree = 500, combine = TRUE, ncores = parallel::detectCores() -
   \item{ncores}{Number of cores to use}
 }
 \value{
-A random forest object.
+  A random forest object.
 }
 \description{
-Trains a Random Forest Model using Multicore and Foreach
+  Trains a Random Forest Model using Multicore and Foreach
 }
 \details{
-Trains a Random Forest model using multicores.
+  Trains a Random Forest model using multicores.
 }
 \examples{
 fit <- mcrf( Species ~ ., data=iris, ntree=13 )
 }
 \seealso{
-caret, foreach
+  caret, foreach
 }
 \keyword{model}
 

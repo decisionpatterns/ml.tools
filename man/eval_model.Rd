@@ -2,7 +2,7 @@
 \alias{eval_model}
 \title{Calculate model performance}
 \usage{
-eval_model(model, newdata, fun, ...)
+  eval_model(model, newdata, fun, ...)
 }
 \arguments{
   \item{model}{a model objecy. The model to be evaluated.}
@@ -16,14 +16,14 @@ eval_model(model, newdata, fun, ...)
   \item{...}{Arguments passed to \code{fun}}
 }
 \value{
-The result of \code{fun} applied to the actual and fitted
-value
+  The result of \code{fun} applied to the actual and fitted
+  value
 }
 \description{
-Calculates the performance of a fitted model.
+  Calculates the performance of a fitted model.
 }
 \note{
-Does not allow for post model evaluation
+  Does not allow for post model evaluation
 }
 \examples{
 fit <- lm( Sepal.Length ~ ., iris )
@@ -32,9 +32,9 @@ fit <- lm( Sepal.Length ~ ., iris )
   eval_model( fit, iris, mae )
 }
 \author{
-Christopher Brown
+  Christopher Brown
 }
 \seealso{
-\code{mae}, \code{rmse}
+  \code{mae}, \code{rmse}
 }
 

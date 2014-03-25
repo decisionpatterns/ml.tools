@@ -2,7 +2,7 @@
 \alias{prep_data}
 \title{Prepare data for use by a particular function}
 \usage{
-prep_data(data, fun, ...)
+  prep_data(data, fun, ...)
 }
 \arguments{
   \item{data}{data.frame.}
@@ -12,10 +12,10 @@ prep_data(data, fun, ...)
   \item{...}{arguments passed to other functions}
 }
 \value{
-a data frame.
+  a data frame.
 }
 \description{
-Prepares a data set for use by a particular function
+  Prepares a data set for use by a particular function
 }
 \examples{
 prep_data( iris, randomForest )
