@@ -1,5 +1,5 @@
 S3method(eval_model,default)
-S3method(predict,cluster)
+S3method(predict,parallel)
 export(apply.prototype)
 export(assess)
 export(days_from_holiday)
