@@ -2,7 +2,9 @@
 #' 
 #' Applies a prototype to data in a higly efficient way in order to
 #' prepare the data for soc 
+#' 
 #' @export
+
 apply.prototype <- function( data, proto, default="__OTHER__" ) { 
 
   # MARCH COLUMNS ON NAME
