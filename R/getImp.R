@@ -7,10 +7,14 @@
 #' 
 #' @return factor
 #' 
+#' @seealso \code{\link[randomForest]{randomForest}}
+#' 
+#' @examples
+#'  # -tk
+#' 
 #' @export 
 
 getImp <- function(model, n=50) {
-
 
     imp <- importance(model)
     imp <- data.frame(feature = rownames(imp), importance = imp[, 

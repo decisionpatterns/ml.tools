@@ -22,19 +22,3 @@ Suggests:
 Description: Miscellaneous Machine Learning Toools
 License: Proprietary
 LazyLoad: yes
-Collate:
-    'ML.tools-package.R'
-    'apply.prototype.R'
-    'assess.R'
-    'date-features.R'
-    'divide.R'
-    'eval_model.R'
-    'getFeatures.r'
-    'getImp.R'
-    'mcrf.R'
-    'parse.ctree.R'
-    'prep_data.R'
-    'prep_data_scoring.R'
-    'rf_test_names.R'
-    'varImpPlot2.R'
-    'predict.parallel.R'
