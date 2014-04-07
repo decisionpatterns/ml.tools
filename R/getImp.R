@@ -3,7 +3,7 @@
 #' Get most important features from an RF model in order of importance
 #' 
 #' @param model A rf model or at least something that has an \code{importance} 
-#' @param n number of features to extract
+#' @param n number of features to extract; the default is to extract all features
 #' 
 #' @return factor
 #' 
@@ -14,7 +14,7 @@
 #' 
 #' @export 
 
-getImp <- function(model, n=50) {
+getImp <- function(model, n=length(model$importance) ) {
 
     imp <- importance(model)
     imp <- data.frame(feature = rownames(imp), importance = imp[, 
