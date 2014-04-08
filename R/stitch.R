@@ -5,7 +5,10 @@
 #' @param x data.table; 
 #' @param y data.table;
 #' 
-#' \code{stitch} merges (joins) \code{x} to \code{y} using a LEFT INNER JOIN. Special 
+#' \code{stitch} does two things.  First, it ensures removes duplicates from 
+#' \code{y}. This is done using \code{dup.action}. 
+#' 
+#' merges (joins) \code{x} to \code{y} using a LEFT INNER JOIN. Special 
 #' behaviours make it so this according to indexes/columns of \code{x} and \code{y}.  
 #' 
 #' If there are more than one \code{y} for every x. Duplicate rows of \code{y} 
@@ -22,8 +25,6 @@
 #' 
 #' \strong{imputation} is 
 #' 
-#' 
-#' 
 #' @return data.table; X and Y appropriately merged/joined.
 #' 
 #' @note 
@@ -33,7 +34,7 @@
 #'   LHS := Y's %intersect% X's
 #'   RHS := Y's \ X's
 #' 
-#' @seealso \code{\link[data.table]{merge}}
+#' @seealso \code{\link[data.table]{merge}}, \code{\link[dup.action]{dup.pivot}}
 #' 
 #' @rdname
 #' @export 
@@ -56,7 +57,7 @@ stitch <- function(x,y) {
     
   } else { 
     
-    stop( "There are no keys of y found in x.")
+    stop( "There are no keys of y found in x. No stitching can be done.")
     
   }
   
@@ -68,29 +69,21 @@ stitch <- function(x,y) {
 
 #' \code{stitch.outer} is similar to/identical .stitch.straight
 #' @examples
-#'   cars <- mtcars
-#'   cars$model <- rownames(mtcars)
-#'   setDT(cars)
-#'   setkey( cars, model )
-#'   x <- cars[ 1:10, list(model, mpg ) ]   
-#'   setkey( x, model ) 
-#'   y <- cars[ c(1:5,1:5), list(model, cyl, hp, drat, wt ) ]
-#'   setkey( y, model, cyl )
-#'   setkey( x, model)
-#'   .stitch.outer(x,y)
-#'   x <- mtcars
-#'   setDT(x)
-#'   key(x)
 #' 
 #' x <- data.table( customer=letters[1:4] )
 #' setkey( x, customer )
 #' 
 #' y <- data.table( 
 #'      customer = sort( letters[ c(1:4,1:4,1:4) ] )
-#'    , time = 1:3 
-#'    , income = round(rnorm(12,10) * 10) 
-#'    , expense = round( rnorm(12,10) )
+#'    , time     = 1:3 
+#'    , income   = round(rnorm(12,10) * 10) 
+#'    , expense  = -round( rnorm(12,10) )
+#'    , count    = 1
 #' )
+#' 
+#' y <- rbind(y, y[c(1,1,2),] )
+#' y <- y[ -(10:11), ]
+#' y[ 8, income := NA]
 #' setkey( y, customer, time )
 #' 
 #' .stitch.outer(x,y)
@@ -113,35 +106,11 @@ stitch <- function(x,y) {
   measures     <- setdiff( names(y), key(y) ) 
   
   # DETECT AND ALERT ON CARDINALITY OF PIVOTS
-  
-  # Melt 
-  # id.vars : matching columns 
-  # measure.vars = pi o
-  y.me <- melt( 
-      data = y 
-    , na.rm = TRUE
-    , id.vars = c(id.vars, id.vars.vary ), #release_dt, release_wk,  measure_wk, W),  
-    , measure.vars = measures
-  )
-    
-  #' LHS := key.x_1 + key.x_2 + ...  
-  #' RHS := 
-  form <- LHS ~ RHS 
-  
-  lhs( form ) <- 
-    parse( text=paste( id.vars, collapse="+" ) )[[1]] 
-  
-  rhs( form ) <-  
-    parse( text=paste( c( 'variable', id.vars.vary ), collapse="+" ) )[[1]]
-    
-  
-  # DUPLICATES.
-  #  DUPLICATES ARE AUTOMATICALLY HANDLED BY THE 
-  y. <-  dcast.data.table( y.me, form , fun.aggregate=mean, na.rm=TRUE ) 
-  
-  
+
+  y. <- dup.pivot( y, id.vars, id.vars.vary )
+
   # DUP.ACTION
-  y. <- dedup(y.)
+  # y. <- dedup(y.)   
 
   # MERGE
   merge( x, y., by=key(x), all.x=TRUE )
@@ -196,6 +165,8 @@ stitch <- function(x,y) {
 
 
 #' dedup records, preserving attributes
+#' @export
+
 dedup <- function(y) {
   
   # DUP.ACTION
