@@ -13,9 +13,17 @@
 #' @param drop logical; whether to reduce to vectors if it cotains only one 
 #' columns
 #' 
+#' @param secondary.key logical; whether to set the 
+#' 
+#' @param na.action function; function applied to resulting object to handle NA
+#' values. Default: \code{\link[stats]{na.pass}}
+#' 
 #' \code{divide} creates a list of data objects, one for each column of \code{x}
-#' not in \code{by} or \code{rm}. Each will also contain the \code{by} columns 
+#' that are not in \code{by} or \code{rm}. Each will also contain the \code{by} columns 
 #' similar to the way that all \code{by} columns are included when data is split.
+#' If \code{x} is a data.table, 
+#' 
+#' 
 #' 
 #' If \code{drop} is \code{TRUE} and 
 #' 
@@ -31,14 +39,55 @@
 #' @seealso \code{\link[base]{split}}
 #' 
 #' @examples 
-#'   divide( iris[1:3,], by="Species", )
-#'   divide( iris[1:3,], "Petal.Length" )
-#'   divide( longley, by="Year" )
-#'   divide( longley, by="Year", rm="Employed" )
+#'   # data.frame method
+#'   data(iris)
+#'   divide( iris )
+#'   divide( iris, by='Species', rm='Petal.Length' )
+#'   divide( iris, drop=TRUE )
+#'   divide( longley, by='Year' )
+#'   divide( longley, by='Year', rm='Employed' )
+#'   
+#'   # data.table method
+#'   setDT(iris)
+#'   divide(iris)
+#'   divide(iris, "Species" )
+#'   divide(iris, "Species", secondary.key=TRUE )
 #'   
 #' @export divide
 
-divide <- function( x, by=NULL, rm=NULL, drop=FALSE ) { 
+divide <- function( x, by, ... ) UseMethod( 'divide' )
+
+
+#' @rdname divide
+#' @method divide data.frame
+divide.data.frame <- function( x, by=NULL, rm=NULL, drop=FALSE, na.action=na.pass ) { 
+
+  # `by` and `rm` have to be valid names 
+  for( col in c(by,rm) ) 
+    if( ! col %in% names(x) ) stop( col, " not found in data.frame." ) 
+  
+  # SPLIT INTO ALL CO LS
+  cols <- setdiff( names(x), c(by,rm) )  
+
+  li <- list()
+  for( col in cols ) { 
+    
+    all.col <- if( is.null(by) ) col else c(by,col) 
+    
+    li[[col]] <- na.pass( x[ , all.col, drop=drop  ] )
+    
+  }
+    
+  return(li)
+
+}
+
+#' @rdname divide
+#' @method divide data.table
+
+divide.data.table <- function( 
+  x, by=NULL, rm=NULL, drop=FALSE, na.action=na.pass, secondary.key=FALSE 
+) { 
 
   # `by` and `rm` have to be valid names 
   for( col in c(by,rm) ) 
@@ -50,12 +99,14 @@ divide <- function( x, by=NULL, rm=NULL, drop=FALSE ) {
   li <- list()
   for( col in cols ) { 
     
-    if( ! is.null(by) ) all.col <-  names(x)[ names(x) %in% c(col,by) ]
+    all.col <- if( is.null(by) ) col else c(by,col) 
     
-    li[[col]] <- if( is.data.table(x) ) 
-      x[ , all.col, drop=drop, with=FALSE  ] else 
-      x[ , all.col, drop=drop  ] 
-  
+    li[[col]] <- x[ , all.col, drop=drop, with=FALSE ] 
+   
+    if( is.function(na.action) ) li[[col]] <- na.action( li[[col]] )
+    
+    setkeyv( li[[col]], if( secondary.key ) col else by )
+    
   }
     
   return(li)

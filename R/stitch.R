@@ -98,89 +98,61 @@ stitch <- function(x,y) {
   }
   
   #' GET THE LIST OF VARIABLES IMPORTANT TO THE MERGE
-  Ys <- key(y)
-  Xs <- if( ! is.null(key(x)) ) key(x) else names(x)   
+  key_y <- key(y)
+  key_x <- if( ! is.null(key(x)) ) key(x) else names(x)   
   
-  id.vars      <- intersect( Ys, Xs )          # x,y merge key(s)
-  id.vars.vary <- setdiff( Ys, id.vars  )  # y keys not in that.  
+  id.vars      <- intersect( key_y, key_x )          # x,y merge key(s)
+  vary <- setdiff( key_y, id.vars  )  # y keys not in that.  
   measures     <- setdiff( names(y), key(y) ) 
   
   # DETECT AND ALERT ON CARDINALITY OF PIVOTS
 
-  y. <- dup.pivot( y, id.vars, id.vars.vary )
+  y. <- dup.pivot( y, id.vars, vary )
 
   # DUP.ACTION
   # y. <- dedup(y.)   
 
   # MERGE
-  merge( x, y., by=key(x), all.x=TRUE )
+  x. <- merge( x, y., by=key(x), all.x=TRUE )
+  
+  return(x.)
   
 }  
 
 
 #' \code{.stitch.straight} performs a LEFT merge/join on two data.tables when \code{x} and \code{y} have
-#' the same keys/the keys of y are all in the 
+#' the key of \code(y) are all in the x
 #' 
 #' @examples
-#'   data(mtcars)
-#'   cars <- mtcars
-#'   cars$model <- rownames(mtcars)
-#'   setDT(cars)
-#'   setkey( cars, model )
-#'   x <- cars[ 1:20, list(model, mpg, cyl) ]    
-#'   y <- cars[ 1:10, list(model, hp, drat, wt ) ]
-#'   
-#'   # straight, no duplicates in y.
-#'   .stitch.straight( x, y )
-#'   
-#'   c3 <- rbind2(y,y)  
-#'   setkey( c3, model)
-#'   attr( c3, "dup.action") <- dup.last
-#'   .stitch.straight( x, c3 ) 
-#'   
-#'   
-#'   # Provide dup.action
-#'   attr( c3, "dup.action" ) <- function(x) x[ ! duplicated(x), ]
-#'   .stitch.straight( x, c3 )
-#'   
-#'   # Ineffective dup.action 
-#'   attr( c3, "dup.action" ) <- identity
-#'   expect_error( .stitch.straight( x, c3 ) )
-#'   
-#'   .stitch.straight( x, y )
+#' x <- data.table( 
+#'      customer = sort( letters[ c(1:4,1:4,1:4) ] )
+#'    , date     = 1:3
+#'    , income   = round(rnorm(12,10) * 10) 
+#'    , expense  = -round( rnorm(12,10) )
+#'    , count    = 1
+#' )
+#' 
+#' # DUPLICATES
+#' y <- data.table( customer=letters[1:2], first_name=c('Foo', 'Bar') )
+#' setkey( y, customer )
+#' 
+#' .stitch.straight( x, y  )
+#' 
 #' @rdname stitch     
 
 .stitch.straight <- function(x,y) { 
   
-  if( ! identical(sort(key(x)), sort(key(y)) ) )
+  if( ! all( key(y) %in% names(x) ) )
     stop( "Keys of x and y don't match." )
 
   # DEDUPLICATE.  DUP.ACTION
   y <- dedup(y)
 
   # MERGE
-  merge( x, y, by=key(x), all.x=TRUE )
+  x. <- merge( x, y, by=key(y), all.x=TRUE )
 
+  return(x.)
+  
 }    
 
 
-#' dedup records, preserving attributes
-#' @export
-
-dedup <- function(y) {
-  
-  # DUP.ACTION
-  if( any( duplicated(y) ) )
-    if( ! is.null( attr( y, "dup.action" ) ) ) { 
-      dup.action <- attr( y, "dup.action" )
-      y <- dup.action(y)      
-    } else {
-      stop( "Duplicates detected in y with no dup.action" )
-    }
- 
-  if( any( duplicated(y)) )
-    stop( "dup.action did not eliminate all the duplicates" )
-  
-  return(y)
-  
-}
