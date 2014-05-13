@@ -1,6 +1,6 @@
 #' stitch two feature data tables together
 #' 
-#' stitches two data.tables together 
+#' stitches two data.tables together based on (shared) keys
 #' 
 #' @param x data.table; 
 #' @param y data.table;
@@ -36,7 +36,7 @@
 #' 
 #' @seealso \code{\link[data.table]{merge}}, \code{\link[dup.action]{dup.pivot}}
 #' 
-#' @rdname
+#' @rdname stitch
 #' @export 
 
 stitch <- function(x,y) { 
@@ -113,7 +113,7 @@ stitch <- function(x,y) {
   # y. <- dedup(y.)   
 
   # MERGE
-  x. <- merge( x, y., by=key(x), all.x=TRUE )
+  x. <- merge( x, y., by=key(y.), all.x=TRUE )
   
   return(x.)
   
@@ -146,10 +146,10 @@ stitch <- function(x,y) {
     stop( "Keys of x and y don't match." )
 
   # DEDUPLICATE.  DUP.ACTION
-  y <- dedup(y)
+  y. <- dedup(y)
 
   # MERGE
-  x. <- merge( x, y, by=key(y), all.x=TRUE )
+  x. <- merge( x, y., by=key(y), all.x=TRUE )
 
   return(x.)
   
