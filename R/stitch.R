@@ -122,7 +122,7 @@ stitch <- function(x,y) {
 
 
 #' \code{.stitch.straight} performs a LEFT merge/join on two data.tables when \code{x} and \code{y} have
-#' the key of \code(y) are all in the x
+#' the key of \code{y} are all in the x
 #' 
 #' @examples
 #' x <- data.table( 

@@ -1,6 +1,6 @@
 #' predict.parallel - parallel bulk scoring 
 #' 
-#' Drop in replacement for \cpde{predict} that scores predictive models in parallel. 
+#' Drop in replacement for \code{predict} that scores predictive models in parallel. 
 #' 
 #' @param object a model object for which prediction is desired
 #' 
