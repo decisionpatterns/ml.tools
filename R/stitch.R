@@ -87,6 +87,7 @@ stitch <- function(x,y) {
 #' setkey( y, customer, time )
 #' 
 #' .stitch.outer(x,y)
+#' @rdname stitch
 
 .stitch.outer <- function(x,y) {
   

@@ -23,19 +23,23 @@
 #'   
 #' @export
 
-predict.parallel <- function( cl, object, newdata, ... ) { 
+predict.parallel <- function( object, newdata, ... ) { 
 
-  require(itertools)
+  # require(itertools)
   
-  chunks <- length(cl)
+  chunks <- getDoParWorkers()
   chunksize <- ceiling( nrow(newdata)/(chunks-1) ) 
   
-  foreach( 1:chunks, sub_new_data=isplitRows(newdata, chunkSize=chunksize) 
-    , .inorder=TRUE, .combine=rbind2, .packages=c('randomForest','data.table') 
+  scores <- foreach( 
+       sub_newdata=isplitRows(newdata, chunks=getDoParWorkers() ) 
+    , .inorder=TRUE, .combine=c, .multicombine=TRUE
+    , .packages=c('randomForest','data.table')
+    , .final = function(x) c( predict( fit, newdata[1,] )[0]
     ) %dopar% 
-  { 
-    sub_new_data[ , list( parent_id, fit=predict(object, newdata=sub_new_data ) ) ] 
-  }
+      { 
+        predict( object, sub_newdata )
+        # sub_newdata[ , list( parent_id, fit=predict(object, newdata=sub_newdata ) ) ] 
+      }
   
 }  
     
