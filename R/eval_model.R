@@ -23,7 +23,7 @@ eval_model <- function( model, newdata, fun, ... )
 
 
 #' @method eval_model default
-#' @S3method eval_model default 
+#' @export eval_model default 
 eval_model.default <- function( model, newdata, fun=rmse, ... ) { 
   
   y <- as.character( lhs( formula(model) ) )
