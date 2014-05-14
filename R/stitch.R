@@ -87,7 +87,8 @@ stitch <- function(x,y) {
 #' setkey( y, customer, time )
 #' 
 #' .stitch.outer(x,y)
-#' @rdname
+#' @rdname stitch
+
 .stitch.outer <- function(x,y) {
   
   require( reshape2, quietly=TRUE )

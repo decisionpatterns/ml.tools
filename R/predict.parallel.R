@@ -1,44 +1,47 @@
 #' predict.parallel - parallel bulk scoring 
 #' 
-#' Scores predictive models in parallel.  
-#' 
-#' @param cl A cluster object from \code{makeCluster}
+#' Drop in replacement for \cpde{predict} that scores predictive models in parallel. 
 #' 
 #' @param object a model object for which prediction is desired
 #' 
 #' @param newdata data frame or matrix containing new data
+#' @param ... Additional arguments passed to the predict function
 #' 
-#' @param ... Additional arguments affecting the prediction
+#' Scores a model on a distrubted cluster using \code{foreach} and 
+#' \code{itertools::isplitRows} which chunks the data into one chunck for each 
+#' node.   
 #' 
-#' Scores a model on a distrubted cluster. The scores are distributed using 
-#' \code{itertools::isplitRows}.  The number of chunks is number of clusters.
-#'  
-#' 
-#' @return a data.table object with key and associated predictions
+#' @return vector of associated predictions
 #' 
 #' @references 
 #'   http://stackoverflow.com/questions/14756662/parallel-prediction-with-cforest-randomforest-prediction-with-dosnow
 #'
-#' 
+#' @seealso 
+#'   \code{\link[foreach]{foreach}}, \code{\link[itertools]{isplitRows}}
+#'   
 #' @examples
-#' 
-#'   \dontrun{ fits <- predict( cl, fit, YX ) }
+#'   require(randomForest) 
+#'   data(iris)
+#'   fit  <- randomForest(Species ~ ., iris)
+#'   predict( fit, iris )
+#'   predict.parallel( fit, iris )
 #'   
 #' @export
 
-predict.parallel <- function( cl, object, newdata, ... ) { 
+predict.parallel <- function( object, newdata, ... ) { 
 
-  require(itertools)
-  
-  chunks <- length(cl)
-  chunksize <- ceiling( nrow(newdata)/(chunks-1) ) 
-  
-  foreach( 1:chunks, sub_new_data=isplitRows(newdata, chunkSize=chunksize) 
-    , .inorder=TRUE, .combine=rbind, .packages=c('randomForest','data.table') 
+  scores <- 
+    foreach( 
+       data=isplitRows( newdata, chunks=getDoParWorkers() ) 
+      , .inorder=TRUE 
+      , .combine=c, .multicombine=TRUE
+      # , .packages=c('randomForest','data.table')
+      , .export='object'
     ) %dopar% 
-  { 
-    sub_new_data[ , list( parent_id, fit=predict(object, newdata=sub_new_data ) ) ] 
-  }
+      {  
+        predict( object, data, ... ) 
+      }
   
+  return(scores)
 }  
     

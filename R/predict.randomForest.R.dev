@@ -6,7 +6,6 @@
 #' levels and a different colum ordering.
 #'
 #' @method predict randomForest
-#' @S3method predict randomForest
 #' @rdname predict.randomForest
 #' @export
 
