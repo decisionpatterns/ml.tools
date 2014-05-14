@@ -17,13 +17,14 @@
 #'   eval_model( fit, iris, mae )
 #' @note Does not allow for post model evaluation
 #' @export  
+
 eval_model <- function( model, newdata, fun, ... ) 
   UseMethod( "eval_model")
 
 
 
 #' @method eval_model default
-#' @S3method eval_model default 
+#' @export eval_model default 
 eval_model.default <- function( model, newdata, fun=rmse, ... ) { 
   
   y <- as.character( lhs( formula(model) ) )
