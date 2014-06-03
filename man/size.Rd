@@ -1,0 +1,20 @@
+\name{size}
+\alias{size}
+\title{size}
+\usage{
+  size(object)
+}
+\arguments{
+  \item{object,}{R object}
+}
+\description{
+  Show the size of the object (side-effect only)
+}
+\note{
+  TODO: - make generic - move into bigO(?) package
+}
+\examples{
+size(iris)
+  size(mtcars)
+}
+
