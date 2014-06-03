@@ -2,13 +2,13 @@
 #' 
 #' Show the size of the object (side-effect only)
 #' 
-#' @param object, An R object
+#' @param object, R object
 #' 
 #' @examples
 #'   size(iris)
 #'   size(mtcars)
 #'   
-#' @note: TODO:
+#' @note TODO:
 #'   - make generic 
 #'   - move into bigO(?) package 
 #'   
