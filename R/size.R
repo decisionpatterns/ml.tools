@@ -21,6 +21,8 @@ size <- function(object) {
   
   message( "dim : ", paste( size$dim, collapse=" x " ), " (", prod( size$dim), ")")
   message( "card: ", size$cardinality )
+  message( rep( "-", 30 ))
+  message( "size: ", sprintf( "%1.3e", size$dim[1] * size$card ) )
   
   invisible(size)
   
