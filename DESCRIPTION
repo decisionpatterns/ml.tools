@@ -24,22 +24,3 @@ Description: Miscellaneous Machine Learning Toools
 License: Proprietary
 LazyLoad: yes
 Roxygen: list(wrap = FALSE)
-Collate:
-    'ML.tools-package.R'
-    'apply.prototype.R'
-    'assess.R'
-    'autokey.R'
-    'date-features.R'
-    'divide.R'
-    'eval_model.R'
-    'getFeatures.r'
-    'getImp.R'
-    'parse.ctree.R'
-    'predict.parallel.R'
-    'prep_data.R'
-    'prep_data_scoring.R'
-    'randomForest.R'
-    'rf_test_names.R'
-    'size.R'
-    'stitch.R'
-    'varImpPlot2.R'
