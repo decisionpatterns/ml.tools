@@ -1,4 +1,4 @@
-#' predict.parallel - parallel bulk scoring 
+#' parPredict- parallel bulk scoring 
 #' 
 #' Drop in replacement for \code{predict} that scores predictive models in parallel. 
 #' 
@@ -28,7 +28,7 @@
 #'   
 #' @export
 
-predict.parallel <- function( object, newdata, ... ) { 
+parPredict<- function( object, newdata, ... ) { 
 
   scores <- 
     foreach( 
