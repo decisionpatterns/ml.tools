@@ -1,5 +1,15 @@
-getFeatures<-function (data, by, features) 
-# This function will retrieve a list of features 
+#' getFeatures (DEPRECATED?)
+#'
+#' Possibly deprecated function for evaluating a list of \code{features} from
+#' \code{data}
+#' 
+#' @param data
+#' @param by
+#' @param features 
+#' 
+#' @export
+
+getFeatures <-function (data, by, features) 
 {     
 
   # COERCE TO EXPRESSION
