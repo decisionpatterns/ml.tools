@@ -22,7 +22,8 @@ require( itertools )
 #'   setkey(iris, Species)
 #'   
 #'   it <- ifeatures(iris)
-#'   while( hasNext(it) ) message( paste( dim(nextElem(it)), collapse=" x " ) ) 
+#'   while( hasNext(it) ) 
+#'     message( paste( dim(nextElem(it)), collapse=" x " ) ) 
 #'                 
 #' @export  
 
