@@ -30,9 +30,9 @@ window_expr <- function( milestone, event_dt, direction="of", span ) {
   span <- as.numeric(span)
   
   template <- switch( direction  
-      , before = 'diffdays( {{milestone}}, {{event_dt}} ) <= {{span}} & diffdays( {{milestone}}, {{event}} ) >= 0'
-      , after  =  'diffdays( {{event_dt}}, {{milestone}} ) <= {{span}} & diffdays(  {{event_dt}}, {{milestone}} ) >= 0'
-      , of = 'abs( diffdays( {{milestone}}, {{event_dt}} ) ) <= {{span}}' 
+      , before = 'dp.misc::diffdays( {{milestone}}, {{event_dt}} ) <= {{span}} & dp.misc::diffdays( {{milestone}}, {{event_dt}} ) >= 0'
+      , after  =  'dp.misc::diffdays( {{event_dt}}, {{milestone}} ) <= {{span}} & dp.misc::diffdays(  {{event_dt}}, {{milestone}} ) >= 0'
+      , of = 'abs( dp.misc::diffdays( {{milestone}}, {{event_dt}} ) ) <= {{span}}' 
   )
   
   tdata <- list( 

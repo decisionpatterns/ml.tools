@@ -11,18 +11,28 @@ ifeatures(x, chunkSize = 1, ...)
 \item{chunkSize}{number of measures to include along with
 
 A feature is defined as a measurement associated with a particular entity.
-In this case the entity is defined by the key of the data.table. ifeatures
-iterators over the non-key columns}
+The entities are defined by the key columns.  The measurements are non-key
+columns.
+
+nextElem iterates over the measurement (non-key) column and provides a
+data.table with the keys of x and one measurement.
+
+The idea is that the measurements can be independently operated on.}
+}
+\value{
+an iterator
 }
 \description{
 iterator for iterating of a data.table of features
 }
 \examples{
 data(iris)
-  setDT(itis)
+  setDT(iris)
   setkey(iris, Species)
 
   it <- ifeatures(iris)
+  el1 <- nextElem(it)
+  key(el1)
   while( hasNext(it) )
     message( paste( dim(nextElem(it)), collapse=" x " ) )
 }

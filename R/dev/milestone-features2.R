@@ -25,8 +25,8 @@ Milestones[ , cutoff_dt := q_cutoff ]
 
   time_grain = "days"
 
-  # comb = data.table:::merge.data.table
-  comb = cbind  
+  comb = data.table:::merge.data.table
+  # comb = cbind  
   # comb = base::c
 
   # event.li = divide( ev_ga, by='parent_id' )
@@ -50,19 +50,16 @@ feature_name <- function( data=parent.frame(), ... ) {
 
 # TODO: NERGE CAN MOVE HIGHER IN THE 
 
-
+try( rm(x) )
   
 x <- 
-  foreach( milestone = ifeatures( Milestones ), .combine = comb, .multicombine=TRUE, .packages=c("whisker","dp.misc") ) %:%  # milestones / milemarkers
-  foreach( measure = ifeatures( measures ), .combine = comb, .multicombine=TRUE  ) %:%   # events
-  foreach( direction = directions, .combine = comb, .multicombine=TRUE  ) %:%            # characer: before, after, within
-  foreach( span = spans # , .errorhandling="pass"
-        , .combine = comb, .multicombine=TRUE
-        , .packages=c("whisker"), .export=cqq(feature_prefix, time_grain) ) %dopar%                   # durations: 
+  foreach( milestone = ifeatures( Milestones ), .combine = comb, .init=parents ) %:%  # milestones / milemarkers
+x <-  foreach( measure = ifeatures( measures ), .combine = comb  ) %:%   # events
+  foreach( direction = directions, .combine = comb  ) %:%            # characer: before, after, within
+  foreach( span = spans, .combine = comb # , .multicombine=TRUE
+        , .packages=c('whisker','ML.tools','dp.misc','na.actions'), .export=cqq(feature_prefix, time_grain) ) %dopar%                   # durations: 
     {
-      require(na.actions)
-      require(dp.misc)
-      
+
       milestone_nm <- setdiff( names(milestone), key(milestone) )
       measure_nm   <- setdiff( names(measure), key(measure) )
       event_dt     <- "visit_dt"  # index column
@@ -90,9 +87,14 @@ x <-
       
       x <- merge( parents, x, all.x=TRUE )
       x <- na.replace( x )
-      x[ , parent_id := NULL ] 
+      # x[ , parent_id := NULL ] 
       return(x)
       
     }
 
+)
+
+
 }
+
+# pi = 42599025
