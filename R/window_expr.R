@@ -23,15 +23,15 @@
 #'   window_expr( "milestone_dt", "event_dt", ddays(4), "before" )
 #'   window_expr( "milestone_dt", "event_dt", ddays(5), "after" )
 #'   
-#' @rdname   
+#' @export
 
 window_expr <- function( milestone, event_dt, direction="of", span ) {
   
   span <- as.numeric(span)
   
   template <- switch( direction  
-      , before = 'diffdays( {{milestone}}, {{event_dt}} ) <= {{span}}'
-      , after  =  'diffdays( {{event_dt}}, {{milestone}} ) <= {{span}}'
+      , before = 'diffdays( {{milestone}}, {{event_dt}} ) <= {{span}} & diffdays( {{milestone}}, {{event}} ) >= 0'
+      , after  =  'diffdays( {{event_dt}}, {{milestone}} ) <= {{span}} & diffdays(  {{event_dt}}, {{milestone}} ) >= 0'
       , of = 'abs( diffdays( {{milestone}}, {{event_dt}} ) ) <= {{span}}' 
   )
   
