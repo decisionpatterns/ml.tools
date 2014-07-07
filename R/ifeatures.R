@@ -8,8 +8,16 @@ require( itertools )
 #' @param chunkSize number of measures to include along with 
 #'  
 #' A feature is defined as a measurement associated with a particular entity. 
-#' In this case the entity is defined by the key of the data.table. ifeatures 
-#' iterators over the non-key columns   
+#' The entities are defined by the key columns.  The measurements are non-key
+#' columns.  
+#'
+#' nextElem iterates over the measurement (non-key) column and provides a
+#' data.table with the keys of x and one measurement.  
+#' 
+#' The idea is that the measurements can be independently operated on.
+#'        
+#' @return 
+#'   an iterator
 #' 
 #' @seealso
 #'   \code{\link{divide}}
@@ -18,10 +26,12 @@ require( itertools )
 #'   
 #' @examples
 #'   data(iris)
-#'   setDT(itis)
+#'   setDT(iris)
 #'   setkey(iris, Species)
 #'   
 #'   it <- ifeatures(iris)
+#'   el1 <- nextElem(it)
+#'   key(el1)
 #'   while( hasNext(it) ) 
 #'     message( paste( dim(nextElem(it)), collapse=" x " ) ) 
 #'                 
@@ -37,7 +47,9 @@ ifeatures <- function(x, chunkSize=1, ... ) {
   it <- ihasNext( isplitVector( setdiff( names(x), keys ), chunkSize=1, ... ) )
   
   nextEl <- function() {   
-    x[ , c(keys, nextElem(it)), with=FALSE ]
+    x. <- x[ , c(keys, nextElem(it)), with=FALSE ]
+    setkeyv(x.,keys)
+    x.
   }
   
   hasNx <- function() { 
