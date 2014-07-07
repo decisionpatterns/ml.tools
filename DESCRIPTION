@@ -1,7 +1,7 @@
 Package: ML.tools
 Type: Package
 Title: Machine Learning Tools
-Version: 0.13
+Version: 0.14.0
 Date: 2014-06-16
 Author: Christopher Brown
 Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
