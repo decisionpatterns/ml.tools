@@ -1,4 +1,4 @@
 library(testthat) 
 
-expect_true( require( ML.tools ) )
+expect_true( require( ml.tools ) )
 

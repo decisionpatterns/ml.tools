@@ -1,5 +1,5 @@
 library(testthat)
-library(ML.tools)
+library(ml.tools)
 library(doParallel)
   registerDoParallel(4)
 

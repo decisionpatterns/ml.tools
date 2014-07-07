@@ -67,7 +67,7 @@ parallelRandomForest <- function( ..., ntree=500 ) {
 #' @rdname randomForest
 #' @export
 randomForest <- function( ... ) { 
-  # message( "...using ML.tools::randomForest" ) 
+  # message( "...using ml.tools::randomForest" ) 
   parallelRandomForest(...)
 }
 

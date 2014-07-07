@@ -1,4 +1,4 @@
 library(testthat)
-library(ML.tools)
+library(ml.tools)
 
-test_package("ML.tools")
+test_package("ml.tools")

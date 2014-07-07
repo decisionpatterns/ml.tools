@@ -1,5 +1,5 @@
 library(testthat)
-library(ML.tools)
+library(ml.tools)
 require(dp.misc, quietly=TRUE)  # TEMPORARY for .dup action
 
 data(mtcars)
