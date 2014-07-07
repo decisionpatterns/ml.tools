@@ -1,12 +1,25 @@
+# template <- "{{feature_prefix}}.{{measure_nm}}.within_{{span}}_{{time_grain}}_of.{{milestone_nm}}"
+
+#' feature_name
+#' 
+#' build a feature name from variables on the environment, e.g:
+#'   ga.visits.withing_2_days_before.xmas2013
+#' @param data where to evaluate the template, default=parent.frame() 
+#' 
+#' @export
+feature_name <- function( data=parent.frame(), ... ) {
+  template <- "{{feature_prefix}}.{{measure_nm}}.within_{{span}}_{{time_grain}}_{{direction}}.{{milestone_nm}}"
+  whisker.render(template, data=data, ... )
+}
+
+# feature_name()
+
+
 milestone_features <- function(...) {
 
-Milestones[ , cutoff_dt := max(GA_Parent_Daily$visit_dt) ]
-Milestones[ , cutoff_dt := q_cutoff ]
+  Milestones[ , cutoff_dt := max(GA_Parent_Daily$visit_dt) ]
+  Milestones[ , cutoff_dt := q_cutoff ]
 
-# Add constant milestones 
-
-  # Lifecycle_Events <- Milestones 
-  
   ga_summable <- cqq( 
       organic_searches, entrances, visits, new_visits, pageviews
     , unique_pageviews, visit_duration, quantity
@@ -29,32 +42,12 @@ Milestones[ , cutoff_dt := q_cutoff ]
   # comb = cbind  
   # comb = base::c
 
-  # event.li = divide( ev_ga, by='parent_id' )
-
-# template <- "{{feature_prefix}}.{{measure_nm}}.within_{{span}}_{{time_grain}}_of.{{milestone_nm}}"
-
-#' feature_name
-#' 
-#' build a feature name from variables on the environment, e.g:
-#'   ga.visits.withing_2_days_before.xmas2013
-#' @param data where to evaluate the template, default=parent.frame() 
-#' 
-#' @export
-feature_name <- function( data=parent.frame(), ... ) {
-  template <- "{{feature_prefix}}.{{measure_nm}}.within_{{span}}_{{time_grain}}_{{direction}}.{{milestone_nm}}"
-  whisker.render(template, data=data, ... )
-}
-
-# feature_name()
-
-
-# TODO: NERGE CAN MOVE HIGHER IN THE 
 
 try( rm(x) )
   
 x <- 
-  foreach( milestone = ifeatures( Milestones ), .combine = comb, .init=parents ) %:%  # milestones / milemarkers
-x <-  foreach( measure = ifeatures( measures ), .combine = comb  ) %:%   # events
+  foreach( milestone = ifeatures( Milestones[ parents ] ), .combine = comb, .init=parents ) %:%  # milestones / milemarkers
+  foreach( measure = ifeatures( measures ), .combine = comb  ) %:%   # events
   foreach( direction = directions, .combine = comb  ) %:%            # characer: before, after, within
   foreach( span = spans, .combine = comb # , .multicombine=TRUE
         , .packages=c('whisker','ML.tools','dp.misc','na.actions'), .export=cqq(feature_prefix, time_grain) ) %dopar%                   # durations: 

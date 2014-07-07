@@ -33,9 +33,11 @@ prep_data <- function(data, fun, ... ) {
 #' @param data data.frame.
 #' @param preserve (character) columns not to prepare.
 #' @param ... arguments passed to other functions
+#' @max
 #' @examples
 #'   # -tk
 #' @export
+
 prep_data_randomForest <- function(data, ..., max.levels=32, preserve=character() ) { 
    
   if( length(preserve) > 0 ) pre <- data[ , preserve, with=FALSE ]
