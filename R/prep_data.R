@@ -21,8 +21,10 @@ prep_data <- function(data, fun, ... ) {
 }   
   
 
-#' randomForest requires 
-#' * factors and not strings.
+#' Prepare Data for randomForest  
+#'
+#' Random Forest requires:
+#' * factors and not strings
 #' * factors <= 32 levels    
 #' * no missing values
 #' * also saves 'values' 
@@ -30,8 +32,9 @@ prep_data <- function(data, fun, ... ) {
 #' * predict additionally requires that there are no new levels in 
 #'   \code{newdata}. Each level does not have to be represented, but there needs
 #'   all levels must be represent in the \code{levels} attribute.
+#'   
 #' @param data data.frame.
-#' @param preserve (character) columns not to prepare.
+#' @param preserve (character) columns not to be prepared
 #' @param ... arguments passed to other functions
 #' @max
 #' @examples
