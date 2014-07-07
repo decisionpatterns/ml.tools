@@ -23,13 +23,14 @@ prep_data <- function(data, fun, ... ) {
 
 #' Prepare Data for randomForest  
 #'
-#' Random Forest requires:
-#' * factors and not strings
-#' * factors <= 32 levels    
-#' * no missing values
-#' * also saves 'values' 
-#' * Inf, -Inf not allowed (at least not in caret )
-#' * predict additionally requires that there are no new levels in 
+#' Random Forest requires: 
+#'   factors and not strings, 
+#'   factors <= 32 levels, 
+#'   no missing values,
+#'   also saves 'values', 
+#'   Inf, -Inf not allowed (at least not in caret )
+#'   
+#'   predict additionally requires that there are no new levels in 
 #'   \code{newdata}. Each level does not have to be represented, but there needs
 #'   all levels must be represent in the \code{levels} attribute.
 #'   
