@@ -37,6 +37,7 @@ prep_data <- function(data, fun, ... ) {
 #' @param data data.frame.
 #' @param preserve (character) columns not to be prepared
 #' @param ... arguments passed to other functions
+#' @max
 #' @examples
 #'   # -tk
 #' @export
