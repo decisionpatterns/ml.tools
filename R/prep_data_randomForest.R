@@ -44,15 +44,4 @@ prep_data_randomForest <- function(data, ..., max.levels=32, preserve=character(
 # iris <- iris; iris[ 1:10, "Petal.Length" ] <- NA
 
 
-# randomForest <- function(data, ...) {
-#   
-#   
-#   # data <- coerce_each(data, "character", "factor")
-#   data <- reduce_cardinality( data, nlevels=32, ... )
-#   data <- impute(data, fun=median, ... )
-#   
-#   data <- 
-#   
-#   return(data)
-#   
-# }
+

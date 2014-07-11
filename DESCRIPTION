@@ -17,9 +17,8 @@ Depends:
     doParallel,
     randomForest,
     zoo,
+    data.table,
     methods
-Suggests:
-    data.table
 Description: Miscellaneous Machine Learning Toools
 License: Proprietary
 LazyLoad: yes
