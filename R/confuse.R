@@ -23,20 +23,21 @@
 
 #' @rdname confuse
 #' @export
-confuse.default <- function( actual, predicted ) {
 
-  matrix( 
-    c(
-      sum( actual & predicted ), 
-      sum( ! actual & predicted ), 
-      sum( actual  & ! predicted ), 
-      sum( ! actual & ! predicted  ) 
-    ), 
-    nrow=2  , 
-    dimnames = list( actual=c('TRUE', 'FALSE'), predicted=c('TRUE', 'FALSE') )
-  )
-
-}
+  confuse.default <- function( actual, predicted ) {
+  
+    matrix( 
+      c(
+        sum( actual & predicted ), 
+        sum( ! actual & predicted ), 
+        sum( actual  & ! predicted ), 
+        sum( ! actual & ! predicted  ) 
+      ), 
+      nrow=2  , 
+      dimnames = list( actual=c('TRUE', 'FALSE'), predicted=c('TRUE', 'FALSE') )
+    )
+  
+  }
 
 
 #' @rdname confuse

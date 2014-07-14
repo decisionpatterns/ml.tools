@@ -10,4 +10,8 @@ apply.prototype(data, proto, default = "__OTHER__")
 Applies a prototype to data in a higly efficient way in order to
 prepare the data for soc
 }
+\seealso{
+\code{\link[formulations]{conform}}
+  \code{\link[plyr]{rbind.fill}}
+}
 
