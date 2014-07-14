@@ -32,7 +32,7 @@
 #'   # CARET 
 #'   fit <- train( Species ~ . , iris, ntree=200 )
 #'   
-#' @rdname randomForest
+#' @rdname parRandomForest
 #' @export
 
 parRandomForest <- function( ..., ntree=500 ) { 
