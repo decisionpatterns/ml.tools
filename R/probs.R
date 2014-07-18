@@ -7,6 +7,7 @@
 #' @param newdata data; data for which to calculate probaiities
 #' @param correct logical; whether to correct the probabilities according to their
 #'  frequency of occurance. 
+#' @param ... arguments passed to \code{predict.randomForest}
 #' 
 #' \code{probs} is an S3 generic method.  Functions can be written for 
 #' classification models.

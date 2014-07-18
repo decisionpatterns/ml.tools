@@ -4,6 +4,12 @@ setOldClass( 'train' )   # set class for caret
 #' 
 #' Assesses the fit between a value and its estimate using a variety of measures
 #' 
+#' @param x vector of outcomes
+#' @param y vector of predictions
+#' @param ... additional arguments 
+#' @param na.action function to be used when arguments are absent
+#' @param format (See scales package.)
+#' 
 #' Calculates a variety of perfomance measures for a model fit.
 #' @export
 #' @docType methods

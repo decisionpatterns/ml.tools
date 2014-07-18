@@ -6,6 +6,10 @@
 featurize_date(dates, type = "NYSE", label = NULL)
 }
 \arguments{
+\item{dates}{date vector}
+
+\item{type}{e.g. "NYSE" (see TimeWarp package)}
+
 \item{label}{how to label the resulting features
 
 Calculates various attributes for a given date.}

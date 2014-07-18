@@ -2,10 +2,12 @@
 # 
 #' Additional functions 
 #'
-#' @param dates
+#' @param dates dates
 #' @param type  (passed to TimeWarp::holidays)
+#' 
 #' @export
 #' @rdname date-extras
+
 days_to_holiday <- function( dates, type="NYSE" ) {
   
   yrs <- unique( year(dates) )
@@ -44,6 +46,8 @@ days_from_holiday <- function( dates, type="NYSE" ) {
 #' 
 #' Create categorical date features 
 #'
+#' @param dates date vector
+#' @param type e.g. "NYSE" (see TimeWarp package)
 #' @param label how to label the resulting features
 #'  
 #' Calculates various attributes for a given date.  

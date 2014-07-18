@@ -11,7 +11,8 @@
 #'   \code{newdata}. Each level does not have to be represented, but there needs
 #'   all levels must be represent in the \code{levels} attribute.
 #'   
-#' @param data data.frame.
+#' @param data data.frame
+#' @param max.levels integer; maximum number of levels for categorical variables
 #' @param preserve (character) columns not to be prepared
 #' @param ... arguments passed to other functions
 #'
@@ -19,7 +20,7 @@
 #'   # -tk
 #' @export
 
-prep_data_randomForest <- function(data, ..., max.levels=32, preserve=character() ) { 
+prep_data_randomForest <- function(data, ..., max.levels=50, preserve=character() ) { 
   
   if( length(preserve) > 0 ) pre <- data[ , preserve, with=FALSE ]
   

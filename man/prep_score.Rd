@@ -9,6 +9,9 @@ prep_score(data, model, OTHER = "__OTHER__")
 \item{data}{data.table to prepare}
 
 \item{model}{train caret model to emulate}
+
+\item{OTHER}{character; value to be used when there are too many categorical
+levelss}
 }
 \value{
 a data.table that can (hopefully) be used by the \code{predict}

@@ -3,10 +3,13 @@
 #' Possibly deprecated function for evaluating a list of \code{features} from
 #' \code{data}
 #' 
-#' @param data
-#' @param by
-#' @param features 
+#' @param data data
+#' @param by by 
+#' @param features features
 #' 
+#' @seealso 
+#'   \code{divide}
+#'   
 #' @export
 
 getFeatures <-function (data, by, features) 

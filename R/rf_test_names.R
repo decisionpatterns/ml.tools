@@ -2,8 +2,8 @@
 #' 
 #' Makes a comparison betwen \code{names( model$forest$xlevels )} and 
 #' \code{names(dat)}
-#' @param rf_model randomForest model
-#' @param dat data set.
+#' @param model randomForest model
+#' @param data data to test
 #' 
 #' @return \code{ invisible}
 #' @examples

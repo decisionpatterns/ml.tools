@@ -6,9 +6,9 @@
 rf_test_names(model, data)
 }
 \arguments{
-\item{rf_model}{randomForest model}
+\item{model}{randomForest model}
 
-\item{dat}{data set.}
+\item{data}{data to test}
 }
 \value{
 \code{ invisible}

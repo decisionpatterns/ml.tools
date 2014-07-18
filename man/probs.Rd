@@ -14,7 +14,9 @@ probs(object, newdata, ...)
 \item{newdata}{data; data for which to calculate probaiities}
 
 \item{correct}{logical; whether to correct the probabilities according to their
- frequency of occurance.
+frequency of occurance.}
+
+\item{...}{arguments passed to \code{predict.randomForest}
 
 \code{probs} is an S3 generic method.  Functions can be written for
 classification models.
