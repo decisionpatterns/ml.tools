@@ -11,12 +11,16 @@
 #' @return numeric vector; y transformed into basis of x
 #' @seealso reference any functions that are input links to other functions using latex \link{name function}
 #' @examples 
-#'    calibrate 
-#' 
+#'    calibrate( 1:10, 1:10 ) # 1:10
+#'    calibrate( 1:10, 1:20 )
+#'    calibrate( 1:20, 1:10 )
+#'    library(testthat)
+#'    expect_is( x, 'numeric' ) 
+#'    
 #' @rdname calibrate
-#' @export
 #' @aliases calibrate
-#' 
+#' @export
+
 calibrate <- function(x, y){
 
   #Bin Methodolgy Sturges Formula  
@@ -40,7 +44,7 @@ calibrate <- function(x, y){
   model <- lm(x ~ y, data)
  
   #Calibrate Modelled Data
-  return (calibrated_y <- predict(model, data))
+  return( predict(model, data) )
   
 }
 
