@@ -21,14 +21,14 @@ calibrate <- function(x, y){
 
   #Bin Methodolgy Sturges Formula  
   if(length(x) > length(y)){
-    n <- length(y)
-    x <- sample(x, n, replace = TRUE)
+    l <- length(y)
+    x <- sample(x, l, replace = TRUE)
   } else {
-    n <- length(x)
-    y <- sample(y,n, replace = TRUE)
+    l <- length(x)
+    y <- sample(y,l, replace = TRUE)
   }
   
-  nbins = round(log2(n) + 1)
+  nbins = round(log2(length(x)) + 1)
   
   #Apply binning formula
   x <- cut(x, nbins)
