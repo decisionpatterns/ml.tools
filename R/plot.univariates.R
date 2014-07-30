@@ -16,7 +16,13 @@ plot.univariates <- function( ... ) {
    
   ll <- list( ... )
   
-  DF <- null
+  # TRAP FOR MISSING NAMES
+  nms <- names(ll)
+  if( is.null( nms ) ) names(ll) <- paste0( 'x', 1:length(ll) )
+  if( any( is.na(nms) ) )
+    names( ll )[ which( is.na(nms) ) ]  <- paste0( 'x', 1:sum(is.na(nms) ) )    
+  
+  DF <- NULL
   for( nm in names(ll) ) { 
     df <- data.frame( dist=nm, value=ll[[nm]] )
     DF <- if( is.null(DF) ) df else rbind( DF, df )
