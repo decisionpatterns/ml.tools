@@ -18,6 +18,8 @@
 #' @param na.action function; function applied to resulting object to handle NA
 #' values. Default: \code{\link[stats]{na.pass}}
 #' 
+#' @param ... additional arguments passed to specific elements
+#' 
 #' \code{divide} creates a list of data objects, one for each column of \code{x}
 #' that are not in \code{by} or \code{rm}. Each will also contain the \code{by} columns 
 #' similar to the way that all \code{by} columns are included when data is split.
@@ -48,6 +50,7 @@
 #'   divide( longley, by='Year', rm='Employed' )
 #'   
 #'   # data.table method
+#'   data(iris)
 #'   setDT(iris)
 #'   divide(iris)
 #'   divide(iris, "Species" )
@@ -59,7 +62,9 @@ divide <- function( x, by, ... ) UseMethod( 'divide' )
 
 
 #' @rdname divide
-#' @method divide data.frame
+#' @aliases divide,data.frame-method
+#' @export
+# @method divide data.frame
 divide.data.frame <- function( x, by=NULL, rm=NULL, drop=FALSE, na.action=na.pass ) { 
 
   # `by` and `rm` have to be valid names 
@@ -84,6 +89,9 @@ divide.data.frame <- function( x, by=NULL, rm=NULL, drop=FALSE, na.action=na.pas
 
 #' @rdname divide
 #' @method divide data.table
+#' @aliases divide,data.table-method
+#' @export
+
 
 divide.data.table <- function( 
   x, by=NULL, rm=NULL, drop=FALSE, na.action=na.pass, secondary.key=FALSE 

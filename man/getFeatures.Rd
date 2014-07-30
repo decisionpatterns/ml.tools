@@ -6,14 +6,17 @@
 getFeatures(data, by, features)
 }
 \arguments{
-\item{data}{}
+\item{data}{data}
 
-\item{by}{}
+\item{by}{by}
 
-\item{features}{}
+\item{features}{features}
 }
 \description{
 Possibly deprecated function for evaluating a list of \code{features} from
 \code{data}
+}
+\seealso{
+\code{divide}
 }
 

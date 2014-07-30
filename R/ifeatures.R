@@ -6,6 +6,7 @@ require( itertools )
 #' 
 #' @param x data.table containing a key and measures 
 #' @param chunkSize number of measures to include along with 
+#' @param ... additional parameters passed to \code{ihasNext}
 #'  
 #' A feature is defined as a measurement associated with a particular entity. 
 #' The entities are defined by the key columns.  The measurements are non-key

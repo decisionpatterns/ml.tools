@@ -34,7 +34,9 @@
 #'   LHS := Y's %intersect% X's
 #'   RHS := Y's \ X's
 #' 
-#' @seealso \code{\link[data.table]{merge}}, \code{\link[dup.action]{dup.pivot}}
+#' @seealso 
+#'   \code{\link[data.table]{merge}}
+#'   \code{dup.pivot} in the \code{dup.actions} package.
 #' 
 #' @rdname stitch
 #' @export 

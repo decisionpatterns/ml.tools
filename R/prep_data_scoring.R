@@ -12,6 +12,8 @@
 #'  
 #' @param data data.table to prepare
 #' @param model train caret model to emulate
+#' @param OTHER character; value to be used when there are too many categorical
+#' levelss
 #' 
 #' @return a data.table that can (hopefully) be used by the \code{predict} 
 #' method

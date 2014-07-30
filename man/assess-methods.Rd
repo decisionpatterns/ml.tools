@@ -16,12 +16,23 @@ assess(x, y, ...)
 
 \S4method{assess}{train,data.frame}(x, y, na.action = na.exclude, ...)
 }
+\arguments{
+\item{x}{vector of outcomes}
+
+\item{y}{vector of predictions}
+
+\item{...}{additional arguments}
+
+\item{na.action}{function to be used when arguments are absent}
+
+\item{format}{(See scales package.)
+
+Calculates a variety of perfomance measures for a model fit.}
+}
 \description{
 Assesses the fit between a value and its estimate using a variety of measures
 }
 \details{
-Calculates a variety of perfomance measures for a model fit.
-
 \code{train}, \code{data.frame} method evaluates the model
 }
 

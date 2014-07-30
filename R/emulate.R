@@ -4,6 +4,7 @@
 #' 
 #' @param x object to emulate
 #' @param y object to effect and return
+#' @param default character value for missing values
 #' @param ... additional parameters 
 #' 
 #' \code{emulate} makes \code{x} more like \code{y} so that \code{x} can be 
@@ -17,6 +18,11 @@
 #'   Returns \code{x} that emulates \code{y}
 #'   
 #'   The ANY-ANY method simply returns \code{x}
+#'   
+#' @seealso   
+#'   \code{\link{apply.prototype}} 
+#'   \code{\link[dp.misc]{conform}}
+#'   \code{\link[plyr]{rbind.fill}}
 #'   
 #' @export 
 #' @docType methods
@@ -36,7 +42,7 @@ setOldClass( 'randomForest')
 
 setMethod( 
   'emulate', signature( 'randomForest', 'data.frame' ), 
-  function( x, y, default = " __OTHER__" ) {  # default = NA ?
+  function( x, y, default = "__OTHER__" ) {  # default = NA ?
     
     rf_test_names( x, y )
     

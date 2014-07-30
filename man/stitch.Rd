@@ -87,6 +87,7 @@ setkey( y, customer )
 .stitch.straight( x, y  )
 }
 \seealso{
-\code{\link[data.table]{merge}}, \code{\link[dup.action]{dup.pivot}}
+\code{\link[data.table]{merge}}
+  \code{dup.pivot} in the \code{dup.actions} package.
 }
 

@@ -1,6 +1,6 @@
-#' parallelRandomForest
+#' parRandomForest
 #'
-#' provides parallelRandomForest and a parallel drop-in replacement for 
+#' provides parRandomForest and a parallel drop-in replacement for 
 #' \code{randomForest}using foreach/doParallel
 #' 
 #' @param ... parameters passed to \code{randomForest}
@@ -24,7 +24,7 @@
 #'   registerDoParallel(4)
 #'   
 #'   #EXPLICIT:
-#'   fit <- parallelRandomForest( Species ~ . , iris, ntree=200)
+#'   fit <- parRandomForest( Species ~ . , iris, ntree=200)
 #'   
 #'   # DROP-IN REPLACEMENT
 #'   fit <- randomForest( Species ~ . , iris, ntree=200)
@@ -32,10 +32,10 @@
 #'   # CARET 
 #'   fit <- train( Species ~ . , iris, ntree=200 )
 #'   
-#' @rdname randomForest
+#' @rdname parRandomForest
 #' @export
 
-parallelRandomForest <- function( ..., ntree=500 ) { 
+parRandomForest <- function( ..., ntree=500 ) { 
 
   # require(itertools)
   require(randomForest)
@@ -64,11 +64,11 @@ parallelRandomForest <- function( ..., ntree=500 ) {
 
 
 
-#' @rdname randomForest
+#' @rdname parRandomForest
 #' @export
 randomForest <- function( ... ) { 
-  # message( "...using ML.tools::randomForest" ) 
-  parallelRandomForest(...)
+  # message( "...using ml.tools::randomForest" ) 
+  parRandomForest(...)
 }
 
 

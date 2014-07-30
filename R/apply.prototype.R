@@ -3,6 +3,14 @@
 #' Applies a prototype to data in a higly efficient way in order to
 #' prepare the data for soc 
 #' 
+#' @param data data
+#' @param proto prototype 
+#' @param default character; value to be used when collapsing categories ( default: "__OTHER__" )
+#' 
+#' @seealso
+#'   \code{\link[formulations]{conform}}
+#'   \code{\link[plyr]{rbind.fill}}
+#'   
 #' @export
 
 apply.prototype <- function( data, proto, default="__OTHER__" ) { 

@@ -13,7 +13,7 @@
 \usage{
 emulate(x, y, ...)
 
-\S4method{emulate}{randomForest,data.frame}(x, y, default = " __OTHER__")
+\S4method{emulate}{randomForest,data.frame}(x, y, default = "__OTHER__")
 
 \S4method{emulate}{factor,vector}(x, y, default = NA)
 
@@ -25,6 +25,8 @@ emulate(x, y, ...)
 \item{x}{object to emulate}
 
 \item{y}{object to effect and return}
+
+\item{default}{character value for missing values}
 
 \item{...}{additional parameters
 
@@ -60,5 +62,10 @@ y <- letters[1:3]
 emulate( x, y )
 emulate( y, x )
 emulate( x, y, default="b" )
+}
+\seealso{
+\code{\link{apply.prototype}}
+  \code{\link[dp.misc]{conform}}
+  \code{\link[plyr]{rbind.fill}}
 }
 

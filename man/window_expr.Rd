@@ -10,7 +10,7 @@ window_expr(milestone, event_dt, direction = "of", span)
 
 \item{event_dt}{character; name of date column related to the event}
 
-\item{direction;}{before, after, within}
+\item{direction}{character: before, after, of}
 
 \item{span}{length of time for the window
 

@@ -3,10 +3,12 @@
 \alias{prep_data_randomForest}
 \title{Prepare Data for randomForest}
 \usage{
-prep_data_randomForest(data, ..., max.levels = 32, preserve = character())
+prep_data_randomForest(data, ..., max.levels = 50, preserve = character())
 }
 \arguments{
-\item{data}{data.frame.}
+\item{data}{data.frame}
+
+\item{max.levels}{integer; maximum number of levels for categorical variables}
 
 \item{preserve}{(character) columns not to be prepared}
 

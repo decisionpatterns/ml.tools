@@ -6,8 +6,19 @@ prepare the data for soc}
 \usage{
 apply.prototype(data, proto, default = "__OTHER__")
 }
+\arguments{
+\item{data}{data}
+
+\item{proto}{prototype}
+
+\item{default}{character; value to be used when collapsing categories ( default: "__OTHER__" )}
+}
 \description{
 Applies a prototype to data in a higly efficient way in order to
 prepare the data for soc
+}
+\seealso{
+\code{\link[formulations]{conform}}
+  \code{\link[plyr]{rbind.fill}}
 }
 

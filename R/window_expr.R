@@ -5,7 +5,7 @@
 #'
 #' @param milestone character; name of milestone_dt column 
 #' @param event_dt character; name of date column related to the event
-#' @param direction; before, after, within 
+#' @param direction character: before, after, of 
 #' @param span length of time for the window 
 #' 
 #' Window := direction + span 

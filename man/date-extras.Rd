@@ -10,7 +10,7 @@ days_to_holiday(dates, type = "NYSE")
 days_from_holiday(dates, type = "NYSE")
 }
 \arguments{
-\item{dates}{}
+\item{dates}{dates}
 
 \item{type}{(passed to TimeWarp::holidays)}
 }
