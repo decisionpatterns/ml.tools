@@ -9,7 +9,7 @@
 #' Uses linear model to determine the calibrated ...
 #' 
 #' @return numeric vector; y transformed into basis of x
-#' @seealso reference any functions that are input links to other functions using latex \link{name function}
+#' @seealso reference any functions that are input links to other functions using latex 
 #' @examples 
 #'    calibrate 
 #' 
@@ -17,7 +17,7 @@
 #' @export
 #' @aliases calibrate
 #' 
-calibrate <- function(x, y){
+calibrate <- function(x, y, f = function(l){round(log2(length(l)) + 1)}){
 
   #Bin Methodolgy Sturges Formula  
   if(length(x) > length(y)){
@@ -28,19 +28,9 @@ calibrate <- function(x, y){
     y <- sample(y,l, replace = TRUE)
   }
   
-  nbins = round(log2(length(x)) + 1)
+  nbins <- f(x) 
+  calibrated_y <- split(y,cut(x, nbins))
   
-  #Apply binning formula
-  x <- cut(x, nbins)
-  y <- cut(y, nbins)
-    
-  #Model data  
-  data <- data.table(x=x[order(x)], y=y[order(y)])
-  
-  model <- lm(x ~ y, data)
- 
-  #Calibrate Modelled Data
-  return (calibrated_y <- predict(model, data))
+  return (calibrated_y)
   
 }
-
