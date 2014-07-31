@@ -10,6 +10,7 @@
 #' 
 #' @examples 
 #'  plot.univariates( norm=rnorm(1000, 5), lnorm=rlnorm(10000, 10) ) + scale_x_sqrt()
+#'  plot.univariates( 1:10, rlnorm=rlnorm(10000, 10) ) + scale_x_sqrt()
 #' @export 
 
 plot.univariates <- function( ... ) { 
@@ -18,9 +19,11 @@ plot.univariates <- function( ... ) {
   
   # TRAP FOR MISSING NAMES
   nms <- names(ll)
-  if( is.null( nms ) ) names(ll) <- paste0( 'x', 1:length(ll) )
-  if( any( is.na(nms) ) )
-    names( ll )[ which( is.na(nms) ) ]  <- paste0( 'x', 1:sum(is.na(nms) ) )    
+  if( is.null( nms ) ) names(ll) <- substitute( character(...) )
+  if( any( nms == '' ) )
+    names( ll )[ nms == '' ]  <- 
+      as.character( substitute( list(...) ) )[-1][ nms == '' ]
+ 
   
   DF <- NULL
   for( nm in names(ll) ) { 
