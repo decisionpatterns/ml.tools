@@ -4,22 +4,23 @@
 #' 
 #' @param x numeric; original distribution 
 #' @param y numeric; modeled distribution
+#' @param f function; function used to calculate number of bins used to separate original distribution
 #'
-#' Uses Sturges formula to...
+#' Default bin calculation uses Sturges formula - 
 #' Uses linear model to determine the calibrated ...
 #' 
 #' @return numeric vector; y transformed into basis of x
 #' @seealso reference any functions that are input links to other functions using latex 
 #' @examples 
-#'    calibrate 
-#' 
+#'    org_distribution <- rlnorm(1000) 
+#'    modelled_distribution <- rnorm(1000,mean=5)
+#'    cal_dist <- calibrate(org_distribution,modelled_distribution)
 #' @rdname calibrate
 #' @export
 #' @aliases calibrate
 #' 
-calibrate <- function(x, y, f = function(l){round(log2(length(l)) + 1)}){
+calibrate <- function(x, y){
 
-  #Bin Methodolgy Sturges Formula  
   if(length(x) > length(y)){
     l <- length(y)
     x <- sample(x, l, replace = TRUE)
@@ -28,9 +29,13 @@ calibrate <- function(x, y, f = function(l){round(log2(length(l)) + 1)}){
     y <- sample(y,l, replace = TRUE)
   }
   
-  nbins <- f(x) 
-  calibrated_y <- split(y,cut(x, nbins))
+  #x = sort(x)
+  #y = sort(y)
+  #df <- data.frame(x,y)
+  #mod <- lm(y ~ x, df)
   
-  return (calibrated_y)
+  calibrated <- approx(x,y, rule=c(2,2), method='constant')
+  
+  return (calibrated$y)
   
 }
