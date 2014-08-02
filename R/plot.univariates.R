@@ -22,9 +22,11 @@ plot.univariates <- function( ... ) {
   
   # TRAP FOR MISSING NAMES
   nms <- names(ll)
-  if( is.null( nms ) ) names(ll) <- paste0( 'x', 1:length(ll) )
-  if( any( is.na(nms) ) )
-    names( ll )[ which( is.na(nms) ) ]  <- paste0( 'x', 1:sum(is.na(nms) ) )    
+  if( is.null( nms ) ) names(ll) <- substitute( character(...) )
+  if( any( nms == '' ) )
+    names( ll )[ nms == '' ]  <- 
+      as.character( substitute( list(...) ) )[-1][ nms == '' ]
+ 
   
   DF <- NULL
   for( nm in names(ll) ) { 
