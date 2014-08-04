@@ -10,7 +10,8 @@
 #' 
 #' @examples 
 #'  plot.univariates( norm=rnorm(1000, 5), lnorm=rlnorm(10000, 10) ) + scale_x_sqrt()
-#'  plot.univariates( 1:10, rlnorm=rlnorm(10000, 10) ) + scale_x_sqrt()
+#'  plot.univariates( 1:100, rlnorm=rlnorm(10000, 10) ) + scale_x_sqrt()
+#'  plot.univariates( 1:100, rnorm(100))
 #' @export 
 
 plot.univariates <- function( ... ) { 
@@ -18,12 +19,14 @@ plot.univariates <- function( ... ) {
   ll <- list( ... )
   
   # TRAP FOR MISSING NAMES
-  nms <- names(ll)
-  if( is.null( nms ) ) names(ll) <- substitute( character(...) )
-  if( any( nms == '' ) )
-    names( ll )[ nms == '' ]  <- 
-      as.character( substitute( list(...) ) )[-1][ nms == '' ]
- 
+  nms_1 <- names(ll)
+  nms_2 <- as.character( dots(...) ) 
+  
+  if( is.null(nms_1)) nms_1 <- nms_2 
+  nms_1[ is.na(nms_1) | nms_1 == '' ] <- 
+    nms_2[ is.na(nms_1) | nms_1 == '' ]
+    
+  names(ll) <- nms_1  
   
   DF <- NULL
   for( nm in names(ll) ) { 
