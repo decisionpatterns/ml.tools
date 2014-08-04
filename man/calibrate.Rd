@@ -3,30 +3,57 @@
 \alias{calibrate}
 \title{Calibrate}
 \usage{
-calibrate(x, y)
+calibrate(x, y, method = "constant", rule = 2, ...)
 }
 \arguments{
-\item{x}{numeric; original distribution}
+\item{x}{numeric; values to be calibrated}
 
-\item{y}{numeric; modeled distribution
+\item{y}{numeric; an empirical distributions to serve as basis for the
+calibration}
 
-Uses Sturges formula to...
-Uses linear model to determine the calibrated ...}
+\item{method}{character; argument passed to \code{\link[stats]{approx}}.
+Here, though, the default is \code{constant} to better match with empirical
+distributions that may not have certain values represented.}
+
+\item{rule}{integer; argument passed to \code{\link[stats]{approx}}. Here the
+default is 2, i.e. values outside the range of \code{y} are interpreted as
+the closest extreme.}
+
+\item{...}{additional arguments passed to \code{\link[stats]{approx}}
+
+\code{calibrate} provides a non=parametrics mapping of values to closely
+mimick an empirical distribution.  This is useful in predicitve modeling
+where the model will correctly rank order values, but either approximate the
+true distributions or provide values that are usable.
+
+The function sorts the distributions then ensures they're the same size
+then uses \code{\link[stats]{approx}} to linear interpolate \code{x} in terms
+of the observed distributions \code{y}.}
 }
 \value{
-numeric vector; y transformed into basis of x
+numeric vector; x transformed into basis of y
 }
 \description{
-Calculates one modelled distribution to closely match the original input distribution
+Calibrates a set of values to an empirical distribution.
 }
 \examples{
-calibrate( 1:10, 1:10 ) # 1:10
-   calibrate( 1:10, 1:20 )
-   calibrate( 1:20, 1:10 )
-   library(testthat)
-   expect_is( x, 'numeric' )
+calibrate(1:5, 1:5)   # 1:5
+  calibrate(1:5, 1:10)  # 1  3  5  7 10
+  calibrate(5:1, 1:10)  # 10  7  5  3  1
+  calibrate(1:10, 1:5)  # 1 1 2 2 3 3 4 4 4 5
+  calibrate(10:1, 1:5)  # 5 4 4 4 3 3 2 2 1 1
+
+  calibrate( rnorm(1000,mean=5), rlnorm(1000) )
+
+  \dontrun{
+
+    x <- rnorm(1000,mean=5)  # e.g. model scores
+    y <- rlnorm(1000)        # original distributions
+
+    plot.univariates( x, calibrate( x, y ), y )
+  }
 }
 \seealso{
-reference any functions that are input links to other functions using latex \link{name function}
+\code{\link[stats]{approx}}
 }
 
