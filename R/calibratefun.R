@@ -1,7 +1,8 @@
 #' Calibrate Function
 #' 
-#' Calibrates a modelled distribution so that it closely matches the 
-#' original distribution that was used as input into the model.
+#' Calibrates Function returns a function that will perform a calibration of the
+#' of the data points passed in based on the original distribution and modelled
+#' that is passed in.
 #' 
 #' @param x numeric; original distribution in the form of a vector
 #' @param y numeric; modeled distribution in the form of a vector
@@ -10,7 +11,7 @@
 #' then uses approx to linear interpolate the modelled distribution into the 
 #' same form as the original distribution.
 #'  
-#' @return numeric vector; y transformed into basis of x
+#' @return A function that takes a numeric vector;
 #' @seealso sort, seq, approx 
 #' @examples 
 #'    org_distribution <- rlnorm(1000) 
