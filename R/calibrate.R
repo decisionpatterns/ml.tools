@@ -17,14 +17,26 @@
 #' 
 #' @param ... additional arguments passed to \code{\link[stats]{approx}}
 #'
-#' \code{calibrate} provides a non-parametrics mapping of \code{x} to closely 
-#' mimick an empirical distribution of \code{y}.  This is useful in predicitve modeling 
-#' where the model will correctly rank order values, but either approximate the  
-#' true distributions or provide values that are usable. 
+#' \code{calibrate} provides a non-parametric, empirical mapping of \code{x} 
+#' into the distribution of \code{y}. That is, the rank order of \code{x} is 
+#' maintained, but the values are ordered accoding to \code{y}.
+#' 
+#' This is useful in predicitve modeling where the model will often correctly 
+#' rank order values, but the distribution will not reflect the modeled 
+#' distribution. This may arise from several factors including the modeling or 
+#' sampling methodology used.  \code{calibrate} or \code{calibratefun} can be 
+#' used to coerce the resulting scores back into the expected distribution.
 #'
-#' The function sorts the distributions then ensures they're the same size
-#' then uses \code{\link[stats]{approx}} to linear interpolate \code{x} in terms
-#' of the observed distributions \code{y}.
+#' \code{calibrate| sorts both \code{x} and \code{y} and creates an equivalent
+#' pairwise tuple at corresponding points in the distribution. 
+#' \code{\link[stats]{approx}} then makes a linear interpolation of \code{x} in 
+#' terms of the observed distributions \code{y}.
+#'  
+#' \code{calibratefun} works similarly but returns a function that will 
+#' subsequently take a vector like \code{x} and return the value as mapped into
+#' \code{y}.  This is useful since it can be used to create a calibration 
+#' function during model training that can be used subsequently during model
+#' scoring.
 #'  
 #' @return numeric vector; x transformed into basis of y
 #' 
