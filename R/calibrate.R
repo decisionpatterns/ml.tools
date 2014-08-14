@@ -106,3 +106,4 @@ calibratefun <- function( x, y, method="constant", rule=2,  ...){
   )
   
 }
+

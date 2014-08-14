@@ -18,5 +18,7 @@ Create a ggplot of one or more distributions as a comparison
 }
 \examples{
 plot.univariates( norm=rnorm(1000, 5), lnorm=rlnorm(10000, 10) ) + scale_x_sqrt()
+ plot.univariates( 1:100, rlnorm=rlnorm(10000, 10) ) + scale_x_sqrt()
+ plot.univariates( 1:100, rnorm(100))
 }
 
