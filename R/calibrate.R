@@ -27,7 +27,7 @@
 #' sampling methodology used.  \code{calibrate} or \code{calibratefun} can be 
 #' used to coerce the resulting scores back into the expected distribution.
 #'
-#' \code{calibrate| sorts both \code{x} and \code{y} and creates an equivalent
+#' \code{calibrate} sorts both \code{x} and \code{y} and creates an equivalent
 #' pairwise tuple at corresponding points in the distribution. 
 #' \code{\link[stats]{approx}} then makes a linear interpolation of \code{x} in 
 #' terms of the observed distributions \code{y}.
@@ -93,7 +93,7 @@ calibrate <- function( x, y, method="constant", rule=2,  ... ){
 #' @aliases calibratefun make.calibration
 #' @export
 
-calibratefun <- function( x, y, method="constant", rule=2,  ...){
+make.calibration <- calibratefun <- function( x, y, method="constant", rule=2,  ...){
   
   x <- sort(x)
   y <- sort(y)
