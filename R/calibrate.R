@@ -17,8 +17,8 @@
 #' 
 #' @param ... additional arguments passed to \code{\link[stats]{approx}}
 #'
-#' \code{calibrate} provides a non=parametrics mapping of values to closely 
-#' mimick an empirical distribution.  This is useful in predicitve modeling 
+#' \code{calibrate} provides a non-parametrics mapping of \code{x} to closely 
+#' mimick an empirical distribution of \code{y}.  This is useful in predicitve modeling 
 #' where the model will correctly rank order values, but either approximate the  
 #' true distributions or provide values that are usable. 
 #'
@@ -40,6 +40,12 @@
 #'   
 #'   calibrate( rnorm(100,mean=5), rlnorm(2000) )
 #'   
+#'   calibratefun(1:5, 1:5) (1:5)  # 1:5
+#'   calibratefun(1:5, 1:10)(1:5)  # 1  3  5  7 10
+#'   calibratefun(5:1, 1:10)(5:1)  # 10  7  5  3  1
+#'   calibratefun(1:10, 1:5)(1:10) # 1 1 2 2 3 3 4 4 4 5
+#'   calibratefun(10:1, 1:5)(10:1) # 5 4 4 4 3 3 2 2 1 1  
+#'   
 #'   \dontrun{
 #'   
 #'     x <- rnorm(1000,mean=5)  # e.g. model scores
@@ -53,17 +59,38 @@
 #' @export
 
 
-calibrate <- function(x, y, method="constant", rule=2,  ... ){
+calibrate <- function( x, y, method="constant", rule=2,  ... ){
 
   x. <- sort(x)
   y  <- sort(y)
   
   # Make both vectors the length of the shorter 
-  x. <- x.[ seq( 1, length(x), length.out = min( length(x), length(y)) ) ]
-  y  <- y[ seq( 1, length(y), length.out = min( length(x), length(y)) ) ]
+  x. <- x.[ seq( 1, length(x), length.out = min( length(x), length(y) ) ) ]
+  y  <-  y[ seq( 1, length(y), length.out = min( length(x), length(y) ) ) ]
 
-  calibrated <- approx( x., y, xout=x, method=method, rule=rule, ...  )
   
-  return (calibrated$y)
+  
+  return(
+    approx( x., y, xout=x, method=method, rule=rule, ... )$y
+  )
+  
+}
+
+
+#' @rdname calibrate 
+#' @aliases calibratefun make.calibration
+#' @export
+
+calibratefun <- function( x, y, method="constant", rule=2,  ...){
+  
+  x <- sort(x)
+  y <- sort(y)
+  
+  x <-  x[ seq( 1, length(x), length.out = min( length(x),length(y) ) ) ]
+  y <-  y[ seq( 1, length(y), length.out = min( length(x),length(y) ) ) ]
+  
+  return( 
+    approxfun( x, y,  method=method, rule=rule, ... )
+  )
   
 }
