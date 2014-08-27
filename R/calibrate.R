@@ -17,13 +17,14 @@
 #' 
 #' @param ... additional arguments passed to \code{\link[stats]{approx}}
 #'
-#' \code{calibrate} provides a non-parametric, empirical mapping of \code{x} 
+#' \code{calibrate} provides a non-parametric, empirical calibration, also known
+#' as inverse estimation, More specifically it provides a mapping of \code{x} 
 #' into the distribution of \code{y}. That is, the rank order of \code{x} is 
-#' maintained, but the values are ordered accoding to \code{y}.
+#' maintained, but the values are matched to the distribution of \code{y}.
 #' 
 #' This is useful in predicitve modeling where the model will often correctly 
-#' rank order values, but the distribution will not reflect the modeled 
-#' distribution. This may arise from several factors including the modeling or 
+#' rank order values, but will not appear to be like the modeled distribution. 
+#' This may arise from several factors including the modeling or 
 #' sampling methodology used.  \code{calibrate} or \code{calibratefun} can be 
 #' used to coerce the resulting scores back into the expected distribution.
 #'
@@ -42,7 +43,9 @@
 #' 
 #' @seealso 
 #'   \code{\link[stats]{approx}} 
-#' 
+#'   \url{http://cran.r-project.org/web/packages/investr} especially the 
+#'   calibrate function for another implementation.
+#'
 #' @examples 
 #'   calibrate(1:5, 1:5)   # 1:5
 #'   calibrate(1:5, 1:10)  # 1  3  5  7 10
