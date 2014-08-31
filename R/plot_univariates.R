@@ -1,10 +1,11 @@
-#' plot.univariates
+#' plot_univariates
 #' 
-#' Create a ggplot of one or more distributions as a comparison
+#' Create a plot of one or more distributions as a comparison
 #'
 #' @param ... one or more vectors
 #' 
-#' \code{plot.univariates} is useful for comparing two or more distributions
+#' \code{plot_univariates} is useful for comparing two or more distributions
+#' 
 #' @return 
 #'   a ggplot object having one facet and color for each distribution
 #' 
@@ -15,7 +16,7 @@
 #'  
 #' @export 
 
-plot.univariates <- function( ... ) { 
+plot_univariates <- function( ... ) { 
    
   ll <- list( ... )
   
