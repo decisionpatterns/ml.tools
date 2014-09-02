@@ -5,17 +5,24 @@
 \title{Date Extras
 Additional functions}
 \usage{
-days_to_holiday(dates, type = "NYSE")
+days_to_holiday(dates, ...)
 
-days_from_holiday(dates, type = "NYSE")
+days_from_holiday(dates, ...)
 }
 \arguments{
 \item{dates}{dates}
 
-\item{type}{(passed to TimeWarp::holidays)}
+\item{...}{passed to events::major_dates
+
+\code{days_to_holiday} calculates the days to the nearest event. \cr
+\code{days_from_holiday} calculates the days from the most recent event \cr}
 }
 \description{
 Date Extras
 Additional functions
+}
+\examples{
+days_to_holiday( today() )
+days_from_holiday( today() )
 }
 

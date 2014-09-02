@@ -3,7 +3,7 @@
 \alias{days_to_we_end}
 \title{Count days to the weekend's end}
 \usage{
-days_to_we_end(dates, use.holiday = TRUE, type = "NYSE")
+days_to_we_end(dates, use.holiday = TRUE, ...)
 }
 \arguments{
 \item{dates}{Date objects}
@@ -11,7 +11,11 @@ days_to_we_end(dates, use.holiday = TRUE, type = "NYSE")
 \item{use.holiday}{Whether to add holidays are the end of
 the weekend.}
 
-\item{type}{Type of holiday, default: NYSE}
+\item{...}{additional arguments passed to \code{isHoliday} such as \code{tags}}
+}
+\value{
+the length of time in days between the date and the end of the
+weekend, including long weekends
 }
 \description{
 Count the number of days from the date to the end of
@@ -20,5 +24,9 @@ the week, optionally accounting for Monday holidays
 \details{
 Considers Monday and Tuesday holidays, but will not consider
 Wednesday ...
+}
+\examples{
+days_to_we_end( now() )
+ days_to_we_end( ymd(20140831) )
 }
 
