@@ -1,4 +1,4 @@
-#; apply.prototype 
+#' apply.prototype 
 #' 
 #' Applies a prototype to data in a higly efficient way in order to
 #' prepare the data for soc 
