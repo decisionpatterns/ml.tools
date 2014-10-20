@@ -2,7 +2,7 @@
 #' 
 #' Report the nodes numbers
 #' 
-#' @param object 
+#' @param object Object to get the nodes from
 #' @param newdata data.frame of data 
 #' 
 #' @return 

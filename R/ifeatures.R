@@ -60,6 +60,7 @@ ifeatures <- function(x, chunkSize=1, ... ) {
   object <- list(nextElem = nextEl, hasNext=hasNx )
   class(object) <- c("ihasNext", "abstractiter", "iter")
   object
+  
 }  
 
 

@@ -25,7 +25,7 @@
 #' This is useful in predicitve modeling where the model will often correctly 
 #' rank order values, but will not appear to be like the modeled distribution. 
 #' This may arise from several factors including the modeling or 
-#' sampling methodology used.  \code{calibrate} or \code{calibratefun} can be 
+#' sampling methodology used.  \code{calibrate} or \code{make.calibrator} can be 
 #' used to coerce the resulting scores back into the expected distribution.
 #'
 #' \code{calibrate} sorts both \code{x} and \code{y} and creates an equivalent
@@ -33,7 +33,7 @@
 #' \code{\link[stats]{approx}} then makes a linear interpolation of \code{x} in 
 #' terms of the observed distributions \code{y}.
 #'  
-#' \code{calibratefun} works similarly but returns a function that will 
+#' \code{make.calibrator} works similarly but returns a function that will 
 #' subsequently take a vector like \code{x} and return the value as mapped into
 #' \code{y}.  This is useful since it can be used to create a calibration 
 #' function during model training that can be used subsequently during model
@@ -55,11 +55,11 @@
 #'   
 #'   calibrate( rnorm(100,mean=5), rlnorm(2000) )
 #'   
-#'   calibratefun(1:5, 1:5) (1:5)  # 1:5
-#'   calibratefun(1:5, 1:10)(1:5)  # 1  3  5  7 10
-#'   calibratefun(5:1, 1:10)(5:1)  # 10  7  5  3  1
-#'   calibratefun(1:10, 1:5)(1:10) # 1 1 2 2 3 3 4 4 4 5
-#'   calibratefun(10:1, 1:5)(10:1) # 5 4 4 4 3 3 2 2 1 1  
+#'   make.calibrator(1:5, 1:5) (1:5)  # 1:5
+#'   make.calibrator(1:5, 1:10)(1:5)  # 1  3  5  7 10
+#'   make.calibrator(5:1, 1:10)(5:1)  # 10  7  5  3  1
+#'   make.calibrator(1:10, 1:5)(1:10) # 1 1 2 2 3 3 4 4 4 5
+#'   make.calibrator(10:1, 1:5)(10:1) # 5 4 4 4 3 3 2 2 1 1  
 #'   
 #'   \dontrun{
 #'   
@@ -93,10 +93,10 @@ calibrate <- function( x, y, method="constant", rule=2,  ... ){
 
 
 #' @rdname calibrate 
-#' @aliases calibratefun make.calibration
+#' @aliases calibratefun make.calibration make.calibrator
 #' @export
 
-make.calibration <- calibratefun <- function( x, y, method="constant", rule=2,  ...){
+make.calibrator <- make.calibration <- calibratefun <- function( x, y, method="constant", rule=2,  ...){
   
   x <- sort(x)
   y <- sort(y)
