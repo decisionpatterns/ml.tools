@@ -90,6 +90,7 @@ stitch <- function(x,y) {
 #' setkey( y, customer, time )
 #' 
 #' .stitch.outer(x,y)
+#' @import dup.actions
 #' @rdname stitch
 
 .stitch.outer <- function(x,y) {
@@ -142,6 +143,7 @@ stitch <- function(x,y) {
 #' 
 #' .stitch.straight( x, y  )
 #' 
+#' @import dup.actions
 #' @rdname stitch     
 
 .stitch.straight <- function(x,y) { 
