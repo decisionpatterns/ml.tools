@@ -38,6 +38,7 @@
 #'   \code{\link[data.table]{merge}}
 #'   \code{dup.pivot} in the \code{dup.actions} package.
 #' 
+#' @import dup.actions data.table
 #' @rdname stitch
 #' @export 
 

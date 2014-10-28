@@ -18,7 +18,7 @@
 #'   An unevalutated call object that can be evaluated in the milestone-event dataset.
 #' 
 #' @examples
-#'   window_expr( "milestone_dt", "event_dt", ddays(2) )
+#'   window_expr( "milestone_dt", "event_dt", span=ddays(2) )
 #'   window_expr( "milestone_dt", "event_dt", ddays(3), "within" )
 #'   window_expr( "milestone_dt", "event_dt", ddays(4), "before" )
 #'   window_expr( "milestone_dt", "event_dt", ddays(5), "after" )
