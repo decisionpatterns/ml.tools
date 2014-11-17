@@ -10,10 +10,11 @@
 #'   a ggplot object having one facet and color for each distribution
 #' 
 #' @examples 
-#'  plot.univariates( norm=rnorm(1000, 5), lnorm=rlnorm(10000, 10) ) + scale_x_sqrt()
-#'  plot.univariates( 1:100, rlnorm=rlnorm(10000, 10) ) + scale_x_sqrt()
-#'  plot.univariates( 1:100, rnorm(100))
-#'  
+#'  \dontrun{ 
+#'    plot_univariates( norm=rnorm(1000, 5), lnorm=rlnorm(10000, 10) ) + scale_x_sqrt()
+#'    plot_univariates( 1:100, rlnorm=rlnorm(10000, 10) ) + scale_x_sqrt()
+#'    plot_univariates( 1:100, rnorm(100))
+#'  }
 #' @export 
 
 plot_univariates <- function( ... ) { 

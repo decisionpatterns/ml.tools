@@ -15,16 +15,18 @@
 #'   eval_model( fit, iris )
 #'   eval_model( fit, iris, rmse )
 #'   eval_model( fit, iris, mae )
+#'   
 #' @note Does not allow for post model evaluation
-#' @export  
-
+#' 
+#' @rdname eval_model
+#' @export
 eval_model <- function( model, newdata, fun, ... ) 
-  UseMethod( "eval_model")
+  UseMethod( "eval_model" )
 
 
 
-#' @method eval_model default
-#' @export eval_model
+#' @rdname eval_model
+#' @export 
 eval_model.default <- function( model, newdata, fun=rmse, ... ) { 
   
   y <- as.character( lhs( formula(model) ) )
@@ -34,5 +36,4 @@ eval_model.default <- function( model, newdata, fun=rmse, ... ) {
   )
   
 }
-
 

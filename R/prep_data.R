@@ -8,7 +8,9 @@
 #' @param ... arguments passed to other functions
 #' @return a data frame.
 #' @examples
-#'   prep_data( iris, randomForest )
+#'   # -tk
+#' 
+#' @include prep_data_randomForest.R
 #' @export
 
 prep_data <- function(data, fun, ... ) { 

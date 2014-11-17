@@ -1,8 +1,8 @@
 Package: ml.tools
 Type: Package
 Title: Machine Learning Tools
-Version: 0.20
-Date: 2014-10-28
+Version: 0.22
+Date: 2014-11-16
 Author: Christopher Brown
 Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
 Suggest: events (>= 0.3),
@@ -11,6 +11,11 @@ Depends:
     R (>= 2.13.0),
     formula.tools(>= 1.2.2),
     foreach,
+    dup.actions (>= 0.3.1),
+    events (>= 0.6),
+    coercion (>= 0.1),
+    cardinality (>= 0.1),
+    whisker.tools (>= 0.1),
     memoise,
     caret,
     foreach,
@@ -22,3 +27,44 @@ Description: Miscellaneous Machine Learning Toools
 License: Decision Patterns Client
 LazyLoad: yes
 Roxygen: list(wrap = FALSE)
+Suggests:
+    testthat
+Collate:
+    'apply.prototype.R'
+    'assess.R'
+    'autokey.R'
+    'calibrate.R'
+    'confuse.R'
+    'date-features.R'
+    'divide.R'
+    'emulate.R'
+    'eval_model.R'
+    'features.R'
+    'generate.R'
+    'getFeatures.r'
+    'getImp.R'
+    'ifeatures.R'
+    'impute.R'
+    'logistic.R'
+    'mae.R'
+    'match_vars.R'
+    'measures.R'
+    'ml.tools-package.R'
+    'nodes.R'
+    'parPredict.R'
+    'parRandomForest.R'
+    'parse.ctree.R'
+    'plot_univariates.R'
+    'prep_data_randomForest.R'
+    'prep_data.R'
+    'prep_data_scoring.R'
+    'probs.R'
+    'r2.R'
+    'rf_test_names.R'
+    'rmse.R'
+    'scramble.R'
+    'size.R'
+    'stitch.R'
+    'varImpPlot2.R'
+    'window_expr.R'
+    'zzz.R'

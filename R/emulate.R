@@ -47,7 +47,7 @@ setMethod(
     rf_test_names( x, y )
     
     nms.cat <- names( x$forest$xlevels )
-    for( nm in names.cat  ) {
+    for( nm in nms.cat  ) {
     
       allowed <- x$forest$xlevels[[ nm ]]
       if( exists( nm, y ) ) {

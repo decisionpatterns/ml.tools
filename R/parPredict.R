@@ -24,7 +24,7 @@
 #'   data(iris)
 #'   fit  <- randomForest(Species ~ ., iris)
 #'   predict( fit, iris )
-#'   predict.parallel( fit, iris )
+#'   parPredict( fit, iris )
 #'   
 #' @export
 

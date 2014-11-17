@@ -164,7 +164,7 @@ days_to_we_end <- function(dates, use.holiday=TRUE, ... ) {
 #' @examples
 #'   isHoliday( ymd( 20140901, 20131225 ) ) 
 #'   isHoliday( now() )
-#'   isHoliday( '20140901' )
+#'   isHoliday( ymd('20140901') )
 #' 
 #' @export
 

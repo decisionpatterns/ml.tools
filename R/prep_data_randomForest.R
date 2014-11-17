@@ -17,7 +17,8 @@
 #' @param ... arguments passed to other functions
 #'
 #' @examples
-#'   # -tk
+#'   prep_data_randomForest( iris )
+#'   
 #' @export
 
 prep_data_randomForest <- function(data, ..., max.levels=50, preserve=character() ) { 

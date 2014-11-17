@@ -4,6 +4,7 @@
 #' 
 #' @param x data.table; 
 #' @param y data.table;
+#' @param ... additional arguments passed to subsequent methods
 #' 
 #' \code{stitch} does two things.  First, it ensures removes duplicates from 
 #' \code{y}. This is done using \code{dup.action}. 
@@ -42,7 +43,7 @@
 #' @rdname stitch
 #' @export 
 
-stitch <- function(x,y) { 
+stitch <- function(x,y, ...) { 
 
   # STITCH BASES ON RELATIONSHIP BETWEEN y AND x
   
@@ -50,13 +51,13 @@ stitch <- function(x,y) {
     
     # CASE 1: MANY-to-1 -or- 1-TO-1 MERGE 
     #   A LEFT MERGE IS PERFORMED AFTER DEDUPING Y
-    x. <- .stitch.straight(x,y)
+    x. <- .stitch.straight(x,y, ...)
 
   } else if( any( key(y) %in% names(x) ) ) { 
     
     # CASE 2: 1-TO-MANY MERGE
     #   PIVOT UNMATCHED KEYS ARE AVAILABLE IN X THESE ARE PIVOTED OUT 
-    x. <- .stitch.outer(x,y)
+    x. <- .stitch.outer(x,y, ...)
     
   } else { 
     
@@ -65,7 +66,8 @@ stitch <- function(x,y) {
   }
   
   # CASE 3: more keys in y than in x
-
+  
+  return(x.)
   
 } 
 
@@ -73,23 +75,24 @@ stitch <- function(x,y) {
 #' \code{stitch.outer} is similar to/identical .stitch.straight
 #' @examples
 #' 
-#' x <- data.table( customer=letters[1:4] )
-#' setkey( x, customer )
+#'   x <- data.table( customer=letters[1:4] )
+#'   setkey( x, customer )
 #' 
-#' y <- data.table( 
-#'      customer = sort( letters[ c(1:4,1:4,1:4) ] )
-#'    , time     = 1:3 
-#'    , income   = round(rnorm(12,10) * 10) 
-#'    , expense  = -round( rnorm(12,10) )
-#'    , count    = 1
-#' )
+#'   y <- data.table( 
+#'        customer = sort( letters[ c(1:4,1:4,1:4) ] )
+#'      , time     = 1:3 
+#'      , income   = round(rnorm(12,10) * 10) 
+#'      , expense  = -round( rnorm(12,10) )
+#'      , count    = 1
+#'   )
 #' 
-#' y <- rbind(y, y[c(1,1,2),] )
-#' y <- y[ -(10:11), ]
-#' y[ 8, income := NA]
-#' setkey( y, customer, time )
+#'   y <- rbind(y, y[c(1,1,2),] )
+#'   y <- y[ -(10:11), ]
+#'   y[ 8, income := NA]
+#'   setkey( y, customer, time )
 #' 
-#' .stitch.outer(x,y)
+#'   ml.tools:::.stitch.outer(x,y)
+#'   
 #' @import dup.actions
 #' @rdname stitch
 
@@ -129,36 +132,35 @@ stitch <- function(x,y) {
 #' the key of \code{y} are all in the x
 #' 
 #' @examples
-#' x <- data.table( 
-#'      customer = sort( letters[ c(1:4,1:4,1:4) ] )
-#'    , date     = 1:3
-#'    , income   = round(rnorm(12,10) * 10) 
-#'    , expense  = -round( rnorm(12,10) )
-#'    , count    = 1
-#' )
+#'   x <- data.table( 
+#'        customer = sort( letters[ c(1:4,1:4,1:4) ] )
+#'      , date     = 1:3
+#'      , income   = round(rnorm(12,10) * 10) 
+#'      , expense  = -round( rnorm(12,10) )
+#'      , count    = 1
+#'   )
 #' 
-#' # DUPLICATES
-#' y <- data.table( customer=letters[1:2], first_name=c('Foo', 'Bar') )
-#' setkey( y, customer )
+#'   # DUPLICATES
+#'   y <- data.table( customer=letters[1:2], first_name=c('Foo', 'Bar') )
+#'   setkey( y, customer )
 #' 
-#' .stitch.straight( x, y  )
+#'   ml.tools:::.stitch.straight( x, y  )
 #' 
 #' @import dup.actions
 #' @rdname stitch     
 
-.stitch.straight <- function(x,y) { 
+.stitch.straight <- function(x,y, ...) { 
   
   if( ! all( key(y) %in% names(x) ) )
     stop( "Keys of x and y don't match." )
 
   # DEDUPLICATE.  DUP.ACTION
-  y. <- dedup(y)
+  y. <- dedup(y, ...)
 
   # MERGE
-  x. <- merge( x, y., by=key(y), all.x=TRUE )
+  x. <- merge( x, y., by=key(y.), all.x=TRUE )
 
   return(x.)
   
 }    
-
 

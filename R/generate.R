@@ -17,7 +17,8 @@
 #' @seealso dummies
 #' 
 #' @examples
-#' generate( data=iris, x="Species" )  
+#'   data(iris)
+#'   #' generate( data=iris, x="Species" )  
 #'
 #' @note
 #'  - This is supposed to work by splitting according to 
@@ -31,14 +32,11 @@ generate <- function(x, data, weight=NULL, sep=".", fun=sum ) {
   
   # COUNTS
   dumb <- if( is.null(weight) ) dumb else dumb*eval(weight,data) 
-  
-  dumb <- data.table( dumb ) 
-  # names(dumb) <- 
-  # setnames( dumb, paste( names(dumb), "n", sep=".") )
-  
-  dumb[ , parent_id := data$parent_id ]
-  dumb <- dumb[ , lapply(.SD, fun), by=parent_id ]
-  setkey( dumb, parent_id )
+  setDT(dumb)
+ 
+  dumb[ , parent_id := data[[x]] ]
+  dumb <- dumb[ , lapply(.SD, fun), by=x ]
+  setkey( dumb, x )
   
   return(dumb)
   
