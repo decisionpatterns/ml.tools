@@ -12,6 +12,7 @@ Depends:
     formula.tools(>= 1.2.2),
     foreach,
     dup.actions (>= 0.3.1),
+    randomForest,
     events (>= 0.6),
     coercion (>= 0.1),
     cardinality (>= 0.1),
