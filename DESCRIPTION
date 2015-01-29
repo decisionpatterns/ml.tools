@@ -1,8 +1,8 @@
 Package: ml.tools
 Type: Package
 Title: Machine Learning Tools
-Version: 0.22
-Date: 2014-11-16
+Version: 0.23
+Date: 2015-01-28
 Author: Christopher Brown
 Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
 Suggest: events (>= 0.3),
@@ -25,7 +25,7 @@ Depends:
     pryr,
     methods
 Description: Miscellaneous Machine Learning Toools
-License: Decision Patterns Client
+License: Decision Patterns Client License
 LazyLoad: yes
 Roxygen: list(wrap = FALSE)
 Suggests:
@@ -50,6 +50,7 @@ Collate:
     'mae.R'
     'match_vars.R'
     'measures.R'
+    'meta.R'
     'ml.tools-package.R'
     'nodes.R'
     'parPredict.R'

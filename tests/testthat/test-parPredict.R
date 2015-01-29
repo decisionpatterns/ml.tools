@@ -10,7 +10,7 @@ data(iris)
   fit  <- lm(Sepal.Length  ~ ., iris)
    
   p  <- predict( fit, iris )
-  pp <- predict.parallel( fit, iris )
+  pp <- parPredict( fit, iris )
     
   expect_true( 
     all(p== pp)
@@ -23,7 +23,7 @@ data(iris)
   fit  <- randomForest( Sepal.Length  ~ ., iris )
   
   p  <- predict( fit, iris )
-  pp <- predict.parallel( fit, iris )
+  pp <- parPredict( fit, iris )
     
   expect_true( 
     all(p== pp)

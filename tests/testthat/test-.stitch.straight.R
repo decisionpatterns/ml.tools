@@ -1,6 +1,7 @@
 library(testthat)
 library(ml.tools)
-require(dp.misc, quietly=TRUE)  # TEMPORARY for .dup action
+library(data.table)
+# require(dp.misc, quietly=TRUE)  # TEMPORARY for .dup action
 
 data(mtcars)
 cars <- mtcars
