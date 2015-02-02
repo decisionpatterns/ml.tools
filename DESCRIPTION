@@ -1,8 +1,8 @@
 Package: ml.tools
 Type: Package
 Title: Machine Learning Tools
-Version: 0.23
-Date: 2015-01-28
+Version: 0.24
+Date: 2015-02-02
 Author: Christopher Brown
 Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
 Suggest: events (>= 0.3),
@@ -31,7 +31,7 @@ Roxygen: list(wrap = FALSE)
 Suggests:
     testthat
 Collate:
-    'apply.prototype.R'
+    'apply.pattern.R'
     'assess.R'
     'autokey.R'
     'calibrate.R'
