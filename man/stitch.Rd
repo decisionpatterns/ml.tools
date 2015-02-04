@@ -45,7 +45,7 @@ data.table; X and Y appropriately merged/joined.
 \description{
 stitches two data.tables together based on (shared) keys
 
-\code{stitch.outer} is similar to/identical .stitch.straight
+\code{.stitch.outer} is similar to/identical .stitch.straight
 
 \code{.stitch.straight} performs a LEFT merge/join on two data.tables when \code{x} and \code{y} have
 the key of \code{y} are all in the x

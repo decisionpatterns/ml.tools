@@ -65,7 +65,7 @@ emulate( y, x )
 emulate( x, y, default="b" )
 }
 \seealso{
-\code{\link{apply.prototype}}
+\code{\link{apply.pattern}}
   \code{\link[dp.misc]{conform}}
   \code{\link[plyr]{rbind.fill}}
 }

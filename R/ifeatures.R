@@ -1,5 +1,3 @@
-require( itertools )
-
 #' ifeatures - iterator over features 
 #' 
 #' iterator for iterating of a data.table of features
@@ -37,6 +35,7 @@ require( itertools )
 #'     message( paste( dim(nextElem(it)), collapse=" x " ) ) 
 #'                 
 #' @export  
+#' @import itertools
 
 ifeatures <- function(x, chunkSize=1, ... ) {
  

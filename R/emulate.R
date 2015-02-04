@@ -20,7 +20,7 @@
 #'   The ANY-ANY method simply returns \code{x}
 #'   
 #' @seealso   
-#'   \code{\link{apply.prototype}} 
+#'   \code{\link{apply.pattern}} 
 #'   \code{\link[dp.misc]{conform}}
 #'   \code{\link[plyr]{rbind.fill}}
 #'   

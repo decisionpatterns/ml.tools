@@ -39,7 +39,7 @@
 #'   \code{\link[data.table]{merge}}
 #'   \code{dup.pivot} in the \code{dup.actions} package.
 #' 
-#' @import dup.actions data.table
+#' @import dup.actions data.table reshape2 formula.tools
 #' @rdname stitch
 #' @export 
 
@@ -72,7 +72,7 @@ stitch <- function(x,y, ...) {
 } 
 
 
-#' \code{stitch.outer} is similar to/identical .stitch.straight
+#' \code{.stitch.outer} is similar to/identical .stitch.straight
 #' @examples
 #' 
 #'   x <- data.table( customer=letters[1:4] )
@@ -93,13 +93,9 @@ stitch <- function(x,y, ...) {
 #' 
 #'   ml.tools:::.stitch.outer(x,y)
 #'   
-#' @import dup.actions
 #' @rdname stitch
 
 .stitch.outer <- function(x,y) {
-  
-  require( reshape2, quietly=TRUE )
-  require( formula.tools, quietly=TRUE )
   
   if( ! any( key(y) %in% names(x) ) ) {
      stop( "There are no keys of y found in x.")
@@ -146,7 +142,6 @@ stitch <- function(x,y, ...) {
 #' 
 #'   ml.tools:::.stitch.straight( x, y  )
 #' 
-#' @import dup.actions
 #' @rdname stitch     
 
 .stitch.straight <- function(x,y, ...) { 

@@ -32,17 +32,12 @@
 #'   # CARET 
 #'   fit <- train( Species ~ . , iris, ntree=200 )
 #'   
-#' @import randomForest
+#' @import randomForest foreach doParallel
 #' @rdname parRandomForest
 #' @export
 
 parRandomForest <- function( ..., ntree=500 ) { 
 
-  # require(itertools)
-  require(randomForest)
-  require(foreach)
-  require(doParallel)
-  
   # CALCULATE THE NUMBER OF TREES ON EACH WORKER
     nworkers <- getDoParWorkers()
     reps <- rep( floor( ntree/nworkers ), nworkers )

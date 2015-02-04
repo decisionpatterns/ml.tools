@@ -1,8 +1,8 @@
 Package: ml.tools
 Type: Package
 Title: Machine Learning Tools
-Version: 0.24
-Date: 2015-02-02
+Version: 0.24.1
+Date: 2015-02-04
 Author: Christopher Brown
 Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
 Suggest: events (>= 0.3),
@@ -22,6 +22,7 @@ Depends:
     foreach,
     doParallel,
     data.table (>= 1.9.4),
+    lubridate,
     pryr,
     methods
 Description: Miscellaneous Machine Learning Toools
