@@ -1,8 +1,8 @@
 Package: ml.tools
 Type: Package
 Title: Machine Learning Tools
-Version: 0.24.1
-Date: 2015-02-04
+Version: 0.25.0
+Date: 2015-04-28
 Author: Christopher Brown
 Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
 Suggest: events (>= 0.3),
@@ -42,6 +42,7 @@ Collate:
     'emulate.R'
     'eval_model.R'
     'features.R'
+    'first.R'
     'generate.R'
     'getFeatures.r'
     'getImp.R'
