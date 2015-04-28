@@ -11,7 +11,7 @@ first(.data, group_by, arrange = NULL)
 
 \method{first}{default}(.data, group_by = NULL, arrange = NULL)
 
-\method{first}{data.table}(dt, key, o)
+\method{first}{data.table}(.data, group_by, arrange)
 
 nth(.data, nth, group_by = NULL, arrange = NULL)
 }

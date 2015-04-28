@@ -48,7 +48,7 @@ first.default <- function( .data, group_by=NULL, arrange=NULL ) {
 #' @import data.table
 #' @export 
 
- first.data.table <- function( dt, key, o ) {
+ first.data.table <- function( .data, group_by, arrange ) {
    
    original_key <- key(dt)  
    dt %>% setkeyv( c(key,o) )
@@ -60,6 +60,7 @@ first.default <- function( .data, group_by=NULL, arrange=NULL ) {
    return(ret)
      
 }
+
 
 
 # last
@@ -91,18 +92,3 @@ nth <- function( .data, nth, group_by=NULL, arrange=NULL ) {
 
 
 
-#' @examples
-#'   first.data.table( flights, 'tailnum', c('year','month','day','dep_time') )
-
- first.data.table <- function( dt, key, o ) {
-   
-   original_key <- key(dt)  
-   dt %>% setkeyv( c(key,o) )
-  
-   ret <- dt[ unique( dt[ , k, with=FALSE ] ), mult="first" ]
-   
-   dt  %>% setkeyv( original_key )
-   
-   return(ret)
-     
-}
