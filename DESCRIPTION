@@ -40,8 +40,6 @@ Collate:
     'emulate.R'
     'eval_model.R'
     'first.R'
-    'generate.R'
-    'getFeatures.r'
     'getImp.R'
     'ifeatures.R'
     'impute.R'
