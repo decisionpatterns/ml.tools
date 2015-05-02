@@ -15,6 +15,7 @@
 #' @seealso 
 #'   \code{\link{match_features}}
 #'   \code{\link[plyr]{rbind.fill}}
+#'   
 #' @export
 
 match_vars <- function( data1, data2 ) { 
