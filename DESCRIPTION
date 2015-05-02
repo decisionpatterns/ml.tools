@@ -39,7 +39,6 @@ Collate:
     'divide.R'
     'emulate.R'
     'eval_model.R'
-    'first.R'
     'getImp.R'
     'ifeatures.R'
     'impute.R'
