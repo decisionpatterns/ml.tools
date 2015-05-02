@@ -80,7 +80,7 @@ days_from_holiday <- function( dates, ... ) {
 #'
 #' @export
 #' @rdname dates-extras
-#' @import lubridate
+# @import lubridate
 
 featurize_date  <- function(
   dates, label=NULL, ...
@@ -134,7 +134,7 @@ featurize_date  <- function(
 #'  days_to_we_end( ymd(20140831) )
 #' @export
 
-days_to_we_end <- function(dates, use.holiday=TRUE, ... ) {
+days_to_we_end <- function( dates, use.holiday=TRUE, ... ) {
 
   we_days = (( 8 - wday(dates) ) %% 7 ) + 1
 

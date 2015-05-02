@@ -1,7 +1,7 @@
 #' Get the first, last or nth record of a set of records
 #' 
 #' @param .data A tbl.
-#' @param group_by character; columns thay 
+#' @param group_by character; columns that list the group_bys
 #' @param arrange character; ordering columns
 #'  
 #' @examples
@@ -13,22 +13,15 @@
 #'   
 #'   first.data.table( flights, 'tailnum', c('year','month','day','dep_time') )
 #'   
-#' @import dplyr
+#' @import dplyr 
+# @import data.table
 #' @export 
-
-
-# flights %>%
-#   filter( ! is.null(tailnum) ) %>%
-#   filter( tailnum != '' ) %>%
-#   arrange_( c('tailnum', c('year','month','day', 'dep_time') ) ) %>%
-#   group_by_( 'tailnum'  )  %>% 
-#   slice( n()  ) 
 
 
 first <- function( .data, group_by, arrange=NULL ) UseMethod('first')
 
+
 #' @rdname first
-#' @import dplyr
 #' @export 
 
 first.default <- function( .data, group_by=NULL, arrange=NULL ) { 
@@ -41,21 +34,17 @@ first.default <- function( .data, group_by=NULL, arrange=NULL ) {
 }
 
 
-#' @examples
-#'   first.data.table( flights, 'tailnum', c('year','month','day','dep_time') )
-
 #' @rdname first
-#' @import data.table
 #' @export 
 
- first.data.table <- function( .data, group_by, arrange ) {
+ first.data.table <- function( .data, group_by=key(.data), arrange ) {
    
-   original_key <- key(dt)  
-   dt %>% setkeyv( c(key,o) )
+   original_key <- key(.data)  
+   .data %>% setkeyv( c(group_by,arrange) )
   
-   ret <- dt[ unique( dt[ , k, with=FALSE ] ), mult="first" ]
+   ret <- .data[ unique( .data[ , group_by, with=FALSE ] ), mult="first" ]
    
-   dt  %>% setkeyv( original_key )
+   .data  %>% setkeyv( original_key )
    
    return(ret)
      
@@ -66,9 +55,15 @@ first.default <- function( .data, group_by=NULL, arrange=NULL ) {
 # last
 # ---------------------------------------------------------
 
- 
+#' @export 
+#' @rdname first 
 
-last <- function( .data, group_by=NULL, arrange=NULL ) { 
+last <- function( .data, group_by, arrange=NULL ) UseMethod('last')
+
+#' @export 
+#' @rdname first 
+
+last.default <- function( .data, group_by=NULL, arrange=NULL ) { 
 
   .data %>%
     dplyr::arrange_( group_by, arrange ) %>%
@@ -77,11 +72,30 @@ last <- function( .data, group_by=NULL, arrange=NULL ) {
 
 }
 
+#' @rdname first
+#' @export 
+
+last.data.table <- function( .data, group_by=key(.data), arrange ) {
+   
+   original_key <- key(.data)  
+   .data %>% setkeyv( c(group_by,arrange) )
+  
+   ret <- .data[ unique( .data[ , group_by, with=FALSE ] ), mult="last" ]
+   
+   .data  %>% setkeyv( original_key )
+   
+   return(ret)
+     
+}
+
+
 
 #' @export 
 #' @rdname first 
 
-nth <- function( .data, nth, group_by=NULL, arrange=NULL ) { 
+nth <- function( .data, nth, group_by=NULL, arrange=NULL ) UseMethod('nth') 
+  
+nth.default <- function( .data, nth, group_by=NULL, arrange=NULL ) { 
 
   .data %>%
     dplyr::arrange_( group_by, arrange ) %>%
@@ -89,6 +103,3 @@ nth <- function( .data, nth, group_by=NULL, arrange=NULL ) {
     dplyr::slice( nth )
 
 }
-
-
-

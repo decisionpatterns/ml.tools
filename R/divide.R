@@ -1,7 +1,7 @@
 #' Divide data column-wise
 #' 
 #' Divides data into a list of data objects possibly retaining certain columns
-#' in each
+#' in each resulting table as keys
 #' 
 #' @param x a data object
 #' 

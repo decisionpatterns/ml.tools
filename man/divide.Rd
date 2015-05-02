@@ -49,7 +49,7 @@ a list of data objects or vectors if \code{by} is \code{NULL} and
 }
 \description{
 Divides data into a list of data objects possibly retaining certain columns
-in each
+in each resulting table as keys
 }
 \note{
 \code{divide} is mainly useful for situations in which working with

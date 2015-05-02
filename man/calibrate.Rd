@@ -27,8 +27,10 @@ the closest extreme.}
 
 \item{...}{additional arguments passed to \code{\link[stats]{approx}}
 
-\code{calibrate} provides a non-parametric, empirical calibration, also known
-as inverse estimation, More specifically it provides a mapping of \code{x}
+\code{calibrate} provides a non-parametric, discrete, empirical calibration,
+also known as "inverse estimation".
+
+More specifically it provides a mapping of \code{x}
 into the distribution of \code{y}. That is, the rank order of \code{x} is
 maintained, but the values are matched to the distribution of \code{y}.
 

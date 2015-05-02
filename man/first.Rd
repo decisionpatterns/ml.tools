@@ -4,6 +4,9 @@
 \alias{first}
 \alias{first.data.table}
 \alias{first.default}
+\alias{last}
+\alias{last.data.table}
+\alias{last.default}
 \alias{nth}
 \title{Get the first, last or nth record of a set of records}
 \usage{
@@ -11,14 +14,20 @@ first(.data, group_by, arrange = NULL)
 
 \method{first}{default}(.data, group_by = NULL, arrange = NULL)
 
-\method{first}{data.table}(.data, group_by, arrange)
+\method{first}{data.table}(.data, group_by = key(.data), arrange)
+
+last(.data, group_by, arrange = NULL)
+
+\method{last}{default}(.data, group_by = NULL, arrange = NULL)
+
+\method{last}{data.table}(.data, group_by = key(.data), arrange)
 
 nth(.data, nth, group_by = NULL, arrange = NULL)
 }
 \arguments{
 \item{.data}{A tbl.}
 
-\item{group_by}{character; columns thay}
+\item{group_by}{character; columns that list the group_bys}
 
 \item{arrange}{character; ordering columns}
 }
@@ -33,6 +42,5 @@ library(nycflights13)
   flights  \%>\% nth( 2, 'tailnum', c('year','month','day', 'dep_time') )
 
   first.data.table( flights, 'tailnum', c('year','month','day','dep_time') )
-first.data.table( flights, 'tailnum', c('year','month','day','dep_time') )
 }
 
