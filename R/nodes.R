@@ -25,6 +25,7 @@ setOldClass('randomForest')
 setOldClass( c('randomForest.formula', 'randomForest') )
 
 #' @export 
+
 setMethod( 'nodes', signature( 'randomForest', 'data.frame' ),
   function( object, newdata ) { 
     attr( predict( object, newdata, nodes=TRUE ), 'nodes' )

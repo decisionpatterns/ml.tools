@@ -11,13 +11,13 @@
 #' @note TODO:
 #'   - make generic 
 #'   - move into bigO(?) package 
-#'   
-#'    
+#'  
 #' @export 
+#' @import cardinality
 
 size <- function(object) {
   
-  size <- list( dim = dim(object), cardinality=sum( cardinality(object) ) )
+  size <- list( dim = dim(object), cardinality=sum( cardinality::cardinality(object) ) )
   
   message( "dim : ", paste( size$dim, collapse=" x " ), " (", prod( size$dim), ")")
   message( "card: ", size$cardinality )

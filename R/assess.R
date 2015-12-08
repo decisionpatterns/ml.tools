@@ -12,8 +12,8 @@ setOldClass( 'train' )   # set class for caret
 #' 
 #' Calculates a variety of perfomance measures for a model fit.
 #' @export
-#' @docType methods
 #' @rdname assess-methods 
+
 setGeneric( "assess", function(x, y, ... ) standardGeneric('assess') )
 
 
@@ -81,5 +81,3 @@ setMethod(
  
   } 
 )
-	
-

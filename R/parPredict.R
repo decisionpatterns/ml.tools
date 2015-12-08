@@ -28,11 +28,12 @@
 #'   
 #' @export
 
+
 parPredict<- function( object, newdata, ... ) { 
 
   scores <- 
     foreach( 
-       data=isplitRows( newdata, chunks=getDoParWorkers() ) 
+       data=itertools::isplitRows( newdata, chunks=getDoParWorkers() ) 
       , .inorder=TRUE 
       , .combine=c, .multicombine=TRUE
       # , .packages=c('randomForest','data.table')

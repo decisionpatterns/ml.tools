@@ -98,7 +98,8 @@ calibrate <- function( x, y, method="constant", rule=2,  ... ){
 #' @aliases calibratefun make.calibration make.calibrator
 #' @export
 
-make.calibrator <- make.calibration <- calibratefun <- function( x, y, method="constant", rule=2,  ...){
+make.calibrator <- 
+  make.calibration <- calibratefun <- function( x, y, method="constant", rule=2,  ...){
   
   x <- sort(x)
   y <- sort(y)

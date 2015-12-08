@@ -16,7 +16,7 @@
 
 getImp <- function(model, n=length(model$importance) ) {
 
-    imp <- importance(model)
+    imp <- randomForest::importance(model)
     imp <- data.frame(feature = rownames(imp), importance = imp[, 
         1], row.names = NULL)
     imp <- imp[order(imp$importance, decreasing = TRUE), ]
