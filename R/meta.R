@@ -61,6 +61,7 @@ meta_prototype <- function(data) return( data[0,] )
 #' @param data a data object
 #' @seealso \code{\link{meta_prototype}}
 #' @export
+
 add_meta_prototype <- function(data) {
   attr( data, "prototype" ) <- data[0,]
   return(data)

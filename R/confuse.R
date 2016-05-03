@@ -14,6 +14,15 @@
 #' @param predicted logical vector of predicted values
 #' @param ... additional arguments
 #' 
+#' By convention, the \code{actual} values are placed in rows and the 
+#' predicted values are placed in columns. The \code{dimnames} of the 
+#' resulting matrix are consequently \code{actual} and \code{predicted} 
+#' 
+#' @note 
+#' - By convention the actual values are placed in rows, predicted 
+#'   values are placed in columns
+#' - actual 
+#' 
 #' @return 2x2 confusion matrix / contingency table
 #'   
 #' @seealso \code{table} for cross-classifying factors
