@@ -9,6 +9,9 @@
 #' Trains a Random Forest model using a \code{foreach} cluster. The cluster must
 #' first be registered with \code{registerDoParallel} 
 #'
+#' If \code{getOption('verbose')} is TRUE, a message is printed. This helps to
+#' check usage in package like 'caret'. 
+#' 
 #' @return A \code{randomForest} object.
 #' 
 #' @references 
