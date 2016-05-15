@@ -12,7 +12,7 @@
 #' @return A \code{randomForest} object.
 #' 
 #' @references 
-#'   http://stackoverflow.com/questions/5571774/what-is-the-easiest-way-to-parallelize-a-vectorized-function-in-r/15414748#15414748 
+#'   \url{http://stackoverflow.com/questions/5571774/what-is-the-easiest-way-to-parallelize-a-vectorized-function-in-r/15414748#15414748}
 #'
 #' @seealso 
 #'   \code{\link[randomForest]{randomForest}}, 
@@ -38,6 +38,9 @@
 
 parRandomForest <- function( ..., ntree=500 ) { 
 
+  if( getOption( 'verbose', FALSE ) ) 
+    message("Using parRandomForest")
+  
   # CALCULATE THE NUMBER OF TREES ON EACH WORKER
     nworkers <- getDoParWorkers()
     reps <- rep( floor( ntree/nworkers ), nworkers )

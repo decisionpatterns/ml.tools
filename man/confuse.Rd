@@ -23,13 +23,22 @@ confuse(actual, predicted)
 
 \item{predicted}{logical vector of predicted values}
 
-\item{...}{additional arguments}
+\item{...}{additional arguments
+
+By convention, the \code{actual} values are placed in rows and the
+predicted values are placed in columns. The \code{dimnames} of the
+resulting matrix are consequently \code{actual} and \code{predicted}}
 }
 \value{
 2x2 confusion matrix / contingency table
 }
 \description{
 2x2 confusion matrix for logical vectors
+}
+\note{
+- By convention the actual values are placed in rows, predicted
+  values are placed in columns
+- actual
 }
 \seealso{
 \code{table} for cross-classifying factors

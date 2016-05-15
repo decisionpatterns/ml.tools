@@ -37,7 +37,7 @@ registerDoParallel(4)
   fit <- train( Species ~ . , iris, ntree=200 )
 }
 \references{
-http://stackoverflow.com/questions/5571774/what-is-the-easiest-way-to-parallelize-a-vectorized-function-in-r/15414748#15414748
+\url{http://stackoverflow.com/questions/5571774/what-is-the-easiest-way-to-parallelize-a-vectorized-function-in-r/15414748#15414748}
 }
 \seealso{
 \code{\link[randomForest]{randomForest}},

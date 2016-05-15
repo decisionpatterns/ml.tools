@@ -52,12 +52,14 @@ pattern <- data.frame(
      letters=as.factor(letters[1:3])
    , LETTERS=as.factor(LETTERS[1:3])
    , numbers=1:3L
+   , char=letters[1:3]
  )
 
  data <- data.frame(
      letters=as.factor(letters[1:4])
    , LETTERS=as.factor(LETTERS[1:4])
    , numbers=1:4L
+   , char=LETTERS[1:4]
  )
 
  apply.pattern( data, pattern )          # default first entry

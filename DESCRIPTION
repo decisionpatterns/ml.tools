@@ -1,8 +1,8 @@
 Package: ml.tools
 Type: Package
 Title: Machine Learning Tools
-Version: 0.26.0
-Date: 2015-04-28
+Version: 0.26.1
+Date: 2016-05-15
 Author: Christopher Brown
 Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
 Suggest: itertools (>= 0.1.3)
