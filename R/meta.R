@@ -5,7 +5,10 @@
 #' 
 #' @param data a data object
 #' 
-#' @seealso \code{\link{add_meta_values}}
+#' @seealso 
+#'    \code{\link{add_meta_values}}
+#'    
+#' @importFrom formula.tools is.cat
 #' @export
 
 meta_values <- function(data) {

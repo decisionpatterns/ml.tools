@@ -2,7 +2,6 @@
 #' 
 #' Prepares a data set for use by a particular function
 #' 
-#' 
 #' @param data data.frame.
 #' @param fun name of function to prep data for
 #' @param ... arguments passed to other functions
@@ -21,4 +20,3 @@ prep_data <- function(data, fun, ... ) {
   eval( parse(text=fun) )
   
 }   
-  

@@ -35,14 +35,21 @@
 #'   # CARET 
 #'   fit <- train( Species ~ . , iris, ntree=200 )
 #'   
-#' @import randomForest foreach doParallel
+#' @import randomForest foreach doParallel 
 #' @rdname parRandomForest
 #' @export
 
 parRandomForest <- function( ..., ntree=500 ) { 
 
-  if( getOption( 'verbose', FALSE ) ) 
+  if( getOption( 'verbose', FALSE ) ) { 
     message("Using parRandomForest")
+    
+    # message(
+    #      "  rows         : ", nrow( fit$trainingData ), "\n"
+    #   ,  "  cols         : ", ncol( fit$trainingData ), "\n"
+    #   ,  "  cardinality  : ", sum( cardinality(fit$trainingData) ), "\n"
+    # )
+  }
   
   # CALCULATE THE NUMBER OF TREES ON EACH WORKER
     nworkers <- getDoParWorkers()

@@ -23,6 +23,7 @@
 #' @note OTHER could be \code{NA}, but there is a difference between missing
 #' and present but reduced. This maintains 
 #' 
+#' @importFrom formula.tools get.vars
 #' @export
 
 prep_score <- function( data, model, OTHER="__OTHER__" ) { 
@@ -33,8 +34,9 @@ prep_score <- function( data, model, OTHER="__OTHER__" ) {
   
   # CHECK FOR MISSING trainingData
   #  Get required names
+  
   if( exists( "trainingData", model ) ) 
-    nms_req <- get.vars( rhs(formula(model)), model$trainingData ) else
+    nms_req <- formula.tools::get.vars( rhs(formula(model)), model$trainingData ) else
     stop( "No training data available ")
   
   # CHECK FOR MISSING COLUMNS
@@ -42,7 +44,6 @@ prep_score <- function( data, model, OTHER="__OTHER__" ) {
     missing <- setdiff( nms_req, nms_data )
     warning( substitute(data), " has missing values : ", paste(missing,collapse=", ") )
   }
-  
   
   data <- prep_train(data) 
   
@@ -69,7 +70,7 @@ prep_score <- function( data, model, OTHER="__OTHER__" ) {
 
 #' randomForest requires 
 #' * factors and not strings.
-#' * factors <= 32 levels    
+#' * factors <= 50 levels    
 #' * no missing y values
 #' * also saves 'values' 
 #' * Inf, -Inf not allowed (at least not in caret )
@@ -82,7 +83,9 @@ prep_score <- function( data, model, OTHER="__OTHER__" ) {
 #' @seealso \code{\link{prep_data}}
 #' @examples
 #'   # -tk
+#' @importFrom cardinality reduce_cardinality
 #' @export
+
 prep_train <- function( data, ..., preserve=character() ) { 
   
   if( length(preserve) > 0 ) pre <- data[ , preserve, with=FALSE ]

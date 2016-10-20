@@ -60,3 +60,4 @@ Collate:
     'varImpPlot2.R'
     'window_expr.R'
     'zzz.R'
+RoxygenNote: 5.0.1.9000

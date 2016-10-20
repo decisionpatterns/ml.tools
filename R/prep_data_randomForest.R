@@ -1,21 +1,24 @@
 #' Prepare Data for randomForest  
 #'
-#' Random Forest requires: 
-#'   factors and not strings, 
-#'   factors <= 32 levels, 
-#'   no missing values,
-#'   also saves 'values', 
-#'   Inf, -Inf not allowed (at least not in caret )
-#'   
-#'   predict additionally requires that there are no new levels in 
-#'   \code{newdata}. Each level does not have to be represented, but there needs
-#'   all levels must be represent in the \code{levels} attribute.
-#'   
 #' @param data data.frame
 #' @param max.levels integer; maximum number of levels for categorical variables
 #' @param preserve (character) columns not to be prepared
 #' @param ... arguments passed to other functions
 #'
+#' @details 
+#' 
+#' The Random Forest package requires: 
+#'   factors and not strings, 
+#'   factors <= 50 levels, 
+#'   no missing values,
+#'   no +/- Inf values
+#'    
+#' Additionally, it requires that subsequent factors not have newlevels in the 
+#' scoring data.  Each level does not have to be represented, but there needs
+#' all levels must be represent in the \code{levels} attribute.
+#'    
+#' also saves 'values', 
+#'   
 #' @examples
 #'   prep_data_randomForest( iris )
 #'   
@@ -28,11 +31,9 @@ prep_data_randomForest <- function(data, ..., max.levels=50, preserve=character(
   data <- coerce_each( data, "character", "factor" )
   data <- coerce_each( data, "ordered", "factor" )    # RF cannot handle ordered.
   data <- coerce_each( data, "difftime", "numeric" ) 
-  # data <- add_level( data, "__OTHER__")  unnecessary with reduce_cardinality( keep = ...)
-  data <- reduce_cardinality( data, nlevels=max.levels, ..., keep="__OTHER__" )
-  # attr( data, "prototype" ) <- make_prototype(data)
-  # proto <- DataPrototype(data)
   
+  data <- cardinality::reduce_cardinality( data, nlevels=max.levels, ..., keep="__OTHER__" )
+
   data <- impute(data, fun=median, ... )
   
   if( length(preserve) > 0 ) 
@@ -42,8 +43,3 @@ prep_data_randomForest <- function(data, ..., max.levels=50, preserve=character(
   return(data)
   
 }  
-
-# iris <- iris; iris[ 1:10, "Petal.Length" ] <- NA
-
-
-
