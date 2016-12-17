@@ -5,7 +5,7 @@
 #' @param x numeric; values to be calibrated
 #'  
 #' @param y numeric; an empirical distributions to serve as basis for the 
-#' calibration
+#' calibration by default quantiles of \code{x} are used.
 #' 
 #' @param method character; argument passed to \code{\link[stats]{approx}}. 
 #' Here, though, the default is \code{constant} to better match with empirical 
@@ -49,6 +49,7 @@
 #'   calibrate function for another implementation.
 #'
 #' @examples 
+#'   calibrate(1:5)
 #'   calibrate(1:5, 1:5)   # 1:5
 #'   calibrate(1:5, 1:10)  # 1  3  5  7 10
 #'   calibrate(5:1, 1:10)  # 10  7  5  3  1
@@ -76,7 +77,7 @@
 #' @export
 
 
-calibrate <- function( x, y, method="constant", rule=2,  ... ){
+calibrate <- function( x, y=seq(0,1,1/(length(unique(x)-1))), method="constant", rule=2,  ... ){
 
   x. <- sort(x)
   y  <- sort(y)
@@ -85,8 +86,6 @@ calibrate <- function( x, y, method="constant", rule=2,  ... ){
   x. <- x.[ seq( 1, length(x), length.out = min( length(x), length(y) ) ) ]
   y  <-  y[ seq( 1, length(y), length.out = min( length(x), length(y) ) ) ]
 
-  
-  
   return(
     approx( x., y, xout=x, method=method, rule=rule, ... )$y
   )
@@ -98,8 +97,8 @@ calibrate <- function( x, y, method="constant", rule=2,  ... ){
 #' @aliases calibratefun make.calibration make.calibrator
 #' @export
 
-make.calibrator <- 
-  make.calibration <- calibratefun <- function( x, y, method="constant", rule=2,  ...){
+make.calibrator <- make.calibration <- calibratefun <- 
+  function( x, y=seq(0,1,1/(length(unique(x)-1))), method="constant", rule=2,  ...){
   
   x <- sort(x)
   y <- sort(y)
@@ -112,4 +111,3 @@ make.calibrator <-
   )
   
 }
-
