@@ -7,15 +7,17 @@
 \alias{make.calibrator}
 \title{Calibrate}
 \usage{
-calibrate(x, y, method = "constant", rule = 2, ...)
+calibrate(x, y = seq(0, 1, 1/(length(unique(x) - 1))), method = "constant",
+  rule = 2, ...)
 
-make.calibrator(x, y, method = "constant", rule = 2, ...)
+make.calibrator(x, y = seq(0, 1, 1/(length(x) - 1)), method = "constant",
+  rule = 2, ...)
 }
 \arguments{
 \item{x}{numeric; values to be calibrated}
 
 \item{y}{numeric; an empirical distributions to serve as basis for the 
-calibration}
+calibration by default quantiles of \code{x} are used.}
 
 \item{method}{character; argument passed to \code{\link[stats]{approx}}. 
 Here, though, the default is \code{constant} to better match with empirical 
@@ -58,6 +60,7 @@ numeric vector; x transformed into basis of y
 Calibrates a set of values to an empirical distribution.
 }
 \examples{
+  calibrate(1:5)
   calibrate(1:5, 1:5)   # 1:5
   calibrate(1:5, 1:10)  # 1  3  5  7 10
   calibrate(5:1, 1:10)  # 10  7  5  3  1

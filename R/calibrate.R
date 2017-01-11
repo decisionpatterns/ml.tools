@@ -98,7 +98,7 @@ calibrate <- function( x, y=seq(0,1,1/(length(unique(x)-1))), method="constant",
 #' @export
 
 make.calibrator <- make.calibration <- calibratefun <- 
-  function( x, y=seq(0,1,1/(length(unique(x)-1))), method="constant", rule=2,  ...){
+  function( x, y=seq(0,1,1/(length(x)-1)), method="constant", rule=2,  ...){
   
   x <- sort(x)
   y <- sort(y)

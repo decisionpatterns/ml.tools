@@ -32,7 +32,8 @@ prep_data_randomForest <- function(data, ..., max.levels=50, preserve=character(
   data <- coerce_each( data, "ordered", "factor" )    # RF cannot handle ordered.
   data <- coerce_each( data, "difftime", "numeric" ) 
   
-  data <- cardinality::reduce_cardinality( data, nlevels=max.levels, ..., keep="__OTHER__" )
+  # ctb: arguments to reduce_cardinality may have changed
+  data <- cardinality::reduce_cardinality( data, max.levels, ..., keep="__OTHER__" )
 
   data <- impute(data, fun=median, ... )
   
