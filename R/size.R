@@ -17,7 +17,7 @@
 
 size <- function(object) {
   
-  size <- list( dim = dim(object), cardinality=sum( cardinality::cardinality(object) ) )
+  size <- list( dim = dim(object), cardinality=sum( cardinality::cardinalities(object) ) )
   
   message( "dim : ", paste( size$dim, collapse=" x " ), " (", prod( size$dim), ")")
   message( "card: ", size$cardinality )

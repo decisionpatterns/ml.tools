@@ -2,22 +2,22 @@
 #' 
 #' Make one object more like another 
 #' 
-#' @param x object to emulate
-#' @param y object to effect and return
+#' @param x object to change
+#' @param template object to emulate
 #' @param default character value for missing values
 #' @param ... additional parameters 
 #' 
-#' \code{emulate} makes \code{x} more like \code{y} so that \code{x} can be 
-#' used in place of \code{y} with changing the data as little as possible.  This
-#' generally means coercing to the type of \code{y} and only containing the 
-#' values that are in \code{y}.
+#' \code{emulate} makes \code{x} more like a \code{template} so that \code{x} 
+#' can be used in places where \code{template} is used. The goal is to change. 
+#' This generally means coercing to the type of \code{template} and only 
+#' containing values found in \code{template}.
 #' 
 #' For the \code{randomForest} method, this requires adding a \code{default}
 #' 
 #' @return 
-#'   Returns \code{x} that emulates \code{y}
+#'   Returns \code{x} that emulates \code{template}
 #'   
-#'   The ANY-ANY method simply returns \code{x}
+#'   The ANY-ANY method simply returns \code{template}
 #'   
 #' @seealso   
 #'   \code{\link{apply.pattern}} 
@@ -28,38 +28,38 @@
 #' @docType methods
 #' @rdname emulate-methods
 
-setGeneric( 'emulate', function(x, y, ...) standardGeneric('emulate') )
+setGeneric( 'emulate', function(x, template, ...) standardGeneric('emulate') )
 
 setOldClass( 'randomForest') 
 
-#' @aliases emulate,randomForest,data.table-method
+#' @aliases emulate,data.frame,randomForest-method
 #' @rdname emulate-methods
 #' @examples
 #'   iris2 <- droplevels( iris[1:100, ])
 #'   f <- randomForest( Sepal.Length ~ . , iris2 )
 #'   
-#'   emulate( f, iris )
+#'   emulate( iris, f )
 
 setMethod( 
-  'emulate', signature( 'randomForest', 'data.frame' ), 
-  function( x, y, default = "__OTHER__" ) {  # default = NA ?
+  'emulate', signature( 'data.frame', 'randomForest' ), 
+  function( x, template, default = "__OTHER__" ) {  # default = NA ?
     
-    rf_test_names( x, y )
+    rf_test_names( template, x )
     
-    nms.cat <- names( x$forest$xlevels )
+    nms.cat <- names( template$forest$xlevels )
     for( nm in nms.cat  ) {
     
-      allowed <- x$forest$xlevels[[ nm ]]
-      if( exists( nm, y ) ) {
+      allowed <- template$forest$xlevels[[ nm ]]
+      if( exists( nm, x ) ) {
         
-        # wh <- which( ! y[[ var ]] %in% allowed )
-        y[[ nm ]][ ! y[[ nm ]] %in% allowed ] <- default
+        # wh <- which( ! x[[ var ]] %in% allowed )
+        x[[ nm ]][ ! x[[ nm ]] %in% allowed ] <- default
         
       }
       
     }
     
-    return(y)
+    return(x)
   
   }
   
@@ -70,24 +70,26 @@ setMethod(
 #' @rdname emulate-methods
 #' @aliases emulate,vector,factor-method
 #' @examples
-#' x <- factor( letters[1:3] )
-#' y <- factor( letters[1:6] )
+#' a <- factor( letters[1:3] )
+#' b <- factor( letters[1:6] )
 #' 
-#' emulate( x, y ) # a    b    c    <NA> <NA> <NA>
-#' emulate( y, x ) # adds levels of y
-#' emulate( x, y, default="b" )
+#' emulate( x=a, template=b )    # adds levels of x
+#' 
+#' emulate( x=b, template=a )    # a    b    c    <NA> <NA> <NA>
+#' emulate( x=b, template=a, default="a" )
+#' 
 
-setMethod( 'emulate', signature( 'factor', 'vector' ), 
-  function(x, y, default=NA ) {
+setMethod( 'emulate', signature( 'vector', 'factor' ), 
+  function( x, template, default=NA ) {
     
-    y. <- factor( y, levels=levels(x) )
+    x. <- factor( x, levels=levels(template) )
     
     if( ! is.na(default) ) { 
-      wh <- ! y. %in% levels(x)
-      y.[ wh ] <- default 
+      wh <- ! x. %in% levels(template)
+      x.[ wh ] <- default 
     }
      
-    return(y.)
+    return(x.)
   }
 )
   
@@ -95,22 +97,23 @@ setMethod( 'emulate', signature( 'factor', 'vector' ),
 #' @rdname emulate-methods
 #' @aliases emulate,vector,character-method
 #' @examples
-#' x <- letters[1:6] 
-#' y <- letters[1:3] 
+#'   a <- letters[1:3] 
+#'   b <- letters[1:6] 
 #' 
-#' emulate( x, y )
-#' emulate( y, x ) 
-#' emulate( x, y, default="b" )
+#'   emulate( x=a, template=b ) 
+#'   
+#'   emulate( x=b, template=a ) 
+#'   emulate( x=b, template=a, default="default" )
 
 setMethod( 'emulate', signature( 'character', 'vector' ), 
-  function(x, y, default=NA ) {
+  function(x, template, default=NA ) {
     
-    y <- as.character(x)
+    template <- as.character(template)
     
-    wh <- ! y %in%  unique(x)
-    y[ wh ] <- default 
+    wh <- ! x %in%  unique(template)
+    x[ wh ] <- default 
       
-    return(y)
+    return(x)
     
   }
 )
@@ -118,5 +121,10 @@ setMethod( 'emulate', signature( 'character', 'vector' ),
 
 #' @rdname emulate-methods
 #' @aliases emulate,ANY,ANY-method
-setMethod( 'emulate', signature( 'ANY', 'ANY' ), function(x,y,...) return(y) )
+setMethod( 'emulate', signature( 'ANY', 'ANY' ), 
+           function( x, template,...) {
+             warning("Nothing to emulate")
+             return(x)
+           }
+)
   
