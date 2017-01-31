@@ -4,7 +4,7 @@
 \alias{prep_score}
 \title{Prepare data for training and scoring of a caret model}
 \usage{
-prep_score(data, model, OTHER = "__OTHER__")
+prep_score(data, model, OTHER = "Other")
 }
 \arguments{
 \item{data}{data.table to prepare}

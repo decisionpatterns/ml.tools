@@ -5,19 +5,16 @@
 \alias{emulate}
 \alias{emulate,ANY,ANY-method}
 \alias{emulate,character,vector-method}
-\alias{emulate,factor,vector-method}
-\alias{emulate,randomForest,data.frame-method}
-\alias{emulate,randomForest,data.table-method}
+\alias{emulate,data.frame,randomForest-method}
 \alias{emulate,vector,character-method}
 \alias{emulate,vector,factor-method}
 \title{Make one object emulate another}
 \usage{
 emulate(x, template, ...)
 
-\S4method{emulate}{randomForest,data.frame}(x, template,
-  default = "__OTHER__")
+\S4method{emulate}{data.frame,randomForest}(x, template, default = "Other")
 
-\S4method{emulate}{factor,vector}(x, template, default = NA)
+\S4method{emulate}{vector,factor}(x, template, default = NA)
 
 \S4method{emulate}{character,vector}(x, template, default = NA)
 
@@ -30,17 +27,17 @@ emulate(x, template, ...)
 
 \item{...}{additional parameters 
 
-\code{emulate} makes \code{x} more like \code{template} so that \code{x} can be 
-used in place of \code{template} with changing the data as little as possible.  This
-generally means coercing to the type of \code{x} and only containing the 
-values that are in \code{x}.
+\code{emulate} makes \code{x} more like a \code{template} so that \code{x} 
+can be used in places where \code{template} is used. The goal is to change. 
+This generally means coercing to the type of \code{template} and only 
+containing values found in \code{template}.
 
 For the \code{randomForest} method, this requires adding a \code{default}}
 
 \item{default}{character value for missing values}
 }
 \value{
-Returns \code{template} that emulates \code{x}
+Returns \code{x} that emulates \code{template}
   
   The ANY-ANY method simply returns \code{template}
 }
@@ -51,19 +48,22 @@ Make one object more like another
   iris2 <- droplevels( iris[1:100, ])
   f <- randomForest( Sepal.Length ~ . , iris2 )
   
-  emulate( f, iris )
-template <- factor( letters[1:3] )
-x <- factor( letters[1:6] )
+  emulate( iris, f )
+a <- factor( letters[1:3] )
+b <- factor( letters[1:6] )
 
-emulate( template, x ) # a    b    c    <NA> <NA> <NA>
-emulate( x, template ) # adds levels of x
-emulate( template, x, default="b" )
-template <- letters[1:6] 
-x <- letters[1:3] 
+emulate( x=a, template=b )    # adds levels of x
 
-emulate( template, x )
-emulate( x, template ) 
-emulate( template, x, default="b" )
+emulate( x=b, template=a )    # a    b    c    <NA> <NA> <NA>
+emulate( x=b, template=a, default="a" )
+
+  a <- letters[1:3] 
+  b <- letters[1:6] 
+
+  emulate( x=a, template=b ) 
+  
+  emulate( x=b, template=a ) 
+  emulate( x=b, template=a, default="default" )
 }
 \seealso{
 \code{\link{apply.pattern}} 

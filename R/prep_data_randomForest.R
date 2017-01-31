@@ -24,7 +24,7 @@
 #'   
 #' @export
 
-prep_data_randomForest <- function(data, ..., max.levels=50, preserve=character() ) { 
+prep_data_randomForest <- function(data, ..., max.levels=50, preserve=character(), keep='Other' ) { 
   
   if( length(preserve) > 0 ) pre <- data[ , preserve, with=FALSE ]
   
@@ -33,7 +33,7 @@ prep_data_randomForest <- function(data, ..., max.levels=50, preserve=character(
   data <- coerce_each( data, "difftime", "numeric" ) 
   
   # ctb: arguments to reduce_cardinality may have changed
-  data <- cardinality::reduce_cardinality( data, max.levels, ..., keep="__OTHER__" )
+  data <- cardinality::reduce_cardinality( data, max.levels, ..., keep=keep )
 
   data <- impute(data, fun=median, ... )
   

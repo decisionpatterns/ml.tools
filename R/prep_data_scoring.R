@@ -26,7 +26,7 @@
 #' @importFrom formula.tools get.vars
 #' @export
 
-prep_score <- function( data, model, OTHER="__OTHER__" ) { 
+prep_score <- function( data, model, OTHER="Other" ) { 
   
   # proto <- model 
   # nms_data  <- names(data)
@@ -93,9 +93,9 @@ prep_train <- function( data, ..., preserve=character() ) {
   
   data <- coerce_each(data, "character", "factor")
  
-  # By having keep="__OTHER__", this is automatically added to the allowable 
+  # By having keep="Other", this is automatically added to the allowable 
   # levels of the variables.  
-  data <- reduce_cardinality( data, nlevels=32, ..., keep="__OTHER__" )
+  data <- reduce_cardinality( data, nlevels=32, ..., keep="Other" )
   
   data <- impute(data, fun=median, ... )
   

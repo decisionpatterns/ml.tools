@@ -4,7 +4,8 @@
 \alias{prep_data_randomForest}
 \title{Prepare Data for randomForest}
 \usage{
-prep_data_randomForest(data, ..., max.levels = 50, preserve = character())
+prep_data_randomForest(data, ..., max.levels = 50, preserve = character(),
+  keep = "Other")
 }
 \arguments{
 \item{data}{data.frame}

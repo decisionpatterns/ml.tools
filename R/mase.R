@@ -10,7 +10,7 @@
 #' The mean absolute scaled error calculates the error relative to a naive
 #' prediction 
 #' 
-#' @referneces 
+#' @references 
 #'   \url{https://www.otexts.org/fpp/2/5}
 #' 
 

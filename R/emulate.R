@@ -42,7 +42,7 @@ setOldClass( 'randomForest')
 
 setMethod( 
   'emulate', signature( 'data.frame', 'randomForest' ), 
-  function( x, template, default = "__OTHER__" ) {  # default = NA ?
+  function( x, template, default = "Other" ) {  # default = NA ?
     
     rf_test_names( template, x )
     

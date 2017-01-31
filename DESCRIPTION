@@ -1,8 +1,8 @@
 Package: ml.tools
 Type: Package
 Title: Machine Learning Tools
-Version: 0.26.2
-Date: 2017-01-10
+Version: 0.27.0
+Date: 2017-01-31
 Author: Christopher Brown
 Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
 Suggest: itertools (>= 0.1.3)
@@ -38,9 +38,11 @@ Collate:
     'emulate.R'
     'eval_model.R'
     'getImp.R'
+    'histogram-features.R'
     'impute.R'
     'logistic.R'
     'mae.R'
+    'mase.R'
     'match_vars.R'
     'meta.R'
     'ml.tools-package.R'
