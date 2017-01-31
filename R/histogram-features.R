@@ -68,7 +68,7 @@
 # 
 # x <- c_snapshot[ by=list(Period, SponsorDimAccountID), , .N]
 # x2 <- x[ by=Period, , bin_count_list(N) ]
-#' x2 %>% setnames( x2, )
+# x2 %>% setnames( x2, )
 # 
 # x2  %>% as.xts()  %>% autoplot 
 

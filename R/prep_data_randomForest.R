@@ -2,7 +2,8 @@
 #'
 #' @param data data.frame
 #' @param max.levels integer; maximum number of levels for categorical variables
-#' @param preserve (character) columns not to be prepared
+#' @param preserve character; columns not to be prepared
+#' @param default value; value to use as the default -- or gets lumped together
 #' @param ... arguments passed to other functions
 #'
 #' @details 
@@ -20,11 +21,15 @@
 #' also saves 'values', 
 #'   
 #' @examples
-#'   prep_data_randomForest( iris )
+#'   d <- prep_data_randomForest( iris )
+#'   levels( d$Species )
+#'   
+#'   d <- prep_data_randomForest( iris, max.levels=2 )
+#'   levels( d$Species )
 #'   
 #' @export
 
-prep_data_randomForest <- function(data, ..., max.levels=50, preserve=character(), keep='Other' ) { 
+prep_data_randomForest <- function(data, ..., max.levels=50, preserve=character(), default='Other' ) { 
   
   if( length(preserve) > 0 ) pre <- data[ , preserve, with=FALSE ]
   
@@ -33,7 +38,7 @@ prep_data_randomForest <- function(data, ..., max.levels=50, preserve=character(
   data <- coerce_each( data, "difftime", "numeric" ) 
   
   # ctb: arguments to reduce_cardinality may have changed
-  data <- cardinality::reduce_cardinality( data, max.levels, ..., keep=keep )
+  data <- cardinality::reduce_cardinality( data, max.levels, ..., default=default )
 
   data <- impute(data, fun=median, ... )
   
