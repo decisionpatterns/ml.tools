@@ -7,7 +7,7 @@
 #' @param pattern pattern; data object with zero or more rows that contain 
 #' metadata about the object types in the form of attributes.
 #' 
-#' @param default;  value to be used when levels of the data are are not found 
+#' @param default; value to be used when levels of the data are are not found 
 #' in a factor. The default is to use the first element given by \code{levels}. 
 #' See Details.
 #' 
@@ -20,12 +20,13 @@
 #' 
 #' @section Factor levels:
 #' 
-#' The \code{default} can be a numeric, character or function. If \code{numeric}
-#' this is taken an element in the levels of the factor. By convention, the 
-#' default level is the first of a factors.  This is also often, but not always,
-#' the most commonly occuring value. 
+#' The \code{default} can be a numeric, character or function. 
 #' 
-#' If \code{default} is character then this value is used as the level. Since, 
+#' If \code{numeric} this is taken an element in the levels of the factor. 
+#' By convention, the default level is the first of a factors.  This is also 
+#' often, but not always, the most commonly occuring value. 
+#' 
+#' If \code{character} then this value is used as the level. Since, 
 #' this will be the same for each factor column, care must be taken so that all 
 #' columns have the same default value. This is useful for when new values may
 #' arise.
@@ -42,6 +43,7 @@
 #' 
 #' 
 #' @seealso
+#'   \code{\link{emulate}} \cr
 #'   \code{\link[plyr]{rbind.fill}} \cr
 #'   \code{bind_rows} from dplyr \cr
 #'   \code{most_freq} from the \code{cardinality} package

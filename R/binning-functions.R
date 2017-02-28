@@ -24,12 +24,10 @@ cut_n <- function(x, nbin=nclass.scott, relax=c(-Inf,Inf), ...) {
   if( is.function(nbin) )
     nbin <- nbin(x)
       
-  cut( x, breaks=breakpoints(x, nbin=nbin, relax=relax), ... )
+  base::cut( x, breaks=breakpoints(x, nbin=nbin, relax=relax), ... )
 }
 
 #' Special standard evaluation of cut_n
-#' 
-#'
 #' 
 #' @param .data environment to evaluate \code{x} in. 
 #' This is needed for use in \code{j} and \code{by} in data.table when this 
