@@ -49,4 +49,3 @@ provides parRandomForest and a parallel drop-in replacement for
   \code{\link[doParallel]{registerDoParallel}},
   \code{\link[foreach]{foreach}}
 }
-

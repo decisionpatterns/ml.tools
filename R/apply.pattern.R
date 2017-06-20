@@ -46,7 +46,7 @@
 #'   \code{\link{emulate}} \cr
 #'   \code{\link[plyr]{rbind.fill}} \cr
 #'   \code{bind_rows} from dplyr \cr
-#'   \code{most_freq} from the \code{cardinality} package
+#'   \code{most_freq} from the \code{dimensional} package
 #'
 #' @examples
 #' 

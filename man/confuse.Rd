@@ -2,9 +2,9 @@
 % Please edit documentation in R/confuse.R
 \name{confuse}
 \alias{confuse}
+\alias{confuse.default}
 \alias{confuse.categories}
 \alias{confuse.character}
-\alias{confuse.default}
 \alias{confuse.factor}
 \title{2x2 confusion matrix for logical vectors}
 \usage{
@@ -43,4 +43,3 @@ resulting matrix are consequently \code{actual} and \code{predicted}}
 \seealso{
 \code{table} for cross-classifying factors
 }
-

@@ -25,4 +25,3 @@ prediction
 \references{
 \url{https://www.otexts.org/fpp/2/5}
 }
-

@@ -2,9 +2,9 @@
 % Please edit documentation in R/calibrate.R
 \name{calibrate}
 \alias{calibrate}
+\alias{make.calibrator}
 \alias{calibratefun}
 \alias{make.calibration}
-\alias{make.calibrator}
 \title{Calibrate}
 \usage{
 calibrate(x, y = seq(0, 1, 1/(length(unique(x) - 1))), method = "constant",
@@ -89,4 +89,3 @@ Calibrates a set of values to an empirical distribution.
   \url{http://cran.r-project.org/web/packages/investr} especially the 
   calibrate function for another implementation.
 }
-

@@ -35,4 +35,3 @@ data set to keep only the window of relevant events to the features
   # window_expr( "milestone_dt", "event_dt", ddays(5), "after" )
   
 }
-

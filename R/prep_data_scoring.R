@@ -18,7 +18,7 @@
 #' @return a data.table that can (hopefully) be used by the \code{predict} 
 #' method
 #' 
-#' @seealso prep_data, reduce_cardinality
+#' @seealso prep_data, lump
 #' 
 #' @note OTHER could be \code{NA}, but there is a difference between missing
 #' and present but reduced. This maintains 
@@ -83,7 +83,7 @@ prep_score <- function( data, model, OTHER="Other" ) {
 #' @seealso \code{\link{prep_data}}
 #' @examples
 #'   # -tk
-#' @importFrom cardinality reduce_cardinality
+#' @importFrom dimensional lump
 #' @export
 
 prep_train <- function( data, ..., preserve=character() ) { 
@@ -95,7 +95,7 @@ prep_train <- function( data, ..., preserve=character() ) {
  
   # By having keep="Other", this is automatically added to the allowable 
   # levels of the variables.  
-  data <- reduce_cardinality( data, nlevels=32, ..., keep="Other" )
+  data <- lump( data, nlevels=32, ..., keep="Other" )
   
   data <- impute(data, fun=median, ... )
   

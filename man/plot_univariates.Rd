@@ -24,4 +24,3 @@ Create a plot of one or more distributions as a comparison
    plot_univariates( 1:100, rnorm(100))
  }
 }
-

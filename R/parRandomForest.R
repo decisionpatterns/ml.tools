@@ -47,7 +47,7 @@ parRandomForest <- function( ..., ntree=500 ) {
     # message(
     #      "  rows         : ", nrow( fit$trainingData ), "\n"
     #   ,  "  cols         : ", ncol( fit$trainingData ), "\n"
-    #   ,  "  cardinality  : ", sum( cardinality(fit$trainingData) ), "\n"
+    #   ,  "  dimensional  : ", sum( dimensional(fit$trainingData) ), "\n"
     # )
   }
   

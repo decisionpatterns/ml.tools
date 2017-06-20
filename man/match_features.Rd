@@ -25,4 +25,3 @@ Adds dummy columns to the first data frame that are present in the second
 \seealso{
 \code{\link{match_features}}
 }
-

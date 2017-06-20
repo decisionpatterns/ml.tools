@@ -3,11 +3,11 @@
 \docType{methods}
 \name{emulate}
 \alias{emulate}
-\alias{emulate,ANY,ANY-method}
-\alias{emulate,character,vector-method}
 \alias{emulate,data.frame,randomForest-method}
-\alias{emulate,vector,character-method}
 \alias{emulate,vector,factor-method}
+\alias{emulate,character,vector-method}
+\alias{emulate,vector,character-method}
+\alias{emulate,ANY,ANY-method}
 \title{Make one object emulate another}
 \usage{
 emulate(x, template, ...)
@@ -28,7 +28,8 @@ emulate(x, template, ...)
 \item{...}{additional parameters 
 
 \code{emulate} makes \code{x} more like a \code{template} so that \code{x} 
-can be used in places where \code{template} is used. The goal is to change. 
+can be used in places where \code{template} is used. 
+ 
 This generally means coercing to the type of \code{template} and only 
 containing values found in \code{template}.
 
@@ -42,13 +43,17 @@ Returns \code{x} that emulates \code{template}
   The ANY-ANY method simply returns \code{template}
 }
 \description{
-Make one object more like another
+Make one object more like another by aligning attributes: names, types, 
+levels
 }
 \examples{
+ # -tk 
   iris2 <- droplevels( iris[1:100, ])
+  iris2$Species 
   f <- randomForest( Sepal.Length ~ . , iris2 )
   
-  emulate( iris, f )
+  iris3 <- emulate( iris, f )
+  predict(f,iris3)
 a <- factor( letters[1:3] )
 b <- factor( letters[1:6] )
 
@@ -70,4 +75,3 @@ emulate( x=b, template=a, default="a" )
   \code{\link[dp.misc]{conform}}
   \code{\link[plyr]{rbind.fill}}
 }
-

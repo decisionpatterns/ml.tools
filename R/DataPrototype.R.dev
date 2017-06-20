@@ -26,7 +26,7 @@ DataPrototype <- setClass(
   , slots=c( 
         levels      = "list"        # LEVELS FOR THE FACTOR VARIABLES 
       , imputes = "list"        # LEVELS FOR IMPUTATAION
-      # , cardinality = "integer"   #
+      # , dimensional = "integer"   #
     )
 )
 

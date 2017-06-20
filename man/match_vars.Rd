@@ -26,4 +26,3 @@ Adds dummy columns to the first data frame that are present in the second
 \code{\link{match_features}}
   \code{\link[plyr]{rbind.fill}}
 }
-

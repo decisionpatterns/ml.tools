@@ -33,10 +33,9 @@ Incorporated with permission from the copyright holder.
   scramble(iris)
 
 }
-\author{
-Christopher Brown
-}
 \references{
 Brieman's Random Forest paper.
 }
-
+\author{
+Christopher Brown
+}

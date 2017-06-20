@@ -16,4 +16,3 @@ with categorical variables associated with a data frame
 \seealso{
 \code{\link{meta_values}}
 }
-

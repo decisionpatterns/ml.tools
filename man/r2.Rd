@@ -14,4 +14,3 @@ r2(x, xhat)
 \description{
 Computes the psuedo-rsquared for a model
 }
-

@@ -27,4 +27,3 @@ Report the nodes numbers
 \seealso{
 \code{\link{predict}}
 }
-

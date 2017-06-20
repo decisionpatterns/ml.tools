@@ -13,14 +13,14 @@
 #'   - move into bigO(?) package 
 #'  
 #' @export 
-#' @import cardinality
+#' @import dimensional
 
 size <- function(object) {
   
-  size <- list( dim = dim(object), cardinality=sum( cardinality::cardinalities(object) ) )
+  size <- list( dim = dim(object), dimensional=sum( dimensional::cardinalities(object) ) )
   
   message( "dim : ", paste( size$dim, collapse=" x " ), " (", prod( size$dim), ")")
-  message( "card: ", size$cardinality )
+  message( "card: ", size$dimensional )
   message( rep( "-", 30 ))
   message( "size: ", sprintf( "%1.3e", size$dim[1] * size$card ) )
   

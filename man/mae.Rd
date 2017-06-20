@@ -22,4 +22,3 @@ The operation is commutative; the order of arguments does not matter. If
 either \code{x} or \code{xhat} have missing values, then that tuple is 
 omitted from the calculations similar to \code{na.omit}.
 }
-

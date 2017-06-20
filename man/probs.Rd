@@ -53,4 +53,3 @@ Although not implemented here, the use \code{probs} could be used to make a
 \seealso{
 \code{\link[randomForest]{predict.randomForest}}
 }
-

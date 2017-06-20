@@ -16,4 +16,3 @@ categorical variables of the data. The
 \seealso{
 \code{\link{add_meta_values}}
 }
-

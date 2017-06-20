@@ -16,4 +16,3 @@ a zero-row data.frame
 \seealso{
 \code{\link{meta_prototype}}
 }
-

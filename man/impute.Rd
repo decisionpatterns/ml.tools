@@ -2,15 +2,15 @@
 % Please edit documentation in R/impute.R
 \name{impute}
 \alias{impute}
-\alias{impute.POSIXct}
-\alias{impute.character}
-\alias{impute.data.frame}
-\alias{impute.data.table}
 \alias{impute.default}
-\alias{impute.factor}
-\alias{impute.integer}
 \alias{impute.logical}
 \alias{impute.numeric}
+\alias{impute.integer}
+\alias{impute.character}
+\alias{impute.factor}
+\alias{impute.POSIXct}
+\alias{impute.data.frame}
+\alias{impute.data.table}
 \title{Impute missing values}
 \usage{
 impute(x, fun, ...)
@@ -62,4 +62,3 @@ x <- as.factor(mtcars$cyl )
 x[1:4] <- NA
 
 }
-

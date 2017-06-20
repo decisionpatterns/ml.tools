@@ -33,12 +33,13 @@ level attributes through subset and other operations.
 \section{Factor levels}{
 
 
-The \code{default} can be a numeric, character or function. If \code{numeric}
-this is taken an element in the levels of the factor. By convention, the 
-default level is the first of a factors.  This is also often, but not always,
-the most commonly occuring value. 
+The \code{default} can be a numeric, character or function. 
 
-If \code{default} is character then this value is used as the level. Since, 
+If \code{numeric} this is taken an element in the levels of the factor. 
+By convention, the default level is the first of a factors.  This is also 
+often, but not always, the most commonly occuring value. 
+
+If \code{character} then this value is used as the level. Since, 
 this will be the same for each factor column, care must be taken so that all 
 columns have the same default value. This is useful for when new values may
 arise.
@@ -47,6 +48,7 @@ If \code{default} is a function, it is applied to the vector of levels for
 the vector in \strong{pattern}. This allows selecting the LAST level by using 
 \code{length}
 }
+
 \examples{
 
  pattern <- data.frame( 
@@ -70,8 +72,8 @@ the vector in \strong{pattern}. This allows selecting the LAST level by using
 
 }
 \seealso{
-\code{\link[plyr]{rbind.fill}} \cr
+\code{\link{emulate}} \cr
+  \code{\link[plyr]{rbind.fill}} \cr
   \code{bind_rows} from dplyr \cr
-  \code{most_freq} from the \code{cardinality} package
+  \code{most_freq} from the \code{dimensional} package
 }
-

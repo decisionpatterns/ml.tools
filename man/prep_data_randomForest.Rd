@@ -5,7 +5,7 @@
 \title{Prepare Data for randomForest}
 \usage{
 prep_data_randomForest(data, ..., max.levels = 50, preserve = character(),
-  keep = "Other")
+  default = "Other")
 }
 \arguments{
 \item{data}{data.frame}
@@ -14,7 +14,9 @@ prep_data_randomForest(data, ..., max.levels = 50, preserve = character(),
 
 \item{max.levels}{integer; maximum number of levels for categorical variables}
 
-\item{preserve}{(character) columns not to be prepared}
+\item{preserve}{character; columns not to be prepared}
+
+\item{default}{value; value to use as the default -- or gets lumped together}
 }
 \description{
 Prepare Data for randomForest
@@ -33,7 +35,10 @@ all levels must be represent in the \code{levels} attribute.
 also saves 'values',
 }
 \examples{
-  prep_data_randomForest( iris )
+  d <- prep_data_randomForest( iris )
+  levels( d$Species )
+  
+  d <- prep_data_randomForest( iris, max.levels=2 )
+  levels( d$Species )
   
 }
-

@@ -129,8 +129,8 @@ predict.randomForest <-
             # CHANGE levels.new to match OLD
             if( any(! levels.new %in% levels.orig ) ) {
               
-              levels( x[[i]] ) <- union( levels.new, "__OTHER__" )
-              x[[i]][ ! x[[i]] %in% levels.orig ] <- "__OTHER__"
+              levels( x[[i]] ) <- union( levels.new, "Other" )
+              x[[i]][ ! x[[i]] %in% levels.orig ] <- "Other"
               x[[ i ]] <- droplevels( x[[i]] )
               levels( x[[i]] ) <- levels.orig
               

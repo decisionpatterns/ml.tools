@@ -28,7 +28,7 @@
 #'   levels( proto$Species )
 #'   make_score_data( data, iris2 )
 
-# make_score_data <- function( data, proto, default="__OTHER__" ) {
+# make_score_data <- function( data, proto, default="Other" ) {
 #   stop( "Use apply.prototype instead.")
 #   data <- coerce_each( data, "character", "factor" )
 #   # data <- coerce_each( data, "logical", "factor" )
@@ -52,7 +52,7 @@
 # }
 
 
-# make_score_data_2 <- function( data, proto, default="__OTHER__" ) {
+# make_score_data_2 <- function( data, proto, default="Other" ) {
 #   
 #   if( nrow(proto) > 0 ) proto <- proto[ 0 , ]
 #   
@@ -71,7 +71,7 @@
 #       
 #     } else {   
 #       
-#       # data[[ nm ]] <- add_level( data[[ nm ]], "__OTHER__" )
+#       # data[[ nm ]] <- add_level( data[[ nm ]], "Other" )
 #       # THIS WILL INTRO
 #       data[[ nm ]][ ! data[[ nm ]] %in% levels( proto[[ nm ]] ) ]  <- default
 #       data[[ nm ]] <- droplevels( data[[nm]] )
@@ -110,7 +110,7 @@
 # }
 # 
 # 
-# # d <- emulate( model, data, default="__OTHER__" )
+# # d <- emulate( model, data, default="Other" )
 # 
 
 
@@ -118,7 +118,7 @@
 # #' Make a data set look like the one used in a model
 # #' 
 # #' Mak
-# rf_match_data <- function(model, data, default="__OTHER__" ) {
+# rf_match_data <- function(model, data, default="Other" ) {
 #   
 #   # TEST THE DATA
 #   rf_test_names( model, data )

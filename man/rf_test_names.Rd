@@ -26,4 +26,3 @@ Makes a comparison betwen \code{names( model$forest$xlevels )} and
   rf_test_names( f, iris[ , 1:3] )
   rf_test_names( f, mtcars )
 }
-

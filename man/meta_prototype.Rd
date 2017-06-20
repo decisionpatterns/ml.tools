@@ -16,4 +16,3 @@ all attributes, columns, etc. just without data.
 \seealso{
 \code{\link{add_meta_prototype}}
 }
-

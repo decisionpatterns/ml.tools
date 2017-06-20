@@ -36,4 +36,3 @@ Assesses the fit between a value and its estimate using a variety of measures
 \details{
 \code{train}, \code{data.frame} method evaluates the model
 }
-

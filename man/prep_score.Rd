@@ -35,6 +35,5 @@ OTHER could be \code{NA}, but there is a difference between missing
 and present but reduced. This maintains
 }
 \seealso{
-prep_data, reduce_cardinality
+prep_data, lump
 }
-

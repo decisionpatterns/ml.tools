@@ -35,10 +35,9 @@ Does not allow for post model evaluation
   eval_model( fit, iris, mae )
   
 }
-\author{
-Christopher Brown
-}
 \seealso{
 \code{mae}, \code{rmse}
 }
-
+\author{
+Christopher Brown
+}

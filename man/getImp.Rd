@@ -24,4 +24,3 @@ Get most important features from an RF model in order of importance
 \seealso{
 \code{\link[randomForest]{randomForest}}
 }
-

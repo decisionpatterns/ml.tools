@@ -15,4 +15,3 @@ applicable for Machine learning applications.
 \author{
 Christopher Brown
 }
-

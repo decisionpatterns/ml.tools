@@ -19,4 +19,3 @@ The operation is commutative so the order of operations does not matter. If
 either \code{x} or \code{xhat} have missing values, then that tuple is 
 omitted from the calculations similar to \code{na.omit}.
 }
-

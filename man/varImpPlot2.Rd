@@ -18,4 +18,3 @@ varImpPlot2(model, nvars = 20, title = "Variable Importance")
 Create a prettier variable importance plot 
 Graph a variable performance plot for a random forest model using ggplot2.
 }
-

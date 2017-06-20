@@ -37,4 +37,3 @@ http://stackoverflow.com/questions/14756662/parallel-prediction-with-cforest-ran
 \seealso{
 \code{\link[foreach]{foreach}}, \code{\link[itertools]{isplitRows}}
 }
-

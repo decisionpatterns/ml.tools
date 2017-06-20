@@ -1,15 +1,17 @@
 Package: ml.tools
 Type: Package
 Title: Machine Learning Tools
-Version: 0.27.1
-Date: 2017-01-31
+Version: 0.28.0
+Date: 2017-06-20
 Author: Christopher Brown
 Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
 Suggest: itertools (>= 0.1.3)
 Imports:
     dplyr,
-    cardinality (>= 0.1),
-    base.tools (>= 0.18.6)
+    dimensional (>= 0.1),
+    base.tools (>= 0.18.6),
+    tidyr,
+    base.tools
 Depends:
     R (>= 3.0.0),
     formula.tools(>= 1.2.2),
@@ -30,7 +32,8 @@ LazyLoad: yes
 Roxygen: list(wrap = FALSE)
 Suggests:
     testthat
-Collate:
+Repository: CRAN
+Collate: 
     'apply.pattern.R'
     'assess.R'
     'calibrate.R'
@@ -38,7 +41,6 @@ Collate:
     'emulate.R'
     'eval_model.R'
     'getImp.R'
-    'histogram-features.R'
     'impute.R'
     'logistic.R'
     'mae.R'
@@ -63,4 +65,4 @@ Collate:
     'varImpPlot2.R'
     'window_expr.R'
     'zzz.R'
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1.9000

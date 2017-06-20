@@ -1,6 +1,7 @@
 #' Make one object emulate another
 #' 
-#' Make one object more like another 
+#' Make one object more like another by aligning attributes: names, types, 
+#' levels
 #' 
 #' @param x object to change
 #' @param template object to emulate
@@ -8,7 +9,8 @@
 #' @param ... additional parameters 
 #' 
 #' \code{emulate} makes \code{x} more like a \code{template} so that \code{x} 
-#' can be used in places where \code{template} is used. The goal is to change. 
+#' can be used in places where \code{template} is used. 
+#'  
 #' This generally means coercing to the type of \code{template} and only 
 #' containing values found in \code{template}.
 #' 
@@ -24,6 +26,8 @@
 #'   \code{\link[dp.misc]{conform}}
 #'   \code{\link[plyr]{rbind.fill}}
 #'   
+#' @examples 
+#'  # -tk 
 #' @export 
 #' @docType methods
 #' @rdname emulate-methods
@@ -36,9 +40,11 @@ setOldClass( 'randomForest')
 #' @rdname emulate-methods
 #' @examples
 #'   iris2 <- droplevels( iris[1:100, ])
+#'   iris2$Species 
 #'   f <- randomForest( Sepal.Length ~ . , iris2 )
 #'   
-#'   emulate( iris, f )
+#'   iris3 <- emulate( iris, f )
+#'   predict(f,iris3)
 
 setMethod( 
   'emulate', signature( 'data.frame', 'randomForest' ), 
@@ -123,7 +129,7 @@ setMethod( 'emulate', signature( 'character', 'vector' ),
 #' @aliases emulate,ANY,ANY-method
 setMethod( 'emulate', signature( 'ANY', 'ANY' ), 
            function( x, template,...) {
-             warning("Nothing to emulate")
+             warning("Nothing to emulate. No method for ", class(x), " - ", class(template) )
              return(x)
            }
 )
