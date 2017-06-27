@@ -1,8 +1,8 @@
 Package: ml.tools
 Type: Package
 Title: Machine Learning Tools
-Version: 0.28.0
-Date: 2017-06-20
+Version: 0.29.0
+Date: 2017-06-27
 Author: Christopher Brown
 Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
 Suggest: itertools (>= 0.1.3)
@@ -11,7 +11,9 @@ Imports:
     dimensional (>= 0.1),
     base.tools (>= 0.18.6),
     tidyr,
-    base.tools
+    base.tools,
+    ROCR (>= 1.0.7),
+    stringr.tools 
 Depends:
     R (>= 3.0.0),
     formula.tools(>= 1.2.2),
@@ -52,6 +54,7 @@ Collate:
     'parPredict.R'
     'parRandomForest.R'
     'parse.ctree.R'
+    'plot.performance.R'
     'plot_univariates.R'
     'prep_data_randomForest.R'
     'prep_data.R'
