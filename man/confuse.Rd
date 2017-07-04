@@ -6,7 +6,7 @@
 \alias{confuse.categories}
 \alias{confuse.character}
 \alias{confuse.factor}
-\title{2x2 confusion matrix for logical vectors}
+\title{confuse}
 \usage{
 confuse(actual, predicted)
 
@@ -22,6 +22,8 @@ confuse(actual, predicted)
 \item{actual}{logical vector of actual/observed values}
 
 \item{predicted}{logical vector of predicted values}
+
+\item{na.rm}{logical; whether to removing missing values}
 
 \item{...}{additional arguments
 

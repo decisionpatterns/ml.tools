@@ -1,0 +1,5 @@
+#' Version 0.30.0 (20170704)
+
+ - Fix plot.performance and exports
+ - Add ggROC (now with numeric and train methods)
+ - Fix Documentation Errors

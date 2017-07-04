@@ -1,9 +1,9 @@
 #' Mean Absolute Scaled Error
 #' 
 #' @param f forecast;
-#' @param actual numeric or time-series of observed response
+#' @param x numeric or time-series of observed response
 #' @param naive function; forecast method used
-#' @param ... 
+#' @param ... additional arguments passed to naive
 #' 
 #' @details 
 #' 
@@ -33,4 +33,3 @@ mase <- function(f, x, naive=naive, ... ) {
   mean(abs(err/naive.err))
   
 }
-

@@ -1,17 +1,11 @@
-# ---------------------------------------------------------------------
-# CONFUSION MATRIX:
-#  MATRIX OF ACTUAL vs. PREDICTED  
-#
-#     type I (FALSE NEGATIVE )  |  correctly unmatched 
-#
-#  TODO:
-#  
-# ---------------------------------------------------------------------
-
+#' confuse
+#' 
 #' 2x2 confusion matrix for logical vectors
 #'
 #' @param actual logical vector of actual/observed values 
 #' @param predicted logical vector of predicted values
+#' @param na.rm logical; whether to removing missing values
+#' 
 #' @param ... additional arguments
 #' 
 #' By convention, the \code{actual} values are placed in rows and the 
@@ -28,6 +22,7 @@
 #' @seealso \code{table} for cross-classifying factors
 #' @rdname confuse
 #' @export
+
   confuse <- function( actual, predicted ) UseMethod( 'confuse' )
 
 

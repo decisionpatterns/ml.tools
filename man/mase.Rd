@@ -9,11 +9,11 @@ mase(f, x, naive = naive, ...)
 \arguments{
 \item{f}{forecast;}
 
+\item{x}{numeric or time-series of observed response}
+
 \item{naive}{function; forecast method used}
 
-\item{...}{}
-
-\item{actual}{numeric or time-series of observed response}
+\item{...}{additional arguments passed to naive}
 }
 \description{
 Mean Absolute Scaled Error

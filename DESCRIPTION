@@ -1,8 +1,8 @@
 Package: ml.tools
 Type: Package
 Title: Machine Learning Tools
-Version: 0.29.0
-Date: 2017-06-27
+Version: 0.30.0
+Date: 2017-007-04
 Author: Christopher Brown
 Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
 Suggest: itertools (>= 0.1.3)
@@ -13,7 +13,8 @@ Imports:
     tidyr,
     base.tools,
     ROCR (>= 1.0.7),
-    stringr.tools 
+    stringr.tools (>= 0.1.6),
+    ggplot2 (>= 2.2.1)
 Depends:
     R (>= 3.0.0),
     formula.tools(>= 1.2.2),
@@ -43,6 +44,7 @@ Collate:
     'emulate.R'
     'eval_model.R'
     'getImp.R'
+    'ggROC.R'
     'impute.R'
     'logistic.R'
     'mae.R'

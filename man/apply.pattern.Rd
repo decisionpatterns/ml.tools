@@ -12,7 +12,7 @@ apply.pattern(data, pattern, default = 1)
 \item{pattern}{pattern; data object with zero or more rows that contain 
 metadata about the object types in the form of attributes.}
 
-\item{default;}{value to be used when levels of the data are are not found 
+\item{default}{value to be used when levels of the data are are not found 
 in a factor. The default is to use the first element given by \code{levels}. 
 See Details.
 
