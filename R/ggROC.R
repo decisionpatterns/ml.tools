@@ -10,7 +10,7 @@
 #' 
 #' @details 
 #' 
-#' \code{ggROC} is an S3 generic function for producing 
+#' \code{ggROC} is an S3 generic function for producing ggplot based ROC curves.
 #' 
 #' @seealso 
 #' \code{\link{plot.performance}}
@@ -24,10 +24,12 @@
 #' @import ROCR  
 #' @export   
 
-
 ggROC <- function(x,y,...) UseMethod('ggROC') 
 
 
+#' @details 
+#' For numeric objects, \code{x} is a predicted value, \code{y} is the labels. 
+#' 
 #' @aliases  ggROC
 #' @rdname ggROC
 #' @export 

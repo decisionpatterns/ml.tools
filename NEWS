@@ -1,3 +1,6 @@
+ 
+ - Add imp/improvement function
+
 #' Version 0.30.0 (20170704)
 
  - Fix plot.performance and exports

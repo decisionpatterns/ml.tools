@@ -29,7 +29,9 @@ ggROC(x, y, ...)
 Produce a ROC curve using ggplot2
 }
 \details{
-\code{ggROC} is an S3 generic function for producing
+\code{ggROC} is an S3 generic function for producing ggplot based ROC curves.
+
+For numeric objects, \code{x} is a predicted value, \code{y} is the labels.
 }
 \examples{
   data(ROCR.simple)

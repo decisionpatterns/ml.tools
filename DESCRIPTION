@@ -45,6 +45,7 @@ Collate:
     'eval_model.R'
     'getImp.R'
     'ggROC.R'
+    'imp.R'
     'impute.R'
     'logistic.R'
     'mae.R'
