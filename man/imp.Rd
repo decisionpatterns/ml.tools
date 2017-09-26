@@ -3,34 +3,45 @@
 \name{imp}
 \alias{imp}
 \alias{importance}
-\title{imp}
+\title{imp\link{rovement}}
 \usage{
-imp(metric, ref, decreasing = FALSE)
+imp(obs, ref, decreasing = FALSE)
 
-importance(metric, ref, decreasing = FALSE)
+importance(obs, ref, decreasing = FALSE)
 }
 \arguments{
-\item{metric}{numeric; value of the metric}
+\item{obs}{numeric; observed value of the metric}
 
 \item{ref}{numeric; reference value of the metric, often the "naive" metric}
 
-\item{decreasing}{logical; metrics improves by decreasing instead of 
+\item{decreasing}{logical; metrics improves by decreasing instead of
 increasing}
 }
 \description{
-Report the improvement in a linear metric
+Report the improvement of an observed value of a metric compared to a
+reference value
 }
 \details{
-Calculated as:
+\code{improvement} calculates how much a metric has improved relative to a
+reference value. This is similar to \href{kappa()}{Cohen's Kappa}.
 
-    sign * ( metric/ref - 1 )
+It is calculated as:\preformatted{sign * ( obs/ref - 1 )
+}
 }
 \examples{
 
-  metric <- 1.1 
+  obs <- 1.1 
   ref <- 1.0 
   
-  imp( metric, ref )
-  imp( metric, ref, decreasing = TRUE )
+  imp( obs, ref )
   
+  obs <- 0.4
+  ref <- 0.5
+  imp( obs, ref, decreasing = TRUE )
+ 
+}
+\seealso{
+\itemize{
+\item \href{kappa()}{kappa}
+}
 }

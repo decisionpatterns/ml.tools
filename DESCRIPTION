@@ -47,6 +47,7 @@ Collate:
     'ggROC.R'
     'imp.R'
     'impute.R'
+    'kappa.R'
     'logistic.R'
     'mae.R'
     'mase.R'

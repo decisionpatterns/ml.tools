@@ -22,7 +22,7 @@
 #'   plot.performance(perf)
 #' 
 #' @import ROCR  
-#' @export   
+#' @export
 
 ggROC <- function(x,y,...) UseMethod('ggROC') 
 
@@ -51,7 +51,7 @@ ggROC.numeric <- function(x, y, measure="tpr", x.measure="fpr", ... ) {
 #' @aliases ggROC.caret  
 #' @import caret tidyr
 #' @export
-
+#' 
 ggROC.train <- function(x, y, ...) {
  
   if( x$modelType != "Classification" )
