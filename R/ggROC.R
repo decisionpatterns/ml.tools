@@ -13,14 +13,19 @@
 #' \code{ggROC} is an S3 generic function for producing ggplot based ROC curves.
 #' 
 #' @seealso 
+#' 
+#' [ROCR::plot.performance](ROCR::plot.performance())
+#' 
 #' \code{\link{plot.performance}}
 #' 
 #' @examples
+#' 
 #'   data(ROCR.simple)
 #'   ggROC( ROCR.simple$predictions, ROCR.simple$labels)
 #'   perf <- performance(pred,"tpr","fpr")
 #'   plot.performance(perf)
 #' 
+#' @md
 #' @import ROCR  
 #' @export
 
@@ -51,7 +56,6 @@ ggROC.numeric <- function(x, y, measure="tpr", x.measure="fpr", ... ) {
 #' @aliases ggROC.caret  
 #' @import caret tidyr
 #' @export
-#' 
 ggROC.train <- function(x, y, ...) {
  
   if( x$modelType != "Classification" )
@@ -60,7 +64,7 @@ ggROC.train <- function(x, y, ...) {
   if( ! exists('pred', x) || is.null(x$pred) )
     stop( "No predictions saved.")
   
-  #' Find the columns before "rowIndex"
+  # Find the columns before "rowIndex"
   # idx_rowIndex <- x$pred  %>% names() %>% equals('rowIndex') %>% which()
   # x$pred %>% names() %>% .[1:row]
   

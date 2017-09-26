@@ -34,6 +34,7 @@ Produce a ROC curve using ggplot2
 For numeric objects, \code{x} is a predicted value, \code{y} is the labels.
 }
 \examples{
+
   data(ROCR.simple)
   ggROC( ROCR.simple$predictions, ROCR.simple$labels)
   perf <- performance(pred,"tpr","fpr")
@@ -45,5 +46,7 @@ For numeric objects, \code{x} is a predicted value, \code{y} is the labels.
  
 }
 \seealso{
+\href{ROCR::plot.performance()}{ROCR::plot.performance}
+
 \code{\link{plot.performance}}
 }
