@@ -12,6 +12,11 @@
 #' predicted values are placed in columns. The \code{dimnames} of the 
 #' resulting matrix are consequently \code{actual} and \code{predicted} 
 #' 
+#' @usage 
+#' 
+#' Method exists for caret::train() objects 
+#' 
+#' 
 #' @note 
 #' - By convention the actual values are placed in rows, predicted 
 #'   values are placed in columns
@@ -44,6 +49,9 @@
   }
 
 
+#' @examples 
+#'   confuse.categories( actual=qw(A,A,B,B), predicted=qw(A,B,C,C) )
+#'   
 #' @rdname confuse
 #' @export
   confuse.categories <- function(actual,predicted) {
@@ -54,12 +62,12 @@
     if( length(actual) != length(predicted) )
       stop("actual and predicted vectors are of unequal length.")
     
-    uniq <- unique( c(actual, predicted) )
+    uniq <- unique( c(actual,predicted) )
     
     
     m <- matrix( 
       0, nrow=length(uniq), ncol=length(uniq) , 
-      dimnames=list(Actual=uniq, Predicted=uniq) 
+      dimnames=list(actual=uniq, predicted=uniq) 
     )
     
     for( a in uniq ) 
@@ -91,5 +99,30 @@
 #' @export
   confuse.factor    <- function(...) confuse.catergories(...)
 
+  
+#' @examples 
+#'   
+#' @rdname confuse
+#' @import caret 
+#' @export
 
+  confuse.train <- function( actual, predicted=NULL ) { 
 
+    # If predicted is NULL, look to see if the train object used `savePredictions` 
+    if( is.null(predicted) ) { 
+      fit <- actual 
+    
+      if( exists("pred", fit ) ) {
+        obs <- fit$pred$obs
+        pred <- fit$pred$pred 
+      
+        
+      } else { 
+        stop()
+      }
+      
+      confuse.categories( obs, pred )  
+    
+    }
+  }
+  

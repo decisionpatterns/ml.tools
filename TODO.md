@@ -1,5 +1,7 @@
 
-
+ - [ ] Confuse use obs and pred instead of actual and predicted
+ 
+ 
  - [ ] Check randomForest for allowing INF predictors, recently these were disallowed
    - [ ] prep_data_randomForest, check these
    

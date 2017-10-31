@@ -40,8 +40,8 @@ For numeric objects, \code{x} is a predicted value, \code{y} is the labels.
   perf <- performance(pred,"tpr","fpr")
   plot.performance(perf)
 
-
- fit <- caret::train( Species ~ ., iris, method="rf", metric="Kappa", trControl=trainControl(savePrediction=TRUE) )
+ ctrl <- trainControl(savePrediction=TRUE, classProbs = TRUE)
+ fit <- caret::train( Species ~ ., iris, method="rf", metric="Kappa", trControl=ctrl )
  ggROC(fit)
  
 }

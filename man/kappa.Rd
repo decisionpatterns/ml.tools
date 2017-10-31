@@ -21,7 +21,7 @@ kappa0(obs, ref)
 Calculate Kohen's Kappa, an accuracy adjust for expectations
 }
 \details{
-Like \href{imp()}{improvement}, \code{kappa} measures the improvement in a metric
+Like \href{improvement()}{improvement}, \code{kappa} measures the improvement in a metric
 (typically: \emph{accuracy}) but normalizes the improvement by the best possible
 value, e.g. \code{accuracy == 1}.
 `
@@ -48,5 +48,5 @@ not 1. This would be a
    
 }
 \seealso{
-\href{imp()}{imp(rovement)}
+\href{improvement()}{improvement}
 }

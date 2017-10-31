@@ -7,7 +7,7 @@
 #' 
 #' @details 
 #' 
-#' Like [improvement](imp()), `kappa` measures the improvement in a metric 
+#' Like [improvement](improvement()), `kappa` measures the improvement in a metric 
 #' (typically: *accuracy*) but normalizes the improvement by the best possible 
 #' value, e.g. `accuracy == 1`. 
 #' ` 
@@ -27,7 +27,7 @@
 #' 
 #' @seealso 
 #' 
-#'   [imp(rovement)](imp()) 
+#'   [improvement](improvement()) 
 #' 
 #' @examples 
 #' 

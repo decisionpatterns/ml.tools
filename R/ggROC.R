@@ -48,14 +48,16 @@ ggROC.numeric <- function(x, y, measure="tpr", x.measure="fpr", ... ) {
 }
 
 #' @examples 
-#' 
-#'  fit <- caret::train( Species ~ ., iris, method="rf", metric="Kappa", trControl=trainControl(savePrediction=TRUE) )
+#'  ctrl <- trainControl(savePrediction=TRUE, classProbs = TRUE)
+#'  fit <- caret::train( Species ~ ., iris, method="rf", metric="Kappa", trControl=ctrl )
 #'  ggROC(fit)
 #'  
 #' @rdname ggROC
 #' @aliases ggROC.caret  
-#' @import caret tidyr
+#' @import caret 
+#' @import tidyr
 #' @export
+
 ggROC.train <- function(x, y, ...) {
  
   if( x$modelType != "Classification" )
@@ -69,15 +71,15 @@ ggROC.train <- function(x, y, ...) {
   # x$pred %>% names() %>% .[1:row]
   
   gather_cols <- c( )
-  tbl <- tidyr::gather_(x$pred, key_col="prob_label", value_col="prob", gather_cols=fit$levels)
-  tbl <- tbl %>% subset( pred == prob_label )
+  tbl <- tidyr::gather_(x$pred, key_col="prob_label", value_col="prob", gather_cols=x$levels )
+  tbl <- tbl %>% subset( pred != prob_label )
   
-  #' ROCR only handles binary classification models...
-  #' reduce the classes to correct or not which is a pretty good emulation 
+  # ROCR only handles binary classification models...
+  # reduce the classes to correct or not which is a pretty good emulation 
  
   if( length(unique(tbl$obs)) > 2 )
     tbl$obs <- tbl$obs == tbl$pred
   
-  ggROC( tbl$prob, tbl$obs, ... )
+  ggROC( tbl$prob, tbl$obs, ... ) 
   
 }

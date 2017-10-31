@@ -6,9 +6,10 @@
 \alias{confuse.categories}
 \alias{confuse.character}
 \alias{confuse.factor}
+\alias{confuse.train}
 \title{confuse}
 \usage{
-confuse(actual, predicted)
+Method exists for caret::train() objects
 
 \method{confuse}{default}(actual, predicted, na.rm = TRUE)
 
@@ -17,6 +18,8 @@ confuse(actual, predicted)
 \method{confuse}{character}(...)
 
 \method{confuse}{factor}(...)
+
+\method{confuse}{train}(actual, predicted = NULL)
 }
 \arguments{
 \item{actual}{logical vector of actual/observed values}
@@ -41,6 +44,11 @@ resulting matrix are consequently \code{actual} and \code{predicted}}
 - By convention the actual values are placed in rows, predicted 
   values are placed in columns
 - actual
+}
+\examples{
+  confuse.categories( actual=qw(A,A,B,B), predicted=qw(A,B,C,C) )
+  
+  
 }
 \seealso{
 \code{table} for cross-classifying factors

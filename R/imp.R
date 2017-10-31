@@ -1,4 +1,4 @@
-#' imp[rovement]
+#' improvement
 #' 
 #' Report the improvement of an observed value of a metric compared to a 
 #' reference value 
@@ -30,12 +30,12 @@
 #'   
 #'   obs <- 0.4
 #'   ref <- 0.5
-#'   imp( obs, ref, decreasing = TRUE )
+#'   improvement( obs, ref, decreasing = TRUE )
 #'  
 #' @md  
 #' @export 
 
-imp <- function( obs, ref, decreasing = FALSE ) {
+improvement <- function( obs, ref, decreasing = FALSE ) {
   
   sign <- if( decreasing ) -1 else +1 
   
@@ -45,9 +45,3 @@ imp <- function( obs, ref, decreasing = FALSE ) {
   return( sign * ( obs / ref - 1 )  )
   
 }
-
-
-#' @export 
-#' @rdname imp
-
-importance <- imp

@@ -1,3 +1,6 @@
+# Version 0.32.0 (2017-10-30)
+ - Fix ggROC and confuse for caret models
+
 
 # Version 0.31.0 (2017-09-29)
  - Add kappa, kappa1, kappa0 functions
