@@ -1,16 +1,16 @@
 #' confuse
 #' 
-#' 2x2 confusion matrix for logical vectors
+#' Create a confusion matrix for categorical values
 #'
-#' @param actual logical vector of actual/observed values 
-#' @param predicted logical vector of predicted values
-#' @param na.rm logical; whether to removing missing values
+#' @param obs vector of observed/actual values 
+#' @param pred vector of predicted values
+#' @param na.rm whether to removing missing values
 #' 
 #' @param ... additional arguments
 #' 
-#' By convention, the \code{actual} values are placed in rows and the 
+#' By convention, the \code{observed} values are placed in rows and the 
 #' predicted values are placed in columns. The \code{dimnames} of the 
-#' resulting matrix are consequently \code{actual} and \code{predicted} 
+#' resulting matrix are consequently \code{observed} and \code{predicted} 
 #' 
 #' @usage 
 #' 
@@ -18,9 +18,9 @@
 #' 
 #' 
 #' @note 
-#' - By convention the actual values are placed in rows, predicted 
+#' - By convention the observed values are placed in rows, predicted 
 #'   values are placed in columns
-#' - actual 
+#' - observed 
 #' 
 #' @return 2x2 confusion matrix / contingency table
 #'   
@@ -28,65 +28,65 @@
 #' @rdname confuse
 #' @export
 
-  confuse <- function( actual, predicted ) UseMethod( 'confuse' )
+  confuse <- function( obs, pred ) UseMethod( 'confuse' )
 
 
 #' @rdname confuse
 #' @export
-  confuse.default <- function( actual, predicted, na.rm=TRUE ) {
+  confuse.default <- function( obs, pred, na.rm=TRUE ) {
   
     matrix( 
       c(
-        sum( actual & predicted, na.rm=na.rm ), 
-        sum( ! actual & predicted, na.rm=na.rm ), 
-        sum( actual  & ! predicted, na.rm=na.rm ), 
-        sum( ! actual & ! predicted, na.rm=na.rm  ) 
+        sum( obs & pred, na.rm=na.rm ), 
+        sum( ! obs & pred, na.rm=na.rm ), 
+        sum( obs  & ! pred, na.rm=na.rm ), 
+        sum( ! obs & ! pred, na.rm=na.rm  ) 
       ), 
       nrow=2  , 
-      dimnames = list( actual=c('TRUE', 'FALSE'), predicted=c('TRUE', 'FALSE') )
+      dimnames = list( observed=c('TRUE', 'FALSE'), predicted=c('TRUE', 'FALSE') )
     )
   
   }
 
 
 #' @examples 
-#'   confuse.categories( actual=qw(A,A,B,B), predicted=qw(A,B,C,C) )
+#'   confuse.categories( obs=qw(A,A,B,B), pred=qw(A,B,C,C) )
 #'   
 #' @rdname confuse
 #' @export
-  confuse.categories <- function(actual,predicted) {
+  confuse.categories <- function(obs,pred) {
     
-    actual <- as.character(actual)
-    predicted <- as.character(predicted)
+    obs <- as.character(obs)
+    pred <- as.character(pred)
     
-    if( length(actual) != length(predicted) )
-      stop("actual and predicted vectors are of unequal length.")
+    if( length(obs) != length(pred) )
+      stop("obs and pred vectors are of unequal length.")
     
-    uniq <- unique( c(actual,predicted) )
+    uniq <- unique( c(obs,pred) )
     
     
     m <- matrix( 
       0, nrow=length(uniq), ncol=length(uniq) , 
-      dimnames=list(actual=uniq, predicted=uniq) 
+      dimnames=list(observed=uniq, predicted=uniq) 
     )
     
     for( a in uniq ) 
       for( p in uniq )
-        m[a,p] <- sum( actual == a & predicted == p )  
+        m[a,p] <- sum( obs == a & pred == p )  
     
     return(m)
   }
 
 
-# confuse.logical <- function (actual, predicted) 
+# confuse.logical <- function (obs, pred) 
 # {
 #
 #  matrix( 
 #    c(
-#      sum(actual & predicted), sum(!actual & predicted ), 
-#      sum(actual & ! predicted), sum(!actual & !predicted)
+#      sum(obs & pred), sum(!obs & pred ), 
+#      sum(obs & ! pred), sum(!obs & !pred)
 #    ), 
-#    nrow = 2, dimnames = list(actual = c("MATCH", "NON-MATCH"), 
+#    nrow = 2, dimnames = list(observed = c("MATCH", "NON-MATCH"), 
 #    predicted = c("MATCH", "NON-MATCH"))
 #  )
 # }
@@ -106,11 +106,11 @@
 #' @import caret 
 #' @export
 
-  confuse.train <- function( actual, predicted=NULL ) { 
+  confuse.train <- function( obs, pred=NULL ) { 
 
-    # If predicted is NULL, look to see if the train object used `savePredictions` 
-    if( is.null(predicted) ) { 
-      fit <- actual 
+    # If pred is NULL, look to see if the train object used `savePredictions` 
+    if( is.null(pred) ) { 
+      fit <- obs 
     
       if( exists("pred", fit ) ) {
         obs <- fit$pred$obs

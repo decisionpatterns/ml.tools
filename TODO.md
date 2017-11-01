@@ -1,5 +1,6 @@
 
- - [ ] Confuse use obs and pred instead of actual and predicted
+ - [x] Confuse use `obs` and `pred` argument names instead of `actual` and 
+       `predicted`. Labels should be observed and predicted however.
  
  
  - [ ] Check randomForest for allowing INF predictors, recently these were disallowed
