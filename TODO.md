@@ -1,10 +1,6 @@
 
  - [x] Confuse use `obs` and `pred` argument names instead of `actual` and 
        `predicted`. Labels should be observed and predicted however.
- 
- 
- - [ ] Check randomForest for allowing INF predictors, recently these were disallowed
-   - [ ] prep_data_randomForest, check these
    
 - [ ] Tidy interface for all ... the thing to be transformed goes first
 
@@ -22,7 +18,10 @@
 
 - [ ] What is the relationship with `conformist`
 
-- [ ] Factor out RF specific function to rf.tools
+- [x] Factor out RF specific function to rf.tools
+
+- [ ] Check randomForest for allowing INF predictors, recently these were disallowed
+   - [ ] prep_data_randomForest, check these
 
 - [ ] rf_test_names -> check_features
 

@@ -11,42 +11,42 @@
 \usage{
 Method exists for caret::train() objects
 
-\method{confuse}{default}(actual, predicted, na.rm = TRUE)
+\method{confuse}{default}(obs, pred, na.rm = TRUE)
 
-\method{confuse}{categories}(actual, predicted)
+\method{confuse}{categories}(obs, pred)
 
 \method{confuse}{character}(...)
 
 \method{confuse}{factor}(...)
 
-\method{confuse}{train}(actual, predicted = NULL)
+\method{confuse}{train}(obs, pred = NULL)
 }
 \arguments{
-\item{actual}{logical vector of actual/observed values}
+\item{obs}{vector of observed/actual values}
 
-\item{predicted}{logical vector of predicted values}
+\item{pred}{vector of predicted values}
 
-\item{na.rm}{logical; whether to removing missing values}
+\item{na.rm}{whether to removing missing values}
 
 \item{...}{additional arguments
 
-By convention, the \code{actual} values are placed in rows and the 
+By convention, the \code{observed} values are placed in rows and the 
 predicted values are placed in columns. The \code{dimnames} of the 
-resulting matrix are consequently \code{actual} and \code{predicted}}
+resulting matrix are consequently \code{observed} and \code{predicted}}
 }
 \value{
 2x2 confusion matrix / contingency table
 }
 \description{
-2x2 confusion matrix for logical vectors
+Create a confusion matrix for categorical values
 }
 \note{
-- By convention the actual values are placed in rows, predicted 
+- By convention the observed values are placed in rows, predicted 
   values are placed in columns
-- actual
+- observed
 }
 \examples{
-  confuse.categories( actual=qw(A,A,B,B), predicted=qw(A,B,C,C) )
+  confuse.categories( obs=qw(A,A,B,B), pred=qw(A,B,C,C) )
   
   
 }

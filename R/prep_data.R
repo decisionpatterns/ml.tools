@@ -9,13 +9,12 @@
 #' @examples
 #'   # -tk
 #' 
-#' @include prep_data_randomForest.R
 #' @export
 
 prep_data <- function(data, fun, ... ) { 
 
   fun <- as.character( substitute(fun) )  
-  fun <- paste0( "dp.misc:::prep_data_", fun, "(data)" )
+  fun <- paste0( "ml.tools:::prep_data_", fun, "(data)" )
   
   eval( parse(text=fun) )
   

@@ -1,3 +1,8 @@
+# Version 0.33.0 (2017-11-01)
+ - Factor out randomForest specific functions parRandomForest and varImpPlot2
+ - Moved rf_test_names -> check_features 
+ 
+ 
 # Version 0.32.0 (2017-10-30)
  - Fix ggROC and confuse for caret models
 
