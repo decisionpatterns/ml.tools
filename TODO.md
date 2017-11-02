@@ -23,7 +23,7 @@
 - [ ] Check randomForest for allowing INF predictors, recently these were disallowed
    - [ ] prep_data_randomForest, check these
 
-- [ ] rf_test_names -> check_features
+- [x] rf_test_names -> check_features
 
 - [ ] prep_data: explicit_na "(Missing)"
  
@@ -33,7 +33,7 @@
 
 # bin-split-apply-combine-spread (BSACS)  
   
-- [ ] Move to different package featurize 
+- [x] Move to different package featurize 
   - [ ] `f_hist` may have to be an S4 method.
   - [ ] make `f_hist` more like *dplyr* functions 
   - [ ] add function to create the feature on its own.  
