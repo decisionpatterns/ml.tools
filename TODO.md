@@ -1,4 +1,10 @@
 
+
+ - Finish writing ggSeparate 
+ 
+ - Allow ggROC to have multiple plots, e.g. the comparison between models and
+   of predictors as well as the contribution.
+
  - [x] Confuse use `obs` and `pred` argument names instead of `actual` and 
        `predicted`. Labels should be observed and predicted however.
    

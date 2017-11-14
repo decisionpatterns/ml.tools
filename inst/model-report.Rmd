@@ -1,0 +1,105 @@
+---
+title: "Model Report"
+author: "Christopher Brown"
+date: "November 13, 2017"
+output:
+  rticles::acm_article: default
+  html_document:
+    toc: yes
+  pdf_document:
+    toc: yes
+  prettydoc::html_pretty:
+    dev: svg
+    highlight: github
+    theme: tactile
+  word_document:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Executive Summary
+
+<!-- Describe the high level summary and ideas. It is generally a good idea to
+write something brief at first, write the rest of the report and later return to 
+this statement. --> 
+
+Velocity Solutions has asked Decision Patterns
+
+```{r}
+library(ggplot2)
+data(cars)
+qplot(x=cars$speed,y=cars$dist)
+```
+  
+## Background 
+
+<!-- Provide background information --> 
+
+
+## Current State 
+
+<!-- Describe current state -->
+
+
+## Proposed Changes
+  
+<!-- Describe how the current state will be changed -->  
+
+### Benefit(s) 
+
+<!-- 
+Describe benefits asssociated with the change. An estimate will is fine. 
+-->
+  
+### Cost(s) 
+  
+<!-- Describe any Cost and Challenges With The Proposed State -->  
+  
+#### Risks
+  
+
+
+### Measurement and Success Criteria 
+
+
+## Deliverables
+
+<!-- Describe what is to be delivered --> 
+
+
+### Exclusions
+
+<!-- Call out things that are explicitly not included --> 
+
+
+## Data
+
+## Features 
+
+
+
+\newpage
+<!-- Create one sections for each model -->
+
+
+## Model(s)
+
+### Model Specific Features 
+
+### Methods
+
+### Calibration(s)
+
+
+```{r classification-performance, eval=FALSE, child="model-report/classification-performance.Rmd" }
+```
+
+```{r regression, eval=FALSE, child="model-report/regression-performance.Rmd" }
+```
+
+## 
+
+## Conclusions 
