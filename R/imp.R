@@ -1,7 +1,6 @@
 #' improvement
 #' 
-#' Report the improvement of an observed value of a metric compared to a 
-#' reference value 
+#' Compare metric compared to a reference value 
 #'
 #' @param obs numeric; observed value of the metric  
 #' @param ref numeric; reference value of the metric, often the "naive" metric
@@ -11,7 +10,8 @@
 #' @details
 #' 
 #' `improvement` calculates how much a metric has improved relative to a 
-#' reference value. This is similar to [Cohen's Kappa](kappa()).  
+#' reference. `decreasing` indicates that the metric gets better as it gets 
+#' smaller, for example, with **RMSE**. 
 #' 
 #' It is calculated as:
 #' 

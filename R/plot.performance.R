@@ -18,9 +18,9 @@
 #'   data(ROCR.simple)
 #'   pred <- prediction( ROCR.simple$predictions, ROCR.simple$labels)
 #'   perf <- performance(pred,"tpr","fpr")
-#'   plot.performance(perf)
+#'   plot(perf)
 #'
-#' @import ROCR ggplot2 stringr
+#' @import ROCR ggplot2 stringr plotROC
 #' @importMethodsFrom ROCR plot
 #' @export
 
@@ -40,7 +40,7 @@ setMethod( 'plot', c(x='performance', y='missing' ),
       geom_line() + 
       geom_abline( slope = 1, color="red", linetype="dashed" ) 
   
-    gg 
+    gg + plotROC::style_roc()
     
   }
 )

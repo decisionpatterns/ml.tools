@@ -26,6 +26,7 @@
 #'   predict( fit, iris )
 #'   parPredict( fit, iris )
 #'   
+#' @importFrom itertools isplitRows
 #' @export
 
 

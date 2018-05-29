@@ -14,12 +14,15 @@
 #' 
 #' @seealso 
 #' 
-#' [ROCR::plot.performance](ROCR::plot.performance())
-#' 
+#'  - [ROCR::plot.performance](ROCR::plot.performance())
+#'  - [SO::roc-curve-from-training-data-in-caret](https://stackoverflow.com/questions/31138751/roc-curve-from-training-data-in-caret)
+#'  - [plotROC package](https://cran.r-project.org/package=plotROC)
+#'  
 #' \code{\link{plot.performance}}
 #' 
 #' @examples
 #' 
+#'   library(ROCR)
 #'   data(ROCR.simple)
 #'   ggROC( ROCR.simple$predictions, ROCR.simple$labels)
 #'   perf <- performance(pred,"tpr","fpr")
@@ -33,7 +36,11 @@ ggROC <- function(x,y,...) UseMethod('ggROC')
 
 
 #' @details 
-#' For numeric objects, \code{x} is a predicted value, \code{y} is the labels. 
+#' For numeric objects, \code{x} is a predicted values/probabilities, \code{y} is the labels. 
+#' 
+#' @examples 
+#' 
+#' 
 #' 
 #' @aliases  ggROC
 #' @rdname ggROC

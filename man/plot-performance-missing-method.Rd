@@ -23,7 +23,7 @@ A drop-in replacement for ROCR::plot.perforamnce that uses ggplot.
   data(ROCR.simple)
   pred <- prediction( ROCR.simple$predictions, ROCR.simple$labels)
   perf <- performance(pred,"tpr","fpr")
-  plot.performance(perf)
+  plot(perf)
 
 }
 \seealso{

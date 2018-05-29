@@ -15,12 +15,12 @@ improvement(obs, ref, decreasing = FALSE)
 increasing}
 }
 \description{
-Report the improvement of an observed value of a metric compared to a
-reference value
+Compare metric compared to a reference value
 }
 \details{
 \code{improvement} calculates how much a metric has improved relative to a
-reference value. This is similar to \href{kappa()}{Cohen's Kappa}.
+reference. \code{decreasing} indicates that the metric gets better as it gets
+smaller, for example, with \strong{RMSE}.
 
 It is calculated as:\preformatted{sign * ( obs/ref - 1 )
 }

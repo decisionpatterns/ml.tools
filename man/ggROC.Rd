@@ -3,7 +3,6 @@
 \name{ggROC}
 \alias{ggROC}
 \alias{ggROC.numeric}
-\alias{ggROC}
 \alias{ggROC.train}
 \alias{ggROC.caret}
 \title{ggROC}
@@ -31,14 +30,18 @@ Produce a ROC curve using ggplot2
 \details{
 \code{ggROC} is an S3 generic function for producing ggplot based ROC curves.
 
-For numeric objects, \code{x} is a predicted value, \code{y} is the labels.
+For numeric objects, \code{x} is a predicted values/probabilities, \code{y} is the labels.
 }
 \examples{
 
+  library(ROCR)
   data(ROCR.simple)
   ggROC( ROCR.simple$predictions, ROCR.simple$labels)
   perf <- performance(pred,"tpr","fpr")
   plot.performance(perf)
+
+
+
 
  ctrl <- trainControl(savePrediction=TRUE, classProbs = TRUE)
  fit <- caret::train( Species ~ ., iris, method="rf", metric="Kappa", trControl=ctrl )
@@ -46,7 +49,11 @@ For numeric objects, \code{x} is a predicted value, \code{y} is the labels.
  
 }
 \seealso{
-\href{ROCR::plot.performance()}{ROCR::plot.performance}
+\itemize{
+\item \href{ROCR::plot.performance()}{ROCR::plot.performance}
+\item \href{https://stackoverflow.com/questions/31138751/roc-curve-from-training-data-in-caret}{SO::roc-curve-from-training-data-in-caret}
+\item \href{https://cran.r-project.org/package=plotROC}{plotROC package}
+}
 
 \code{\link{plot.performance}}
 }

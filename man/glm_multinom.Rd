@@ -12,7 +12,7 @@ Fits a multinomial logistic regression using glm models.
 \examples{
 
  data(iris)
- glm_multinomial( Species ~ . , data)
+ fit <- glm_multinom( Species ~ . , data=iris)
  
    
 }

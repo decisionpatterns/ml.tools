@@ -8,14 +8,14 @@
 #' @seealso 
 #'    \code{\link{add_meta_values}}
 #'    
-#' @importFrom formula.tools is.cat
+#' @importFrom catcont is_cat
 #' @export
 
 meta_values <- function(data) {
   
   values <- list()  
   for( nm in names(data) ) 
-    if( is.cat( data[[nm]] ) ) { 
+    if( is_cat( data[[nm]] ) ) { 
       values[[nm]] <- as.character( sort( unique(data[[nm]]) ) )  
     }
   

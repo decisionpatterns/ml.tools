@@ -1,14 +1,35 @@
 
-
- - Finish writing ggSeparate 
+ - CARET
+   to get the response from a caret::train.formula object: 
+   
+      fit %>% formula %>% lhs
+   
+   
+   
+ - [ ] Factor out ml.report to include all facilities for generating reports from 
+   the model. 
+   - cf inst/, velocity solutions dda overdraft 
+   
+ - Finish writing ggSeparate (Class Separation Plot)
  
- - Allow ggROC to have multiple plots, e.g. the comparison between models and
-   of predictors as well as the contribution.
+ - ggROC 
+   - Allow multiple plots, e.g. the comparison between models and
+     of predictors as well as the contribution?
+     
+   - Allow a weighting factor to demonstrate the effects of dollars
+   - https://cran.r-project.org/package=plotROC esp style_roc()
+
+   - [ ] Write a general ggROC.default(x=model,y=data) for an arbitrary model.  
+         1. First check if
+   
+   - [ ]Reduce to S3 method? Yes. Probably
+   
+   
 
  - [x] Confuse use `obs` and `pred` argument names instead of `actual` and 
        `predicted`. Labels should be observed and predicted however.
    
-- [ ] Tidy interface for all ... the thing to be transformed goes first
+- [ ] Tidy interface for all `...`; the thing to be transformed goes first
 
 - [ ] Resolve differences between 
       - `apply.pattern` 
@@ -24,7 +45,7 @@
 
 - [ ] What is the relationship with `conformist`
 
-- [x] Factor out RF specific function to rf.tools
+- [x] Factor out RF specific function to randomForest.tools
 
 - [ ] Check randomForest for allowing INF predictors, recently these were disallowed
    - [ ] prep_data_randomForest, check these
@@ -47,3 +68,8 @@
         - use for continuos (?)
         
 - [ ] Add rounding to ... splits
+
+- [ ] Write `name_it` that produces a canonical name for an object based on the 
+      objects contents; For example, a caret model might be named 
+      `fit.loss.rf.2000` indicating it is a model of loss using rf and a sample 
+      size of 2000?

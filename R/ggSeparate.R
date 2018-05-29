@@ -9,7 +9,17 @@
 
 ggSeparate <- function(x,y) UseMethod('ggSeparate')
 
-ggSeparate.caret <- function(x,y) {}
+ggSeparate.train <- function(x,y) {
+  
+  d <-x$validation
+  ggplot(d, aes(x=.prob, fill=cure) ) + 
+    geom_histogram(bins=50, alpha=0.60, position="nudge") + 
+    theme_hc() + 
+    scale_y_sqrt() + 
+    scale_x_reverse()
+  
+  
+}
 
 # Example 
 # dat_train.[ Number_of_Days_Delinquent <= 7, ] %>% 

@@ -7,7 +7,7 @@
 #' @examples 
 #' 
 #'  data(iris)
-#'  glm_multinomial( Species ~ . , data)
+#'  fit <- glm_multinom( Species ~ . , data=iris)
 #'  
 #'    
 #' @export 
@@ -29,7 +29,7 @@ glm_multinom <- function(formula, data, ...) {
   
     data2[[lh]] %<>% equals(lvl)
     
-    fit <- glm( form, data=data2, family=binomial ) 
+    fit <- glm( formula, data=data2, family=binomial ) 
     
     # fit.li <- structure( list(fit), .Names=lvl )
     # fits <- c(fits, fit.li)
@@ -50,7 +50,7 @@ glm_multinom <- function(formula, data, ...) {
   ret$fitted.class <- names(fv)[ which_col  ]  
   
   # FITTED: PROBS (LINK)
-  ret$fitted.probs <- logic
+  # ret$fitted.probs <- logistic()
   
   fv.link <- logistic_inv( fv )
 
@@ -96,7 +96,7 @@ glm_multinom <- function(formula, data, ...) {
 #'    
 #' @export
 
-predict.glm_multinomial <- function(x, newdata, type=c("norm", "probs", "raw", "class"), ... ) { 
+predict.glm_multinom <- function(x, newdata, type=c("norm", "probs", "raw", "class"), ... ) { 
 
   type <- match.arg( c("norm", "probs", "raw", "class"))
   coefs <- x$coefs
