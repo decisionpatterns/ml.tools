@@ -25,6 +25,7 @@
 #'   library(ROCR)
 #'   data(ROCR.simple)
 #'   ggROC( ROCR.simple$predictions, ROCR.simple$labels)
+#'   
 #'   perf <- performance(pred,"tpr","fpr")
 #'   plot.performance(perf)
 #' 

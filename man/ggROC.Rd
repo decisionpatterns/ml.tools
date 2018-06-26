@@ -37,6 +37,7 @@ For numeric objects, \code{x} is a predicted values/probabilities, \code{y} is t
   library(ROCR)
   data(ROCR.simple)
   ggROC( ROCR.simple$predictions, ROCR.simple$labels)
+  
   perf <- performance(pred,"tpr","fpr")
   plot.performance(perf)
 
