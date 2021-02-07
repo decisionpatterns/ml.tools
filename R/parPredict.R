@@ -37,8 +37,8 @@ parPredict<- function( object, newdata, ... ) {
        data=itertools::isplitRows( newdata, chunks=getDoParWorkers() ) 
       , .inorder=TRUE 
       , .combine=c, .multicombine=TRUE
-      # , .packages=c('randomForest','data.table')
-      , .export='object'
+      , .packages=c('randomForest','data.table')
+      # , .export='object'
     ) %dopar% 
       {  
         predict( object, data, ... ) 

@@ -3,7 +3,6 @@
 \docType{package}
 \name{ml.tools}
 \alias{ml.tools}
-\alias{ml.tools-package}
 \title{ml.tools - Machine Learning Tools}
 \description{
 The \code{ml.tools} packages provides a number of tools that are generally

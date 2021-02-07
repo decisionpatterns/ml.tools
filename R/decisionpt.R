@@ -1,4 +1,4 @@
-#' # Decision Point
+#' Decision Point
 #'
 #' 
 #' This Shiny app/gadget to select a decision point (cutoff) used

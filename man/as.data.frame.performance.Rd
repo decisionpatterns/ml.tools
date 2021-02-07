@@ -4,8 +4,7 @@
 \alias{as.data.frame.performance}
 \title{Convert ROCR::performance object into a data.frame}
 \usage{
-\method{as.data.frame}{performance}(x, row.names = NULL, optional = FALSE,
-  ...)
+\method{as.data.frame}{performance}(x, row.names = NULL, optional = FALSE, ...)
 }
 \arguments{
 \item{x}{ROCR::performance object}

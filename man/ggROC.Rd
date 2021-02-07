@@ -18,19 +18,22 @@ ggROC(x, y, ...)
 
 \item{y}{depends on typeof(x). See details.}
 
-\item{...}{additional arguments}
+\item{...}{additional arguments passed to \code{\link[ROCR:performance]{ROCR::performance()}}}
 
 \item{measure}{string; measure used with \code{ROCR::performance}}
 
 \item{x.measure}{string; measure used with \code{ROCR::performance}}
 }
 \description{
-Produce a ROC curve using ggplot2
+Produce a fancy ROC curve using ggplot2.
 }
 \details{
 \code{ggROC} is an S3 generic function for producing ggplot based ROC curves.
 
-For numeric objects, \code{x} is a predicted values/probabilities, \code{y} is the labels.
+For numeric objects, \code{x} is a predicted values/probabilities, \code{y} 
+is the labels.
+
+This plots all resampled values that match the `bestTune` parameters.
 }
 \examples{
 
@@ -38,23 +41,25 @@ For numeric objects, \code{x} is a predicted values/probabilities, \code{y} is t
   data(ROCR.simple)
   ggROC( ROCR.simple$predictions, ROCR.simple$labels)
   
-  perf <- performance(pred,"tpr","fpr")
-  plot.performance(perf)
+  # perf <- performance(pred,"tpr","fpr")
+  # plot.performance(perf)
 
 
+ 
 
-
- ctrl <- trainControl(savePrediction=TRUE, classProbs = TRUE)
+ data(iris)
+ iris$setosa <- factor( ifelse(iris$Species == 'setosa', 'setosa', 'other') )
+ 
+ ctrl <- trainControl(savePrediction=TRUE, classProbs = TRUE) # Important
  fit <- caret::train( Species ~ ., iris, method="rf", metric="Kappa", trControl=ctrl )
  ggROC(fit)
  
 }
 \seealso{
 \itemize{
-\item \href{ROCR::plot.performance()}{ROCR::plot.performance}
+\item \url{ROCR::plot.performance()}
 \item \href{https://stackoverflow.com/questions/31138751/roc-curve-from-training-data-in-caret}{SO::roc-curve-from-training-data-in-caret}
 \item \href{https://cran.r-project.org/package=plotROC}{plotROC package}
+\item \code{\link[ROCR:plot-methods]{ROCR::plot.performance()}}
 }
-
-\code{\link{plot.performance}}
 }

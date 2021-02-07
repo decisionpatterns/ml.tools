@@ -7,11 +7,21 @@
 \alias{make.calibration}
 \title{Calibrate}
 \usage{
-calibrate(x, y = seq(0, 1, 1/(length(unique(x) - 1))), method = "constant",
-  rule = 2, ...)
+calibrate(
+  x,
+  y = seq(0, 1, 1/(length(unique(x) - 1))),
+  method = "constant",
+  rule = 2,
+  ...
+)
 
-make.calibrator(x, y = seq(0, 1, 1/(length(x) - 1)), method = "constant",
-  rule = 2, ...)
+make.calibrator(
+  x,
+  y = seq(0, 1, 1/(length(x) - 1)),
+  method = "constant",
+  rule = 2,
+  ...
+)
 }
 \arguments{
 \item{x}{numeric; values to be calibrated}

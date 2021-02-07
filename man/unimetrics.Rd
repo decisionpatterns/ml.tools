@@ -4,8 +4,12 @@
 \alias{unimetrics}
 \title{unimetrics / allmetrics}
 \usage{
-unimetrics(data, formula, metric = ifelse(is_cat(data[[lhs]]), "Accuracy",
-  "RMSE"), family = ifelse(is_cat(data[[lhs]]), binomial, gaussian))
+unimetrics(
+  data,
+  formula,
+  metric = ifelse(is_cat(data[[lhs]]), "Accuracy", "RMSE"),
+  family = ifelse(is_cat(data[[lhs]]), binomial, gaussian)
+)
 }
 \arguments{
 \item{metric}{string; See [train](caret::train())}

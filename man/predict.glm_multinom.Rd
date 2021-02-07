@@ -4,8 +4,7 @@
 \alias{predict.glm_multinom}
 \title{Predict multinomial GLM model}
 \usage{
-\method{predict}{glm_multinom}(x, newdata, type = c("norm", "probs", "raw",
-  "class"), ...)
+\method{predict}{glm_multinom}(x, newdata, type = c("norm", "probs", "raw", "class"), ...)
 }
 \arguments{
 \item{x}{glm_multinomial object}
